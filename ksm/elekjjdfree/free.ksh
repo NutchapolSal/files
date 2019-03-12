@@ -7,6 +7,7 @@ difficulty=challenge
 level=11
 t=128
 m=free.mp3
+v=free.mp4
 mvol=75
 o=50
 bg=grass
@@ -20,6 +21,7 @@ chokkakuvol=50
 ver=167
 --
 beat=4/4
+t=128
 //2572 tilt = 1 lane spin
 zoom_top=0
 zoom_bottom=0
