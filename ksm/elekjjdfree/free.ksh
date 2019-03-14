@@ -18,6 +18,7 @@ filtertype=peak
 chokkakuautovol=0
 chokkakuvol=50
 ver=167
+icon=nutch.png
 --
 beat=4/4
 t=128
