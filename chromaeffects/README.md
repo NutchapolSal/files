@@ -6,7 +6,7 @@ click on image to download
 
 jump list
 * [barmeter](#barmeter)
-* [barmeter2](#barmeter2)
+* [barmeter2](#barmeter-2)
 * [default](#default)
 * [england](#england)
 * [fishfettish](#fishfettish)
