@@ -5,13 +5,13 @@
 click on image to download
 
 jump list
-* barmeter
-* barmeter2
-* default
-* england
-* fishfettish
-* sparkles
-* wigwag
+* [barmeter](#barmeter)
+* [barmeter2](#barmeter2)
+* [default](#default)
+* [england](#england)
+* [fishfettish](#fishfettish)
+* [sparkles](#sparkles)
+* [wigwag](#wigwag)
 
 ## barmeter
 [![barmeter](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/barmeter.png "barmeter")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-barmeter.ChromaEffects)
