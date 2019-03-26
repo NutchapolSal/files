@@ -12,6 +12,7 @@ click on effect name to go back to jump list
 * [default](#default)
 * [england](#england)
 * [fishfettish](#fishfettish)
+* [radar](#radar)
 * [sparkles](#sparkles)
 * [wigwag](#wigwag)
 
