@@ -10,6 +10,7 @@ click on effect name to go back to jump list
 * [barmeter](#barmeter)
 * [barmeter2](#barmeter2)
 * [default](#default)
+* [discofloor](#discofloor)
 * [england](#england)
 * [fishfettish](#fishfettish)
 * [radar](#radar)
