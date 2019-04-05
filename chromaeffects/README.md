@@ -15,6 +15,7 @@ click on effect name to go back to jump list
 [discofloor](#discofloor)||||||✓||✓|||
 [england](#england)|||||||||✓||
 [fishfettish](#fishfettish)||✓||||||||✓|
+[overcharged]||||||✓||✓|✓|✓|
 [radar](#radar)|||||✓|✓||✓|||✓
 [sparkles](#sparkles)|||||✓|✓||✓|||
 [wigwag](#wigwag)|||||||||✓|✓|
@@ -60,6 +61,17 @@ __requested by **Beanme666**__ - just a static england flag
 ![am] ![wa]
 
 saw fish images in profile-requests, so i had to make it
+
+## [overcharged](#jump-list)
+[![overcharged](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/overcharged.png "overcharged")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-overcharged.ChromaEffects)
+
+![ri] ![sl] ![st] ![wa]
+
+__requested by **Merlin**__ - he said
+
+> https://www.youtube.com/watch?v=hucnB_0Lfvs does anyone have this for synapse 3
+
+then i tried recreating it, and i don't know how the original guy did it so i just put my own twist on it (also it's like 3am when i tried this so lol)
 
 ## [radar](#jump-list)
 [![radar](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/radar.png "radar")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-radar.ChromaEffects)
