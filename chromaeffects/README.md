@@ -62,6 +62,8 @@ __requested by **Beanme666**__ - just a static england flag
 
 saw fish images in profile-requests, so i had to make it
 
+*06 April 2019* - fixed no sound making the above half of the sea pitch black by using a one colored speed 0 wave because i don’t want to add static to the entry lol
+
 ## [overcharged](#jump-list)
 [![overcharged](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/overcharged.png "overcharged")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-overcharged.ChromaEffects)
 
