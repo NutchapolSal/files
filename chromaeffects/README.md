@@ -15,7 +15,7 @@ click on effect name to go back to jump list
 [discofloor](#discofloor)||||||✓||✓|||
 [england](#england)|||||||||✓||
 [fishfettish](#fishfettish)||✓||||||||✓|
-[mohamed](#mohamed)|||||||||✓|
+[mohamed](#mohamed)||||||||||✓|
 [overcharged](#overcharged)||||||✓||✓|✓|✓|
 [radar](#radar)|||||✓|✓||✓|||✓
 [raindrop](#raindrop)||✓||||✓|||✓||
