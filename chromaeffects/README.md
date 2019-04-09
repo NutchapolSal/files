@@ -17,6 +17,7 @@ click on effect name to go back to jump list
 [fishfettish](#fishfettish)||✓||||||||✓|
 [overcharged](#overcharged)||||||✓||✓|✓|✓|
 [radar](#radar)|||||✓|✓||✓|||✓
+[raindrop](#raindrop)||✓||||✓|||✓||
 [sparkles](#sparkles)|||||✓|✓||✓|||
 [wigwag](#wigwag)|||||||||✓|✓|
 
@@ -83,6 +84,13 @@ then i tried recreating it, and i don't know how the original guy did it so i ju
 inspiration:
 
 > 79. TOXIC-MATRIXWHEEL - A Matrix made using wheel. **Looks like a radar**
+
+## [raindrop](#jump-list)
+[![raindrop](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/raindrop.png "raindrop")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-raindrop.ChromaEffects)
+
+![am] ![ri] ![st]
+
+__requested by **Chris Harvey**, original by **FishFettish**__ - requested a raindrop effect, fishfettish made it and i fix some problems with it (also added some stuff too)
 
 ## [sparkles](#jump-list)
 [![sparkles](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/sparkles.png "sparkles")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-sparkles.ChromaEffects)
