@@ -15,6 +15,7 @@ click on effect name to go back to jump list
 [discofloor](#discofloor)||||||✓||✓|||
 [england](#england)|||||||||✓||
 [fishfettish](#fishfettish)||✓||||||||✓|
+[mohamed](#mohamed)|||||||||✓|
 [overcharged](#overcharged)||||||✓||✓|✓|✓|
 [radar](#radar)|||||✓|✓||✓|||✓
 [raindrop](#raindrop)||✓||||✓|||✓||
@@ -64,6 +65,22 @@ seizure warning, made using a bunch of starlights
 saw fish images in profile-requests, so i had to make it
 
 *06 April 2019* - fixed no sound making the above half of the sea pitch black by using a one colored speed 0 wave because i don’t want to add static to the entry lol
+
+## [mohamed](#jump-list)
+[![mohamed](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/mohamed.png "mohamed")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-mohamed.ChromaEffects)
+
+![wa]
+
+**requested by _i0S11_**
+
+i0S11:
+> Anyone wanna write my name
+
+> It’s spelled Mohamed
+
+> Ya just across the keyboard with the keys
+
+challenge accepted
 
 ## [overcharged](#jump-list)
 [![overcharged](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/overcharged.png "overcharged")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-overcharged.ChromaEffects)
