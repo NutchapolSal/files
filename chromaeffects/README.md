@@ -54,7 +54,7 @@ seizure warning, made using a bunch of starlights
 
 ![st]
 
-__requested by **Beanme666**__ - just a static england flag
+**requested by _Beanme666_** - just a static england flag
 
 ## [fishfettish](#jump-list)
 [![fishfettish](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/fishfettish.png "fishfettish")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-fishfettish.ChromaEffects)
@@ -70,7 +70,7 @@ saw fish images in profile-requests, so i had to make it
 
 ![ri] ![sl] ![st] ![wa]
 
-__requested by **Merlin**__ - he said
+**requested by _Merlin_** - he said
 
 > https://www.youtube.com/watch?v=hucnB_0Lfvs does anyone have this for synapse 3
 
@@ -90,7 +90,7 @@ inspiration:
 
 ![am] ![ri] ![st]
 
-__requested by **Chris Harvey**, original by **FishFettish**__ - requested a raindrop effect, fishfettish made it and i fix some problems with it (also added some stuff too)
+**requested by _Chris Harvey_, original by _FishFettish_** - requested a raindrop effect, fishfettish made it and i fix some problems with it (also added some stuff too)
 
 ## [sparkles](#jump-list)
 [![sparkles](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/sparkles.png "sparkles")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-sparkles.ChromaEffects)
@@ -104,7 +104,7 @@ white ripple under a bunch of black starlights
 
 ![st] ![wa]
 
-__requested by **Alex P. 5D-458**__ - based on the [wigwag pattern on police car lights](https://www.youtube.com/watch?v=0OLzvegbQ4Y)
+**requested by _Alex P. 5D-458_** - based on the [wigwag pattern on police car lights](https://www.youtube.com/watch?v=0OLzvegbQ4Y)
 
 [aa]: https://github.com/NutchapolSal/files/raw/master/chromaeffects/icon/icon-assets/aa.png "ambient awareness"
 [am]: https://github.com/NutchapolSal/files/raw/master/chromaeffects/icon/icon-assets/am.png "audio meter"
