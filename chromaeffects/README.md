@@ -16,6 +16,7 @@ click on effect name to go back to jump list
 [england](#england)|||||||||✓||
 [fishfettish](#fishfettish)||✓||||||||✓|
 [mohamed](#mohamed)||||||||||✓|
+[mudrive](#mudrive)||||||✓|||✓||
 [overcharged](#overcharged)||||||✓||✓|✓|✓|
 [radar](#radar)|||||✓|✓||✓|||✓
 [raindrop](#raindrop)||✓||||✓|||✓||
@@ -81,6 +82,15 @@ i0S11:
 > Ya just across the keyboard with the keys
 
 challenge accepted
+
+## [mudrive](#jump-list)
+[![mudrive](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/mudrive.png "mudrive")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-mudrive.ChromaEffects)
+
+![ri] ![st]
+
+keyboard profile for [μ-DRIVE](https://jmontineri.itch.io/mu-drive)
+
+finally made use of the "on selected keys" in a profile release
 
 ## [overcharged](#jump-list)
 [![overcharged](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/overcharged.png "overcharged")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-overcharged.ChromaEffects)
