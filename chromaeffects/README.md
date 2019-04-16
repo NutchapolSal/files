@@ -9,7 +9,7 @@ click on effect name to go back to jump list
 #### jump list
 . | ![aa] | ![am] | ![br] | ![fi] | ![re] | ![ri] | ![sc] | ![sl] | ![st] | ![wa] | ![wh]
 ---|---|---|---|---|---|---|---|---|---|---|---
-[acorigins](#acorigins)|||||||||✓|✓|
+[acorigins](#acorigins)||||||||✓||✓|
 [barmeter](#barmeter)||✓|||||||||
 [barmeter2](#barmeter2)||✓||✓||||✓|||
 [default](#default)|✓|✓|||✓|✓||✓||✓|
@@ -27,7 +27,7 @@ click on effect name to go back to jump list
 ## [acorigins](#jump-list)
 [![acorigins](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/acorigins.png "acorigins")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-acorigins.ChromaEffects)
 
-![st] ![wa]
+![sl] ![wa]
 
 **requested by _Gesaffelstein_**
 
