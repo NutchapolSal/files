@@ -9,6 +9,7 @@ click on effect name to go back to jump list
 #### jump list
 . | ![aa] | ![am] | ![br] | ![fi] | ![re] | ![ri] | ![sc] | ![sl] | ![st] | ![wa] | ![wh]
 ---|---|---|---|---|---|---|---|---|---|---|---
+[acorigins](#acorigins)|||||||||✓|✓|
 [barmeter](#barmeter)||✓|||||||||
 [barmeter2](#barmeter2)||✓||✓||||✓|||
 [default](#default)|✓|✓|||✓|✓||✓||✓|
@@ -22,6 +23,15 @@ click on effect name to go back to jump list
 [raindrop](#raindrop)||✓||||✓|||✓||
 [sparkles](#sparkles)|||||✓|✓||✓|||
 [wigwag](#wigwag)|||||||||✓|✓|
+
+## [acorigins](#jump-list)
+[![acorigins](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/acorigins.png "acorigins")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-acorigins.ChromaEffects)
+
+![st] ![wa]
+
+**requested by _Gesaffelstein_**
+
+> Hello everyone! Can anyone with some freetime please make an assassin's creed origins profile like this one (https://i.imgur.com/UzSMDn4.gifv) ? and like sometimes you get a wave effect of gold just passing by the keyboard ? Thanks
 
 ## [barmeter](#jump-list)
 [![barmeter](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/barmeter.png "barmeter")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-barmeter.ChromaEffects)
