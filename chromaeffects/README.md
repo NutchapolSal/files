@@ -59,7 +59,9 @@ barmeter but put effects behind audio meter layer for extra coolness
 
 > can someone show me how to make this`?
 
-1AM - don't really want to complicate things so no fade black before switching colors like in the original
+1AM - recreation from razerchroma
+
+don't really want to complicate things so no fade black before switching colors like in the original
 
 ## [default](#jump-list)
 [![default](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/default.png "default")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-default.ChromaEffects)
