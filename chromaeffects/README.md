@@ -12,6 +12,7 @@ click on effect name to go back to jump list
 [acorigins](#acorigins)||||||||✓||✓|
 [barmeter](#barmeter)||✓|||||||||
 [barmeter2](#barmeter2)||✓||✓||||✓|||
+[coplightscode2](#coplightscode2)||||||||||✓|
 [default](#default)|✓|✓|||✓|✓||✓||✓|
 [discofloor](#discofloor)||||||✓||✓|||
 [england](#england)|||||||||✓||
@@ -46,6 +47,19 @@ proof of concept, bar audio meter
 ![am] ![fi] ![sl]
 
 barmeter but put effects behind audio meter layer for extra coolness
+
+## [coplightscode2](#jump-list)
+[![coplightscode2](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/coplightscode2.png "coplightscode2")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-coplightscode2.ChromaEffects)
+
+![wa]
+
+**requested by _JermoDK_, original by _dylan98_**
+
+> https://www.youtube.com/watch?v=EfIb-ne7tq8
+
+> can someone show me how to make this`?
+
+1AM - don't really want to complicate things so no fade black before switching colors like in the original
 
 ## [default](#jump-list)
 [![default](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/default.png "default")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-default.ChromaEffects)
