@@ -25,6 +25,8 @@ click on effect name to go back to jump list
 [sparkles](#sparkles)|||||✓|✓||✓|||
 [wigwag](#wigwag)|||||||||✓|✓|
 
+gifs are limited to 5 seconds because i'm too lazy to change the duration
+
 ## [acorigins](#jump-list)
 [![acorigins](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/acorigins.gif "acorigins")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-acorigins.ChromaEffects)
 
