@@ -26,7 +26,7 @@ click on effect name to go back to jump list
 [wigwag](#wigwag)|||||||||✓|✓|
 
 ## [acorigins](#jump-list)
-[![acorigins](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/acorigins.png "acorigins")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-acorigins.ChromaEffects)
+[![acorigins](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/acorigins.gif "acorigins")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-acorigins.ChromaEffects)
 
 ![sl] ![wa]
 
@@ -35,21 +35,21 @@ click on effect name to go back to jump list
 > Hello everyone! Can anyone with some freetime please make an assassin's creed origins profile like this one (https://i.imgur.com/UzSMDn4.gifv) ? and like sometimes you get a wave effect of gold just passing by the keyboard ? Thanks
 
 ## [barmeter](#jump-list)
-[![barmeter](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/barmeter.png "barmeter")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-barmeter.ChromaEffects)
+[![barmeter](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/barmeter.gif "barmeter")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-barmeter.ChromaEffects)
 
 ![am]
 
 proof of concept, bar audio meter
 
 ## [barmeter2](#jump-list)
-[![barmeter2](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/barmeter2.png "barmeter2")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-barmeter2.ChromaEffects)
+[![barmeter2](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/barmeter2.gif "barmeter2")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-barmeter2.ChromaEffects)
 
 ![am] ![fi] ![sl]
 
 barmeter but put effects behind audio meter layer for extra coolness
 
 ## [coplightscode2](#jump-list)
-[![coplightscode2](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/coplightscode2.png "coplightscode2")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-coplightscode2.ChromaEffects)
+[![coplightscode2](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/coplightscode2.gif "coplightscode2")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-coplightscode2.ChromaEffects)
 
 ![wa]
 
@@ -64,28 +64,28 @@ barmeter but put effects behind audio meter layer for extra coolness
 don't really want to complicate things so no fade black before switching colors like in the original
 
 ## [default](#jump-list)
-[![default](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/default.png "default")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-default.ChromaEffects)
+[![default](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/default.gif "default")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-default.ChromaEffects)
 
 ![aa] ![am] ![re] ![ri] ![sl] ![wa]
 
 my default
 
 ## [discofloor](#jump-list)
-[![discofloor](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/discofloor.png "discofloor")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-discofloor.ChromaEffects)
+[![discofloor](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/discofloor.gif "discofloor")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-discofloor.ChromaEffects)
 
 ![ri] ![sl]
 
 seizure warning, made using a bunch of starlights
 
 ## [england](#jump-list)
-[![england](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/england.png "england")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-england.ChromaEffects)
+[![england](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/england.gif "england")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-england.ChromaEffects)
 
 ![st]
 
 **requested by _Beanme666_** - just a static england flag
 
 ## [fishfettish](#jump-list)
-[![fishfettish](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/fishfettish.png "fishfettish")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-fishfettish.ChromaEffects)
+[![fishfettish](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/fishfettish.gif "fishfettish")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-fishfettish.ChromaEffects)
 
 ![am] ![wa]
 
@@ -94,7 +94,7 @@ saw fish images in profile-requests, so i had to make it
 *06 April 2019* - fixed no sound making the above half of the sea pitch black by using a one colored speed 0 wave because i don’t want to add static to the entry lol
 
 ## [mohamed](#jump-list)
-[![mohamed](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/mohamed.png "mohamed")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-mohamed.ChromaEffects)
+[![mohamed](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/mohamed.gif "mohamed")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-mohamed.ChromaEffects)
 
 ![wa]
 
@@ -110,7 +110,7 @@ i0S11:
 challenge accepted
 
 ## [mudrive](#jump-list)
-[![mudrive](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/mudrive.png "mudrive")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-mudrive.ChromaEffects)
+[![mudrive](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/mudrive.gif "mudrive")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-mudrive.ChromaEffects)
 
 ![ri] ![st]
 
@@ -119,7 +119,7 @@ keyboard profile for [μ-DRIVE](https://jmontineri.itch.io/mu-drive)
 finally made use of the "on selected keys" in a profile release
 
 ## [overcharged](#jump-list)
-[![overcharged](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/overcharged.png "overcharged")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-overcharged.ChromaEffects)
+[![overcharged](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/overcharged.gif "overcharged")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-overcharged.ChromaEffects)
 
 ![ri] ![sl] ![st] ![wa]
 
@@ -130,7 +130,7 @@ finally made use of the "on selected keys" in a profile release
 then i tried recreating it, and i don't know how the original guy did it so i just put my own twist on it (also it's like 3am when i tried this so lol)
 
 ## [radar](#jump-list)
-[![radar](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/radar.png "radar")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-radar.ChromaEffects)
+[![radar](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/radar.gif "radar")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-radar.ChromaEffects)
 
 ![re] ![ri] ![sl] ![wh]
 
@@ -139,21 +139,21 @@ inspiration:
 > 79. TOXIC-MATRIXWHEEL - A Matrix made using wheel. **Looks like a radar**
 
 ## [raindrop](#jump-list)
-[![raindrop](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/raindrop.png "raindrop")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-raindrop.ChromaEffects)
+[![raindrop](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/raindrop.gif "raindrop")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-raindrop.ChromaEffects)
 
 ![am] ![ri] ![st]
 
 **requested by _Chris Harvey_, original by _FishFettish_** - requested a raindrop effect, fishfettish made it and i fix some problems with it (also added some stuff too)
 
 ## [sparkles](#jump-list)
-[![sparkles](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/sparkles.png "sparkles")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-sparkles.ChromaEffects)
+[![sparkles](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/sparkles.gif "sparkles")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-sparkles.ChromaEffects)
 
 ![re] ![ri] ![sl]
 
 white ripple under a bunch of black starlights
 
 ## [wigwag](#jump-list)
-[![wigwag](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/wigwag.png "wigwag")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-wigwag.ChromaEffects)
+[![wigwag](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/wigwag.gif "wigwag")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-wigwag.ChromaEffects)
 
 ![st] ![wa]
 
