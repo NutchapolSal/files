@@ -21,6 +21,7 @@ click on effect name to go back to jump list
 [mudrive](#mudrive)||||||✓|||✓||
 [overcharged](#overcharged)||||||✓||✓|✓|✓|
 [radar](#radar)|||||✓|✓||✓|||✓
+[rainbowspiral](#rainbowspiral)||||||✓|||||✓
 [raindrop](#raindrop)||✓||||✓|||✓||
 [sparkles](#sparkles)|||||✓|✓||✓|||
 [wigwag](#wigwag)|||||||||✓|✓|
@@ -146,6 +147,17 @@ inspiration:
 ![am] ![ri] ![st]
 
 **requested by _Chris Harvey_, original by _FishFettish_** - requested a raindrop effect, fishfettish made it and i fix some problems with it (also added some stuff too)
+
+## [rainbowspiral](#jump-list)
+[![rainbowspiral](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/rainbowspiral.gif "rainbowspiral")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-rainbowspiral.ChromaEffects)
+
+![ri] ![wh]
+
+**requested by _Thisunknownname_** -
+
+>Request rainbow spiral ripple effect
+
+not quite, but makes a cool effect nontheless
 
 ## [sparkles](#jump-list)
 [![sparkles](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/sparkles.gif "sparkles")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-sparkles.ChromaEffects)
