@@ -23,6 +23,7 @@ click on effect name to go back to jump list
 [radar](#radar)|||||✓|✓||✓|||✓
 [rainbowspiral](#rainbowspiral)||||||✓|||||✓
 [raindrop](#raindrop)||✓||||✓|||✓||
+[seriesoftubes](#seriesoftubes)|||||||||✓|✓|
 [sparkles](#sparkles)|||||✓|✓||✓|||
 [wigwag](#wigwag)|||||||||✓|✓|
 
@@ -141,13 +142,6 @@ inspiration:
 
 > 79. TOXIC-MATRIXWHEEL - A Matrix made using wheel. **Looks like a radar**
 
-## [raindrop](#jump-list)
-[![raindrop](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/raindrop.gif "raindrop")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-raindrop.ChromaEffects)
-
-![am] ![ri] ![st]
-
-**requested by _Chris Harvey_, original by _FishFettish_** - requested a raindrop effect, fishfettish made it and i fix some problems with it (also added some stuff too)
-
 ## [rainbowspiral](#jump-list)
 [![rainbowspiral](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/rainbowspiral.gif "rainbowspiral")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-rainbowspiral.ChromaEffects)
 
@@ -158,6 +152,22 @@ inspiration:
 >Request rainbow spiral ripple effect
 
 not quite, but makes a cool effect nontheless
+
+## [seriesoftubes](#jump-list)
+[![seriesoftubes](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/seriesoftubes.gif "seriesoftubes")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-seriesoftubes.ChromaEffects)
+
+![st] ![wa]
+
+1AM - inspiration: https://www.youtube.com/watch?v=_cZC67wXUTs
+
+> The Internet is not a big truck, It-it-it-it's a series of tubes!
+
+## [raindrop](#jump-list)
+[![raindrop](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/raindrop.gif "raindrop")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-raindrop.ChromaEffects)
+
+![am] ![ri] ![st]
+
+**requested by _Chris Harvey_, original by _FishFettish_** - requested a raindrop effect, fishfettish made it and i fix some problems with it (also added some stuff too)
 
 ## [sparkles](#jump-list)
 [![sparkles](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/sparkles.gif "sparkles")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-sparkles.ChromaEffects)

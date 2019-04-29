@@ -12,6 +12,8 @@ California Highway Patrol CHP Code 3: [0OLzvegbQ4Y](https://www.youtube.com/watc
 
 Chroma Profile: dylan98 - Cop lights code 2: [EfIb-ne7tq8](https://www.youtube.com/watch?v=EfIb-ne7tq8) [mirror](https://github.com/NutchapolSal/files/raw/master/chromaeffects/mirror/youtube-EfIb-ne7tq8.mp4)
 
+Series of Tubes Music Video: [_cZC67wXUTs](https://www.youtube.com/watch?v=_cZC67wXUTs) [mirror](https://github.com/NutchapolSal/files/raw/master/chromaeffects/mirror/youtube-_cZC67wXUTs.mp4)
+
 ## Imgur
 
 acorigins: [UzSMDn4](https://imgur.com/UzSMDn4) [mirror](https://github.com/NutchapolSal/files/raw/master/chromaeffects/mirror/imgur-UzSMDn4.mp4)
