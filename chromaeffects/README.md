@@ -25,6 +25,7 @@ click on effect name to go back to jump list
 [raindrop](#raindrop)||✓||||✓|||✓||
 [seriesoftubes](#seriesoftubes)|||||||||✓|✓|
 [sparkles](#sparkles)|||||✓|✓||✓|||
+[vaporhole](#vaporhole)||✓|||||||✓|✓|
 [wigwag](#wigwag)|||||||||✓|✓|
 
 gifs are limited to 5 seconds because i'm too lazy to change the duration
@@ -175,6 +176,21 @@ not quite, but makes a cool effect nontheless
 ![re] ![ri] ![sl]
 
 white ripple under a bunch of black starlights
+
+## [vaporhole](#jump-list)
+[![vaporhole](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/vaporhole.gif "vaporhole")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-vaporhole.ChromaEffects)
+
+![am] ![st] ![wa]
+
+**requested by _Vsauce, Michael here_, original by _TOX!C_ with doubts**
+
+> Hello everyone! I have an easy request if possible, it's a merge of 2 profiles that I already have. Would be nice if someone please merge this. Like the base of the profile stays like the Vaporwave profile, and reacts to music like the Black Hole profile. It's like the Vaporwave profile but reacts to music the same way as the Blackhole one. And thanks !!
+
+_literally copies blackhole's audio meter layers into vaporwave_
+
+[TOX!C's Google drive](https://drive.google.com/drive/folders/1vG6P_RU7_VCcAPKAKcOAnps2IEoRFdgi), [Blackhole link](https://drive.google.com/open?id=1cVSPuoAGxLUnE06yzCtcsCpaCRGiRvci), [Vaporwave link](https://drive.google.com/file/d/1jeL9XC92R9bDc5ncnioJkwcfJkaiZPcf/view?usp=sharing)
+
+the request has 2 profiles attached, inside it's named _AA Music Blackhole_ & _AA Vaporwave_. TOX!C recognized them but no response from Vsauce, Michael here currently
 
 ## [wigwag](#jump-list)
 [![wigwag](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/wigwag.gif "wigwag")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-wigwag.ChromaEffects)
