@@ -190,7 +190,7 @@ _literally copies blackhole's audio meter layers into vaporwave_
 
 [TOX!C's Google drive](https://drive.google.com/drive/folders/1vG6P_RU7_VCcAPKAKcOAnps2IEoRFdgi), [Blackhole link](https://drive.google.com/open?id=1cVSPuoAGxLUnE06yzCtcsCpaCRGiRvci), [Vaporwave link](https://drive.google.com/file/d/1jeL9XC92R9bDc5ncnioJkwcfJkaiZPcf/view?usp=sharing)
 
-the request has 2 profiles attached, inside it's named _AA Music Blackhole_ & _AA Vaporwave_. TOX!C recognized them but no response from Vsauce, Michael here currently
+the request has 2 profiles attached, inside it's named _AA Music Blackhole_ & _AA Vaporwave_. TOX!C recognized them. Vsauce, Michael here's response is that he renamed it to make it appear at the top of his profile list & for personal use
 
 ## [wigwag](#jump-list)
 [![wigwag](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/wigwag.gif "wigwag")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-wigwag.ChromaEffects)
