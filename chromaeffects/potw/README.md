@@ -9,13 +9,13 @@ click on effect name to go back to jump list
 #### jump list
 date|profile name|creator
 ---|---|---
-Apr 20, 2019|[tron](#tron)|chroma#4357
+Apr 20, 2019|[Tron](#Tron)|chroma#4357
 Apr 27, 2019|[brainpowder](#brainpowder)|Merlin#4644
 
 gifs are limited to 5 seconds
 
-## [tron](#jump-list)
-[![tron](https://github.com/NutchapolSal/files/raw/master/chromaeffects/potw/prev/tron.gif "tron")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/potw/n-tron.ChromaEffects)
+## [Tron](#jump-list)
+[![Tron](https://github.com/NutchapolSal/files/raw/master/chromaeffects/potw/prev/Tron.gif "Tron")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/potw/n-Tron.ChromaEffects)
 
 ![re] ![ri] ![st] ![wa]
 
