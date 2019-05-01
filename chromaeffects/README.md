@@ -182,7 +182,7 @@ white ripple under a bunch of black starlights
 
 ![am] ![st] ![wa]
 
-**requested by _Vsauce, Michael here_, original by _TOX!C_ with doubts**
+**requested by _Vsauce, Michael here_, original by _TOX!C_**
 
 > Hello everyone! I have an easy request if possible, it's a merge of 2 profiles that I already have. Would be nice if someone please merge this. Like the base of the profile stays like the Vaporwave profile, and reacts to music like the Black Hole profile. It's like the Vaporwave profile but reacts to music the same way as the Blackhole one. And thanks !!
 
