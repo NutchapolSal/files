@@ -162,6 +162,15 @@ not quite, but makes a cool effect nontheless
 
 > The Internet is not a big truck, It-it-it-it's a series of tubes!
 
+*07 May 2019* -
+
+> i might be dumb
+> it's based off a **song**, but it doesn't react to **music**
+
+so i made it react to music, but only for tube side. and also you can now spawn data inside the tubes.
+
+time to r/razer crusade
+
 ## [raindrop](#jump-list)
 [![raindrop](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/raindrop.gif "raindrop")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-raindrop.ChromaEffects)
 
