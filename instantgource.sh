@@ -1,0 +1,1 @@
+gource --seconds-per-day 5 --auto-skip-seconds 0.1 --file-idle-time 0 --key --camera-mode track
