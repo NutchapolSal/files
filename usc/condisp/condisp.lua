@@ -14,7 +14,7 @@ function draw_condisp()
 	--total wxh= 171x108
 	--margins: 13px
 	--with margins=197x134
-	--top right anchor, does not include margin
+	--top left anchor, does not include margin
 	local origx = 13 --13 = attached to left, desw - 183 or 1097 = attached to right
 	local origy = desh - 122 --13 = attached to top, desh - 122 or 598 = attached to bottom
 	
