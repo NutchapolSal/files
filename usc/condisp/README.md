@@ -4,25 +4,31 @@
 
 For [USC](https://github.com/Drewol/unnamed-sdvx-clone)
 
-no knobs because the game can't
+v2: **knobs!!!!!** fml i'm up for 22 hours straight just to make **knob display**
+
+>ofc not all of those 22 hours are on knob-display-making. it started from playing other games, then friend left so played some usc, then fkd around with gameplay.lua then this. can't even believe it's all in 24hrs.
 
 did not made this with both portrait/landscape compactibility, only for landscape so lol (but you have your flashy 3d console with portrait anyways)
 
 ![gifpreview](https://github.com/NutchapolSal/files/raw/master/usc/condisp/prev.gif)
 
-[See it in action](https://youtu.be/8vpFTbocm_k)
+[See it in action](https://youtu.be/k5bmK1dlRK4)
 
 ### [NOV] How to install
 1. Go to your skin folder, inside `scripts`
 2. Open `gameplay.lua` with notepad or something
 3. Copy contents of [`condisp.lua`](https://raw.githubusercontent.com/NutchapolSal/files/master/usc/condisp/condisp.lua) and place it at the bottom
-4. Find `function render`
-5. Type in `draw_condisp()` under `draw_alerts(deltaTime)`
-6. (optional) Customize ConDisp to your liking
+4. Find `local clearTexts`
+5. Copy contents of [`variables.lua`](https://raw.githubusercontent.com/NutchapolSal/files/master/usc/condisp/variables.lua) and place it right after it
+6. Find `function render`
+7. Type in `draw_condisp()` under `draw_alerts(deltaTime)`
+8. (optional) Customize ConDisp to your liking
 
 ### [EXH] How to install
 
 put contents of [`condisp.lua`](https://raw.githubusercontent.com/NutchapolSal/files/master/usc/condisp/condisp.lua) inside `gameplay.lua`
+
+declare [`variables`](https://raw.githubusercontent.com/NutchapolSal/files/master/usc/condisp/variables.lua)
 
 put `draw_condisp()` somewhere in the render function
 
@@ -36,16 +42,28 @@ things are based in "design size" which is 1280x720(720x1280 for portrait i thin
 
 `gfx.FillColor` & `gfx.StrokeColor` is like setting the fill color & stroke color and then you use the rectangle tool to draw many rectangles with those specified colors
 
+`gfx.Translate` is like this photoshop thing
+
+![translate](https://github.com/NutchapolSal/files/raw/master/usc/condisp/translate.png)
+
+where you drag it out and it just changes the 0, 0 position to where you dropped it (although this is ~~more like~~ "move 0, 0 x units right and y units down")
+
+`gfx.Rotate` rotates around the current 0, 0
+
+`gfx.Save` & `gfx.Restore` is for saving & restoring transformations(translate, rotate, skew, etc). yes there are default transformations going into the function so don't forget to save & restore those when you use transformations or you might fk up everything executing after
+
 #### specifics
 
-change `origx` and `origy` to move it
+change `posx` and `posy` to move it
 
 4 default "fly in" intro animations for use or make one yourself
 
-anchor location(`origx` & `origy` position):
+anchor location(`posx` & `posy` position):
 
 ![anchor location](https://github.com/NutchapolSal/files/raw/master/usc/condisp/anchorlocation.png)
 
 button sizes are based off actual button sizes, use the [`xlsx`](https://github.com/NutchapolSal/files/raw/master/usc/condisp/design.xlsx) and [`psd`](https://github.com/NutchapolSal/files/raw/master/usc/condisp/design.psd) files to help locating rectangle locations & sizes
 
-`drawRectBool` function is just the `drawRect` function but uses booleans to determine if to do stroke/fill
+`gfx.drawRectBool` function is just the `gfx.drawRect` function but uses booleans to determine if to do stroke/fill
+
+same with `gfx.drawCircleBool` (lol `gfx.drawCircle` doesnt even exist)
