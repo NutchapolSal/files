@@ -6,7 +6,7 @@ For [USC](https://github.com/Drewol/unnamed-sdvx-clone)
 
 no knobs because the game can't
 
-did not made this with both portrait/landscape compactibility, only for landscape so lol
+did not made this with both portrait/landscape compactibility, only for landscape so lol (but you have your flashy 3d console with portrait anyways)
 
 ![gifpreview](https://github.com/NutchapolSal/files/raw/master/usc/condisp/prev.gif)
 
