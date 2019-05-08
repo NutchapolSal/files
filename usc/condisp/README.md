@@ -14,6 +14,8 @@ did not made this with both portrait/landscape compactibility, only for landscap
 
 [See it in action](https://youtu.be/k5bmK1dlRK4)
 
+also thanks usc discord for pushing me into making knobs support
+
 ### [NOV] How to install
 1. Go to your skin folder, inside `scripts`
 2. Open `gameplay.lua` with notepad or something
