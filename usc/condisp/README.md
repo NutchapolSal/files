@@ -10,7 +10,7 @@ did not made this with both portrait/landscape compactibility, only for landscap
 
 ![gifpreview](https://github.com/NutchapolSal/files/raw/master/usc/condisp/prev.gif)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/8vpFTbocm_k" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[See it in action](https://youtu.be/8vpFTbocm_k)
 
 ### [NOV] How to install
 1. Go to your skin folder, inside `scripts`
