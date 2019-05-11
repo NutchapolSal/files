@@ -10,6 +10,7 @@ click on effect name to go back to jump list
 . | ![aa] | ![am] | ![br] | ![fi] | ![re] | ![ri] | ![sc] | ![sl] | ![st] | ![wa] | ![wh]
 ---|---|---|---|---|---|---|---|---|---|---|---
 [acorigins](#acorigins)||||||||✓||✓|
+[alleffects](#alleffects)|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓
 [barmeter](#barmeter)||✓|||||||||
 [barmeter2](#barmeter2)||✓||✓||||✓|||
 [coplightscode2](#coplightscode2)||||||||||✓|
@@ -38,6 +39,35 @@ gifs are limited to 5 seconds because i'm too lazy to change the duration
 **requested by _Gesaffelstein_**
 
 > Hello everyone! Can anyone with some freetime please make an assassin's creed origins profile like this one (https://i.imgur.com/UzSMDn4.gifv) ? and like sometimes you get a wave effect of gold just passing by the keyboard ? Thanks
+
+## [alleffects](#jump-list)
+[![alleffects](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/alleffects.gif "alleffects")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-alleffects.ChromaEffects)
+
+![aa] ![am] ![br] ![fi] ![re] ![ri] ![sc] ![sl] ![st] ![wa] ![wh]
+
+**challenged by _FishFettish_**
+
+FishFettish:
+> @Nutchapol @TOX!C I challenge you guys (and myself) to make a good profile that uses every effect in synapse. Good luck
+
+Nutchapol(Me):
+> @FishFettish all layers, finishing with all black static
+
+> done
+
+F:
+> I knew you’d say that you smug bitch
+
+TOX!C:
+> except ambient awareness?
+
+F:
+> You can exclude 1 effect
+
+N:
+> excluding 1 effect means you aren't brave enough to take on the challenge
+
+imo i think this profile is pretty good
 
 ## [barmeter](#jump-list)
 [![barmeter](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/barmeter.gif "barmeter")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-barmeter.ChromaEffects)
