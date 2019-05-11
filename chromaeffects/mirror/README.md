@@ -6,13 +6,15 @@ download then view
 
 ## Youtube
 
-Blackwidow Chroma Configuration (Overcharged V4): [hucnB_0Lfvs](https://www.youtube.com/watch?v=hucnB_0Lfvs) [mirror](https://github.com/NutchapolSal/files/raw/master/chromaeffects/mirror/youtube-hucnB_0Lfvs.mp4)
+10 More Blackwidow Chroma Lighting Effect Profiles (With Download): [PTv9nN71cSY](https://youtu.be/PTv9nN71cSY) [mirror](https://github.com/NutchapolSal/files/raw/master/chromaeffects/mirror/youtube-PTv9nN71cSY.mp4)
 
-California Highway Patrol CHP Code 3: [0OLzvegbQ4Y](https://www.youtube.com/watch?v=0OLzvegbQ4Y) [mirror](https://github.com/NutchapolSal/files/raw/master/chromaeffects/mirror/youtube-0OLzvegbQ4Y.mp4)
+Blackwidow Chroma Configuration (Overcharged V4): [hucnB_0Lfvs](https://youtu.be/hucnB_0Lfvs) [mirror](https://github.com/NutchapolSal/files/raw/master/chromaeffects/mirror/youtube-hucnB_0Lfvs.mp4)
 
-Chroma Profile: dylan98 - Cop lights code 2: [EfIb-ne7tq8](https://www.youtube.com/watch?v=EfIb-ne7tq8) [mirror](https://github.com/NutchapolSal/files/raw/master/chromaeffects/mirror/youtube-EfIb-ne7tq8.mp4)
+California Highway Patrol CHP Code 3: [0OLzvegbQ4Y](https://youtu.be/0OLzvegbQ4Y) [mirror](https://github.com/NutchapolSal/files/raw/master/chromaeffects/mirror/youtube-0OLzvegbQ4Y.mp4)
 
-Series of Tubes Music Video: [_cZC67wXUTs](https://www.youtube.com/watch?v=_cZC67wXUTs) [mirror](https://github.com/NutchapolSal/files/raw/master/chromaeffects/mirror/youtube-_cZC67wXUTs.mp4)
+Chroma Profile: dylan98 - Cop lights code 2: [EfIb-ne7tq8](https://youtu.be/EfIb-ne7tq8) [mirror](https://github.com/NutchapolSal/files/raw/master/chromaeffects/mirror/youtube-EfIb-ne7tq8.mp4)
+
+Series of Tubes Music Video: [_cZC67wXUTs](https://youtu.be/_cZC67wXUTs) [mirror](https://github.com/NutchapolSal/files/raw/master/chromaeffects/mirror/youtube-_cZC67wXUTs.mp4)
 
 ## Imgur
 

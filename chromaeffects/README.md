@@ -23,6 +23,7 @@ click on effect name to go back to jump list
 [radar](#radar)|||||✓|✓||✓|||✓
 [rainbowspiral](#rainbowspiral)||||||✓|||||✓
 [raindrop](#raindrop)||✓||||✓|||✓||
+[rainingneon](#rainingneon)||||||||||✓|
 [seriesoftubes](#seriesoftubes)|||||||||✓|✓|
 [sparkles](#sparkles)|||||✓|✓||✓|||
 [wigwag](#wigwag)|||||||||✓|✓|
@@ -153,6 +154,22 @@ inspiration:
 
 not quite, but makes a cool effect nontheless
 
+## [raindrop](#jump-list)
+[![raindrop](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/raindrop.gif "raindrop")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-raindrop.ChromaEffects)
+
+![am] ![ri] ![st]
+
+**requested by _Chris Harvey_, original by _FishFettish_** - requested a raindrop effect, fishfettish made it and i fix some problems with it (also added some stuff too)
+
+## [rainingneon](#jump-list)
+[![rainingneon](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/rainingneon.gif "rainingneon")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-rainingneon.ChromaEffects)
+
+![wa]
+
+**requested by _syed\_bokhari_, original by possibly _puffnpluky76_**
+
+> hello guys, there used to be a black widow chroma lighting effect profile, called Raining neon. You can see it in this video in spot number 3 https://www.youtube.com/watch?v=PTv9nN71cSY. Can some one make it into a huntsman elite profile?\
+
 ## [seriesoftubes](#jump-list)
 [![seriesoftubes](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/seriesoftubes.gif "seriesoftubes")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-seriesoftubes.ChromaEffects)
 
@@ -171,13 +188,6 @@ not quite, but makes a cool effect nontheless
 so i made it react to music, but only for tube side. and also you can now spawn data inside the tubes.
 
 time to r/razer crusade
-
-## [raindrop](#jump-list)
-[![raindrop](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/raindrop.gif "raindrop")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-raindrop.ChromaEffects)
-
-![am] ![ri] ![st]
-
-**requested by _Chris Harvey_, original by _FishFettish_** - requested a raindrop effect, fishfettish made it and i fix some problems with it (also added some stuff too)
 
 ## [sparkles](#jump-list)
 [![sparkles](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/sparkles.gif "sparkles")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-sparkles.ChromaEffects)
