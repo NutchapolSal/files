@@ -69,6 +69,24 @@ N:
 
 imo i think this profile is pretty good
 
+*12 May 2019* - i forgot starlight & reactive so here ya go
+
+also
+
+name | usage
+---|---
+ambient awareness|background for the remanining stuff
+spectrum cycling|background for wasd, arrows, the group of keys above it, numpad & mouse
+fire|effect for arrows, group of keys above it & numpad
+wheel|background for function keys & the 3 keys to the right
+static|razer green logo
+starlight|keys randomly going black and fade in
+breathing|razer logo & macro keys
+wave|occasional razer green gleam
+audio meter|affects wasd, function keys, razer logo & mouse
+ripple|directional wasd ripple & normal ripple for other keys
+reactive|changes your keys to a random color
+
 ## [barmeter](#jump-list)
 [![barmeter](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/barmeter.gif "barmeter")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-barmeter.ChromaEffects)
 
