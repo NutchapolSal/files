@@ -13,6 +13,7 @@ click on effect name to go back to jump list
 [alleffects](#alleffects)|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓
 [barmeter](#barmeter)||✓|||||||||
 [barmeter2](#barmeter2)||✓||✓||||✓|||
+[blurple](#blurple)||✓|||✓|✓||✓|✓||
 [coplightscode2](#coplightscode2)||||||||||✓|
 [default](#default)|✓|✓|||✓|✓||✓||✓|
 [discofloor](#discofloor)||||||✓||✓|||
@@ -101,6 +102,13 @@ proof of concept, bar audio meter
 ![am] ![fi] ![sl]
 
 barmeter but put effects behind audio meter layer for extra coolness
+
+## [blurple](#jump-list)
+[![blurple](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/blurple.gif "blurple")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-blurple.ChromaEffects)
+
+![am] ![re] ![ri] ![sl] ![st]
+
+happy 4th birthday discord
 
 ## [coplightscode2](#jump-list)
 [![coplightscode2](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/coplightscode2.gif "coplightscode2")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-coplightscode2.ChromaEffects)
