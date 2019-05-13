@@ -12,6 +12,7 @@ date|profile name|creator
 Apr 20, 2019|[Tron](#Tron)|chroma#4357
 Apr 27, 2019|[brainpowder](#brainpowder)|Merlin#4644
 May 04, 2019|[Crystal_Silver_Visualizer](#Crystal_Silver_Visualizer)|Silver#2329
+May 04, 2019|[BURST!_Silver_Visualizer](#BURST!_Silver_Visualizer)|Silver#2329
 
 gifs are limited to 5 seconds
 
@@ -35,6 +36,13 @@ gifs are limited to 5 seconds
 ![am] ![re] ![ri] ![sl] ![wa]
 
 **made by __Silver#2329__**
+
+## [BURST!_Silver_Visualizer](#jump-list)
+[![BURST!_Silver_Visualizer](https://github.com/NutchapolSal/files/raw/master/chromaeffects/potw/prev/BURST!_Silver_Visualizer.gif "BURST!_Silver_Visualizer")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/potw/n-BURST!_Silver_Visualizer.ChromaEffects)
+
+![am] ![re] ![ri] ![sl] ![wh]
+
+**made by __Silver#2329__** - **2 Combo!**
 
 [aa]: https://github.com/NutchapolSal/files/raw/master/chromaeffects/icon/icon-assets/aa.png "ambient awareness"
 [am]: https://github.com/NutchapolSal/files/raw/master/chromaeffects/icon/icon-assets/am.png "audio meter"
