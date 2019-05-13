@@ -27,6 +27,7 @@ click on effect name to go back to jump list
 [rainingneon](#rainingneon)||||||||||✓|
 [seriesoftubes](#seriesoftubes)|||||||||✓|✓|
 [sparkles](#sparkles)|||||✓|✓||✓|||
+[tea](#tea)||✓|||✓|✓|||✓|✓|
 [wigwag](#wigwag)|||||||||✓|✓|
 
 gifs are limited to 5 seconds because i'm too lazy to change the duration
@@ -243,6 +244,13 @@ time to r/razer crusade
 ![re] ![ri] ![sl]
 
 white ripple under a bunch of black starlights
+
+## [tea](#jump-list)
+[![tea](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/tea.gif "tea")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-tea.ChromaEffects)
+
+![am] ![re] ![ri] ![st] ![wa]
+
+been drinking quite some tea lately
 
 ## [wigwag](#jump-list)
 [![wigwag](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/wigwag.gif "wigwag")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-wigwag.ChromaEffects)
