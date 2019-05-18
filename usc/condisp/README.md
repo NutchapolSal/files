@@ -4,15 +4,13 @@
 
 For [USC](https://github.com/Drewol/unnamed-sdvx-clone)
 
-v2: **knobs!!!!!** fml i'm up for 22 hours straight just to make **knob display**
-
->ofc not all of those 22 hours are on knob-display-making. it started from playing other games, then friend left so played some usc, then fkd around with gameplay.lua then this. can't even believe it's all in 24hrs.
+v3: **Table-based knob speed** no more `ls1` `ls2` `ls3` etc stuff!
 
 did not made this with both portrait/landscape compactibility, only for landscape so lol (but you have your flashy 3d console with portrait anyways)
 
 ![gifpreview](https://github.com/NutchapolSal/files/raw/master/usc/condisp/prev.gif)
 
-[See it in action](https://youtu.be/k5bmK1dlRK4)
+[See it in action (v2)](https://youtu.be/k5bmK1dlRK4)
 
 also thanks usc discord for pushing me into making knobs support
 
@@ -20,17 +18,13 @@ also thanks usc discord for pushing me into making knobs support
 1. Go to your skin folder, inside `scripts`
 2. Open `gameplay.lua` with notepad or something
 3. Copy contents of [`condisp.lua`](https://raw.githubusercontent.com/NutchapolSal/files/master/usc/condisp/condisp.lua) and place it at the bottom
-4. Find `local clearTexts`
-5. Copy contents of [`variables.lua`](https://raw.githubusercontent.com/NutchapolSal/files/master/usc/condisp/variables.lua) and place it right after it
-6. Find `function render`
-7. Type in `draw_condisp()` under `draw_alerts(deltaTime)`
-8. (optional) Customize ConDisp to your liking
+4. Find `function render`
+5. Type in `draw_condisp()` under `draw_alerts(deltaTime)`
+6. (optional) Customize ConDisp to your liking
 
 ### [EXH] How to install
 
 put contents of [`condisp.lua`](https://raw.githubusercontent.com/NutchapolSal/files/master/usc/condisp/condisp.lua) inside `gameplay.lua`
-
-declare [`variables`](https://raw.githubusercontent.com/NutchapolSal/files/master/usc/condisp/variables.lua)
 
 put `draw_condisp()` somewhere in the render function
 
