@@ -175,8 +175,6 @@ function draw_liveforce()
     gfx.DrawRect(badgesimg[badge], 0, 0, badgew, badgeh)
     gfx.DrawRect(gradesimg[grade], subx2 - gradew, 0, gradew, gradeh)
 
-    debox(maxy2)
-
     gfx.Restore()
 end
 -- -------------------------------------------------------------------------- --
