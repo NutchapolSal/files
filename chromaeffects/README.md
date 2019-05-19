@@ -26,6 +26,7 @@ click on effect name to go back to jump list
 [rainbowspiral](#rainbowspiral)||||||✓|||||✓
 [raindrop](#raindrop)||✓||||✓|||✓||
 [rainingneon](#rainingneon)||||||||||✓|
+[reactiveblackout](#reactiveblackout)|||||✓|✓||||✓|
 [seriesoftubes](#seriesoftubes)|||||||||✓|✓|
 [sparkles](#sparkles)|||||✓|✓||✓|||
 [tea](#tea)||✓|||✓|✓|||✓|✓|
@@ -226,6 +227,19 @@ not quite, but makes a cool effect nontheless
 **requested by _syed\_bokhari_, original by possibly _puffnpluky76_**
 
 > hello guys, there used to be a black widow chroma lighting effect profile, called Raining neon. You can see it in this video in spot number 3 https://www.youtube.com/watch?v=PTv9nN71cSY. Can some one make it into a huntsman elite profile?\
+
+## [reactiveblackout](#jump-list)
+[![reactiveblackout](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/reactiveblackout.gif "reactiveblackout")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-reactiveblackout.ChromaEffects)
+
+![re] ![ri]	![wa]
+
+**requested by _Flaming\_0_**
+
+https://www.reddit.com/r/ChromaProfiles/comments/bq2sh6/reactive_and_wave_effect/
+
+> I have a question, I want to have the "Wave" and "Reactive" effects, but I want to make it so when I'm not clicking anything on the keyboard, the Wave effect is on, but when I click the keys, the Reactive effect is only present. (I'm using a Razer Ornata Chroma, and i only have a Razer keyboard.)
+
+i hope it's enough
 
 ## [seriesoftubes](#jump-list)
 [![seriesoftubes](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/seriesoftubes.gif "seriesoftubes")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-seriesoftubes.ChromaEffects)
