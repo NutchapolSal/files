@@ -13,7 +13,8 @@ Apr 20, 2019|[Tron](#Tron)|chroma#4357
 Apr 27, 2019|[brainpowder](#brainpowder)|Merlin#4644
 May 04, 2019|[Crystal_Silver_Visualizer](#Crystal_Silver_Visualizer)|Silver#2329
 May 11, 2019|[BURST!_Silver_Visualizer](#BURST!_Silver_Visualizer)|Silver#2329
-May 18, 2019|[n-blurple](#n-blurple)|Silver#2329
+May 18, 2019|[n-TOXIC-LIONPAPER](#n-blurple)|Nutchapol#5271
+May 25, 2019|[TOXIC-LIONPAPER](#TOXIC-LIONPAPER)|TOX!C#7395
 
 gifs are limited to 5 seconds
 
@@ -45,12 +46,23 @@ gifs are limited to 5 seconds
 
 **made by __Silver#2329__** - **2 Combo!**
 
+*Optional Challenge:* Use wheel
+
 ## [n-blurple](#jump-list)
-[![blurple](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/blurple.gif "blurple")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-blurple.ChromaEffects)
+[![blurple](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/blurple.gif "blurple")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/TOXIC-LIONPAPER.ChromaEffects)
 
 ![am] ![re] ![ri] ![sl] ![st]
 
 **made by __Nutchapol#5271__**
+
+## [TOXIC-LIONPAPER](#jump-list)
+[![TOXIC-LIONPAPER](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/TOXIC-LIONPAPER.gif "TOXIC-LIONPAPER")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/TOXIC-LIONPAPER.ChromaEffects)
+
+![am] ![br] ![fi] ![re] ![ri] ![sl] ![st] ![wa]
+
+**made by __TOX!C#7395__**
+
+*Optional Challenge:* Add as many different effects as possible
 
 [aa]: https://github.com/NutchapolSal/files/raw/master/chromaeffects/icon/icon-assets/aa.png "ambient awareness"
 [am]: https://github.com/NutchapolSal/files/raw/master/chromaeffects/icon/icon-assets/am.png "audio meter"
