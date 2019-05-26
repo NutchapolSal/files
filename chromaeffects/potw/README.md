@@ -56,7 +56,7 @@ gifs are limited to 5 seconds
 **made by __Nutchapol#5271__**
 
 ## [TOXIC-LIONPAPER](#jump-list)
-[![TOXIC-LIONPAPER](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/TOXIC-LIONPAPER.gif "TOXIC-LIONPAPER")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/TOXIC-LIONPAPER.ChromaEffects)
+[![TOXIC-LIONPAPER](https://github.com/NutchapolSal/files/raw/master/chromaeffects/potw/prev/TOXIC-LIONPAPER.gif "TOXIC-LIONPAPER")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/potw/TOXIC-LIONPAPER.ChromaEffects)
 
 ![am] ![br] ![fi] ![re] ![ri] ![sl] ![st] ![wa]
 
