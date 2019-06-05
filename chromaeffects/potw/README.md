@@ -56,6 +56,15 @@ gifs are limited to 5 seconds
 
 **made by __Nutchapol#5271__**
 
+## [TOXIC-LIONPAPER](#jump-list)
+[![TOXIC-LIONPAPER](https://github.com/NutchapolSal/files/raw/master/chromaeffects/potw/prev/TOXIC-LIONPAPER.gif "TOXIC-LIONPAPER")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/potw/TOXIC-LIONPAPER.ChromaEffects)
+
+![am] ![br] ![fi] ![re] ![ri] ![sl] ![st] ![wa]
+
+**made by __TOX!C#7395__**
+
+*Optional Challenge:* Add as many different effects as possible
+
 ## [WeTheNorth_Silver](#jump-list)
 [![WeTheNorth_Silver](https://github.com/NutchapolSal/files/raw/master/chromaeffects/potw/prev/WeTheNorth_Silver.gif "WeTheNorth_Silver")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/potw/WeTheNorth_Silver.ChromaEffects)
 
@@ -63,9 +72,7 @@ gifs are limited to 5 seconds
 
 **made by __Silver#2329__**
 
-*Optional Challenge:* Add as many different effects as possible
-
-
+*Optional Challenge:* Use only static
 
 [aa]: https://github.com/NutchapolSal/files/raw/master/chromaeffects/icon/icon-assets/aa.png "ambient awareness"
 [am]: https://github.com/NutchapolSal/files/raw/master/chromaeffects/icon/icon-assets/am.png "audio meter"
