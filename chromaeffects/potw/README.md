@@ -15,6 +15,7 @@ May 04, 2019|[Crystal_Silver_Visualizer](#Crystal_Silver_Visualizer)|Silver#2329
 May 11, 2019|[BURST!_Silver_Visualizer](#BURST!_Silver_Visualizer)|Silver#2329
 May 18, 2019|[n-TOXIC-LIONPAPER](#n-blurple)|Nutchapol#5271
 May 25, 2019|[TOXIC-LIONPAPER](#TOXIC-LIONPAPER)|TOX!C#7395
+Jun 01, 2019|[WeTheNorth_Silver](#WeTheNorth_Silver)|Silver#2329
 
 gifs are limited to 5 seconds
 
@@ -55,14 +56,16 @@ gifs are limited to 5 seconds
 
 **made by __Nutchapol#5271__**
 
-## [TOXIC-LIONPAPER](#jump-list)
-[![TOXIC-LIONPAPER](https://github.com/NutchapolSal/files/raw/master/chromaeffects/potw/prev/TOXIC-LIONPAPER.gif "TOXIC-LIONPAPER")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/potw/TOXIC-LIONPAPER.ChromaEffects)
+## [WeTheNorth_Silver](#jump-list)
+[![WeTheNorth_Silver](https://github.com/NutchapolSal/files/raw/master/chromaeffects/potw/prev/WeTheNorth_Silver.gif "WeTheNorth_Silver")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/potw/WeTheNorth_Silver.ChromaEffects)
 
-![am] ![br] ![fi] ![re] ![ri] ![sl] ![st] ![wa]
+![am] ![re] ![ri] ![sc] ![sl] ![st]
 
-**made by __TOX!C#7395__**
+**made by __Silver#2329__**
 
 *Optional Challenge:* Add as many different effects as possible
+
+
 
 [aa]: https://github.com/NutchapolSal/files/raw/master/chromaeffects/icon/icon-assets/aa.png "ambient awareness"
 [am]: https://github.com/NutchapolSal/files/raw/master/chromaeffects/icon/icon-assets/am.png "audio meter"
