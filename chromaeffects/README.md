@@ -19,6 +19,7 @@ click on effect name to go back to jump list
 [discofloor](#discofloor)||||||✓||✓|||
 [england](#england)|||||||||✓||
 [fishfettish](#fishfettish)||✓||||||||✓|
+[minesweeper](#minesweeper)||||||✓|||✓|✓|
 [mohamed](#mohamed)||||||||||✓|
 [mudrive](#mudrive)||||||✓|||✓||
 [overcharged](#overcharged)||||||✓||✓|✓|✓|
@@ -155,6 +156,29 @@ seizure warning, made using a bunch of starlights
 saw fish images in profile-requests, so i had to make it
 
 *06 April 2019* - fixed no sound making the above half of the sea pitch black by using a one colored speed 0 wave because i don’t want to add static to the entry lol
+
+## [minesweeper](#jump-list)
+[![minesweeper](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/minesweeper.gif "minesweeper")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-minesweeper.ChromaEffects)
+
+![ri] ![st] ![wa]
+
+**requested by _A Spooky 🥒 Cucumber_**
+
+> any profile for mine sweeoer
+
+sadly i cannot do a profile for minesweeper, so i did a minesweeper for profile instead
+
+Info: 
+
+* only play when the razer logo completely changes from cyan to green
+* tap key to reveal
+* **very important** - refer to [this image](http://developer.razerzone.com/wp-content/uploads/led-profile-super-keyboard-grid.png) for position of keys
+* colors: (yes, colors are stolen from microsoft minesweeper, the one in ms store)
+
+![minesweep colors](https://github.com/NutchapolSal/files/raw/master/etc/minesweep-colors.png "minesweep colors")
+
+* switch to another profile and back to try again
+* [click link to reveal board](https://github.com/NutchapolSal/files/raw/master/etc/minesweep-colors.png)
 
 ## [mohamed](#jump-list)
 [![mohamed](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/mohamed.gif "mohamed")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-mohamed.ChromaEffects)
