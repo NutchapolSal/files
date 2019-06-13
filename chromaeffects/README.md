@@ -178,6 +178,7 @@ Info:
 ![minesweep colors](https://github.com/NutchapolSal/files/raw/master/etc/minesweep-colors.png "minesweep colors")
 
 * switch to another profile and back to try again
+* you win if you revealed all non mine tiles
 * [click link to reveal board](https://github.com/NutchapolSal/files/raw/master/etc/minesweep-reveal.png)
 
 ## [mohamed](#jump-list)
