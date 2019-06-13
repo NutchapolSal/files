@@ -178,7 +178,7 @@ Info:
 ![minesweep colors](https://github.com/NutchapolSal/files/raw/master/etc/minesweep-colors.png "minesweep colors")
 
 * switch to another profile and back to try again
-* [click link to reveal board](https://github.com/NutchapolSal/files/raw/master/etc/minesweep-colors.png)
+* [click link to reveal board](https://github.com/NutchapolSal/files/raw/master/etc/minesweep-reveal.png)
 
 ## [mohamed](#jump-list)
 [![mohamed](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/mohamed.gif "mohamed")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-mohamed.ChromaEffects)
