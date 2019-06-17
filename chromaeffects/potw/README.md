@@ -1,4 +1,4 @@
-<img align="right" alt="r/ChromaProfiles" src="https://cdn.discordapp.com/icons/556560195292233739/105989076ef81cdf6ba9d85be9033a10.png">
+<img align="right" alt="r/ChromaProfiles" src="https://github.com/NutchapolSal/files/raw/master/chromaeffects/mirror/serverlogo.png">
 
 # Profile Of The Week Winners
 

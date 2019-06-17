@@ -22,7 +22,7 @@ acorigins: [UzSMDn4](https://imgur.com/UzSMDn4) [mirror](https://github.com/Nutc
 
 ## others
 
-chroma profiles discord icon: [link](https://cdn.discordapp.com/icons/556560195292233739/105989076ef81cdf6ba9d85be9033a10.png) [mirror](https://github.com/NutchapolSal/files/raw/master/chromaeffects/mirror/servericon.png)
+chroma profiles discord icon: [link](https://cdn.discordapp.com/icons/556560195292233739/105989076ef81cdf6ba9d85be9033a10.png) [mirror](https://github.com/NutchapolSal/files/raw/master/chromaeffects/mirror/serverlogo.png)
 
 powered by razer chroma: [link](https://d4kkpd69xt9l7.cloudfront.net/sys-master/images/h07/h94/8950190243870/chroma101-chroma-icon.png) [mirror](https://github.com/NutchapolSal/files/raw/master/chromaeffects/mirror/chroma101-chroma-icon.png)
 
