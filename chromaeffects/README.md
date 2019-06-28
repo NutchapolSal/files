@@ -13,6 +13,7 @@ click on effect name to go back to jump list
 [alleffects](#alleffects)|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓
 [barmeter](#barmeter)||✓|||||||||
 [barmeter2](#barmeter2)||✓||✓||||✓|||
+[birthdaycake](#birthdaycake)||✓|||✓|✓||✓|✓||
 [blurple](#blurple)||✓|||✓|✓||✓|✓||
 [coplightscode2](#coplightscode2)||||||||||✓|
 [default](#default)|✓|✓|||✓|✓||✓||✓|
@@ -104,6 +105,25 @@ proof of concept, bar audio meter
 ![am] ![fi] ![sl]
 
 barmeter but put effects behind audio meter layer for extra coolness
+
+# [birthdaycake](#jump-list)
+[![birthdaycake](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/birthdaycake.gif "birthdaycake")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-birthdaycake.ChromaEffects)
+
+![am] ![re] ![ri] ![sl] ![st]
+
+**requested by _FishFettish_**
+
+> Requesting birthday profile 😅
+
+congratulations on surviving another 365 24-hour-periods continuously to fishfettish
+
+inspirations:
+
+[these images](https://www.google.com/search?q=birthday+cake+flavors&tbm=isch)
+
+[you see those particles on played notes? i like dem](https://www.youtube.com/watch?v=rv_8j0R-UTM), eventually leads to the visualizers
+
+also if you quickly shut off the music, you could see some confetti gracefully falling
 
 ## [blurple](#jump-list)
 [![blurple](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/blurple.gif "blurple")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-blurple.ChromaEffects)
