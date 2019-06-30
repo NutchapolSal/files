@@ -125,6 +125,8 @@ inspirations:
 
 also if you quickly shut off the music, you could see some confetti gracefully falling
 
+*30 June 2019* - better distribution of audio meter ranges
+
 ## [blurple](#jump-list)
 [![blurple](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/blurple.gif "blurple")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-blurple.ChromaEffects)
 
