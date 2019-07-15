@@ -32,6 +32,7 @@ click on effect name to go back to jump list
 [seriesoftubes](#seriesoftubes)|||||||||✓|✓|
 [sparkles](#sparkles)|||||✓|✓||✓|||
 [tea](#tea)||✓|||✓|✓|||✓|✓|
+[watchdogs2](#watchdogs2)||✓||||✓||✓|✓|✓|
 [wigwag](#wigwag)|||||||||✓|✓|
 
 gifs are limited to 5 seconds because i'm too lazy to change the duration
@@ -320,6 +321,25 @@ white ripple under a bunch of black starlights
 ![am] ![re] ![ri] ![st] ![wa]
 
 been drinking quite some tea lately
+
+## [watchdogs2](#jump-list)
+[![watchdogs2](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/watchdogs2.gif "watchdogs2")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-watchdogs2.ChromaEffects)
+
+![am] ![ri] ![sl] ![st] ![wa]
+
+keybinds profile for watch_dogs 2
+
+color | meaning
+--- | ---
+red | movement stuff
+orange | interact
+yellow | multiplayer stuff
+green | hacky stuff
+magenta | deploy
+white | smartphone
+breathing | apps! yes i painstakingly got the colors of the apps to put it on keys
+
+pretty much the reason i did this is because i bought watch_dogs 2 now and i had a keybinds profile for it back when synapse 2 and i pirated wd2 to play it
 
 ## [wigwag](#jump-list)
 [![wigwag](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/wigwag.gif "wigwag")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-wigwag.ChromaEffects)
