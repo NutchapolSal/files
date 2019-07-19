@@ -929,18 +929,21 @@ function draw_condisp(deltaTime)
     lspeed = lspeed / #ls --average them out
     rspeed = rspeed / #rs
 
+    if lspeed ~= lspeed then lspeed = 0 end -- fuck nan
+    if rspeed ~= rspeed then rspeed = 0 end
+
     if #ls > 20 then table.remove(ls, #ls) end --remove off limit entries
     if #rs > 20 then table.remove(rs, #rs) end
 
     if #lmaxlist < 20 then
-        table.insert(lmaxlist, 1, math.abs(lspeed))
+        table.insert(lmaxlist, 1, math.max(math.abs(lspeed),0))
     elseif math.abs(lspeed) > lmaxlist[1] then
         table.insert(lmaxlist, 1, math.abs(lspeed))
         table.remove(lmaxlist, #lmaxlist)
     end
     
     if #rmaxlist < 20 then
-        table.insert(rmaxlist, 1, math.abs(rspeed))
+        table.insert(rmaxlist, 1, math.max(math.abs(rspeed),0))
     elseif math.abs(rspeed) > rmaxlist[1] then
         table.insert(rmaxlist, 1, math.abs(rspeed))
         table.remove(rmaxlist, #rmaxlist)
@@ -958,13 +961,12 @@ function draw_condisp(deltaTime)
     rmax = rmax / #rmaxlist
 
     gfx.StrokeColor(game.GetLaserColor(0))
-    gfx.FillLaserColor(1, 128)
-    -- gfx.FillLaserColor(1, math.floor(math.min(math.abs(lspeed) / lmax * 255,255)))--set fill color to knob color w/ transparency. opaque = u spin knob, can't see knob fill = u no spin knob
+    gfx.FillLaserColor(1, math.floor(math.min(math.abs(lspeed) / lmax * 255,255)))--set fill color to knob color w/ transparency. opaque = u spin knob, can't see knob fill = u no spin knob
     gfx.DrawLine(9.5, 3.5, lspeed * (16 / lmax), 0, 2) --the bar
     gfx.DrawCircleBool(true, true, 8.5, 13.5, 9) --the knob circle
 
     gfx.StrokeColor(game.GetLaserColor(1))
-    -- gfx.FillLaserColor(1, math.floor(math.min(math.abs(rspeed) / rmax * 255,255)))
+    gfx.FillLaserColor(2, math.floor(math.min(math.abs(rspeed) / rmax * 255,255)))
     gfx.DrawLine(218.5, 3.5, rspeed * (16 / rmax), 0, 2)
     gfx.DrawCircleBool(true, true, 217.5, 13.5, 9)
 
@@ -1445,7 +1447,7 @@ function fsPong(deltaTime)
         ball.r = 0
     end
 
-    ponglineoffset = (ponglineoffset + deltaTime * 3) % 10
+    ponglineoffset = (ponglineoffset + deltaTime * 3 + ball.r / 300) % 10
     do
         local numpieces = 1 + math.ceil(winH / 10)
         gfx.Scissor(0, 0, winW, winH)
