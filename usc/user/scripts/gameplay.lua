@@ -43,7 +43,7 @@ end
     -- r = math.floor(r or 255)
     -- g = math.floor(g or 255)
     -- b = math.floor(b or 255)
--- 
+--
     -- gfx._StrokeColor(r, g, b)
 -- end
 
@@ -124,17 +124,17 @@ function dc(r, g, b)
 end
 
 function debox(text)
-	gfx.Save()
+    gfx.Save()
     gfx.ResetTransform()
     gfx.Scale(1.5, 1.5)
-	gfx.BeginPath()
-	gfx.FontSize(12)
-	gfx.TextAlign(gfx.TEXT_ALIGN_LEFT, gfx.TEXT_ALIGN_BOTTOM)
-	gfx.FillColor(deboxr, deboxg, deboxb, 255)
-	gfx.Text(tostring(text), 0, 200 + (14 * deboxi))
-	dc(255, 255, 255)
-	deboxi = deboxi + 1
-	gfx.Restore()
+    gfx.BeginPath()
+    gfx.FontSize(12)
+    gfx.TextAlign(gfx.TEXT_ALIGN_LEFT, gfx.TEXT_ALIGN_BOTTOM)
+    gfx.FillColor(deboxr, deboxg, deboxb, 255)
+    gfx.Text(tostring(text), 0, 200 + (14 * deboxi))
+    dc(255, 255, 255)
+    deboxi = deboxi + 1
+    gfx.Restore()
 end
 -- -------------------------------------------------------------------------- --
 -- -------------------------------------------------------------------------- --
@@ -169,7 +169,7 @@ local consoleAnimImages = {
     gfx.CreateSkinImage("console/glow_btb.png", 0),
     gfx.CreateSkinImage("console/glow_btc.png", 0),
     gfx.CreateSkinImage("console/glow_btd.png", 0),
-    
+
     gfx.CreateSkinImage("console/glow_fxl.png", 0),
     gfx.CreateSkinImage("console/glow_fxr.png", 0),
 
@@ -205,7 +205,7 @@ local clearTexts = {"TRACK FAILED", "TRACK COMPLETE", "TRACK COMPLETE", "FULL CO
 function ResetLayoutInformation()
     resx, resy = game.GetResolution()
     portrait = resy > resx
-    desw = portrait and 720 or 1280 
+    desw = portrait and 720 or 1280
     desh = desw * (resy / resx)
     scale = resx / desw
 end
@@ -223,7 +223,7 @@ function render(deltaTime)
     -- make sure that our transform is cleared, clean working space
     -- TODO: this shouldn't be necessary!!!
     gfx.ResetTransform()
-	deboxi = 0
+    deboxi = 0
     -- While the intro timer is running, we fade in from black
     if introTimer > 0 then
         gfx.FillColor(0, 0, 0, math.floor(255 * math.min(introTimer, 1)))
@@ -235,7 +235,7 @@ function render(deltaTime)
         seedset = math.random() + math.random() + math.random() + math.random() + math.random()
         seedset = true
     end
-    
+
     gfx.Scale(scale, scale)
     local yshift = 0
 
@@ -243,7 +243,7 @@ function render(deltaTime)
     -- The rest of the UI needs to co drawn below that banner
     -- TODO: this isn't how it'll work in the long run, I don't think
     if portrait then yshift = draw_banner(deltaTime) end
-    
+
     gfx.Translate(0, yshift - 150 * math.max(introTimer - 1, 0))
     draw_song_info(deltaTime)
     draw_score(deltaTime)
@@ -252,9 +252,9 @@ function render(deltaTime)
     draw_earlate(deltaTime)
     draw_combo(deltaTime)
     draw_alerts(deltaTime)
-	draw_condisp()
-	draw_scoregraph()
-	draw_remain()
+    draw_condisp(deltaTime)
+    draw_scoregraph()
+    draw_remain()
     draw_liveforce()
     draw_funshits(deltaTime)
 end
@@ -297,12 +297,12 @@ function render_crit_base(deltaTime)
 
     critAnimTimer = critAnimTimer + deltaTime
     SetUpCritTransform()
-    
+
     -- Figure out how to offset the center of the crit line to remain
     --  centered on the players screen
     local xOffset = GetCritLineCenteringOffset()
     gfx.Translate(xOffset, 0)
-    
+
     -- Draw a transparent black overlay below the crit line
     -- This darkens the play area as it passes
     gfx.FillColor(0, 0, 0, 200)
@@ -312,7 +312,7 @@ function render_crit_base(deltaTime)
     -- we check to see if we're playing in portrait mode and
     --  change the width accordingly
     local critWidth = resx * (portrait and 1 or 0.8)
-    
+
     -- get the scaled dimensions of the crit line pieces
     local clw, clh = gfx.ImageSize(critAnim)
     local critAnimHeight = 15 * scale
@@ -506,7 +506,7 @@ function draw_stat(x, y, w, h, name, value, format, r, g, b)
     gfx.LineTo(w, h) -- only defines the line, does NOT draw it yet
 
     -- If a color is provided, set it
-    if r then gfx.StrokeColor(r, g, b) 
+    if r then gfx.StrokeColor(r, g, b)
     -- otherwise, default to a light grey
     else gfx.StrokeColor(200, 200, 200) end
 
@@ -557,13 +557,13 @@ function draw_song_info(deltaTime)
     -- Reset some text related stuff that was changed in draw_state
     gfx.TextAlign(gfx.TEXT_ALIGN_LEFT)
     gfx.FontSize(30)
-    
+
     gfx.FillColor(255, 255, 255)
     local textX = jacketWidth + 10
     local titleWidth = songInfoWidth - jacketWidth - 20
     local x1, y1, x2, y2 = gfx.TextBounds(0, 0, gameplay.title)
     local textscale = math.min(titleWidth / x2, 1)
-	
+
     gfx.Save()
     do  -- Draw the song title, scaled to fit as best as possible
         gfx.Translate(textX, 30)
@@ -673,29 +673,28 @@ function draw_gauge(deltaTime)
     end
     gfx.DrawGauge(gameplay.gauge, posx, posy, width, height, deltaTime)
 
+    --draw gauge % label
+    posx = posx / scale
+    posx = posx + (100 * 0.35) 
+    height = 880 * 0.35
+    posy = posy / scale
+    if portrait then
+        height = height * 0.8;
+    end
 
-	--draw gauge % label
-	posx = posx / scale
-	posx = posx + (100 * 0.35) 
-	height = 880 * 0.35
-	posy = posy / scale
-	if portrait then
-		height = height * 0.8;
-	end
-
-	posy = posy + (70 * 0.35) + height - height * gameplay.gauge
-	gfx.BeginPath()
-	gfx.Rect(posx-35, posy-10, 40, 20)
-	gfx.FillColor(0,0,0,200)
-	gfx.Fill()
-	gfx.FillColor(255,255,255)
-	gfx.TextAlign(gfx.TEXT_ALIGN_RIGHT + gfx.TEXT_ALIGN_MIDDLE)
-	gfx.FontSize(20)
-	gfx.Text(string.format("%d%%", math.floor(gameplay.gauge * 100)), posx, posy )
+    posy = posy + (70 * 0.35) + height - height * gameplay.gauge
+    gfx.BeginPath()
+    gfx.Rect(posx-35, posy-10, 40, 20)
+    gfx.FillColor(0,0,0,200)
+    gfx.Fill()
+    gfx.FillColor(255,255,255)
+    gfx.TextAlign(gfx.TEXT_ALIGN_RIGHT + gfx.TEXT_ALIGN_MIDDLE)
+    gfx.FontSize(20)
+    gfx.Text(string.format("%d%%", math.floor(gameplay.gauge * 100)), posx, posy )
 
     --gaugegraph
 
-    --add one every <time> and when its not outro or intro 
+    --add one every <time> and when its not outro or intro
     if gaugeTime > 0.0625 and outroTimer == 0 and introTimer == 0 then
         table.insert(gg, 1, posy)
         gaugeTime = 0
@@ -725,8 +724,8 @@ function draw_gauge(deltaTime)
     if portrait then
         height = height * 0.8;
     end
-    svntycut = posy + (70 * 0.35) + height - height * 0.7
-    thirtycut = posy + (70 * 0.35) + height - height * 0.3
+    local svntycut = posy + (70 * 0.35) + height - height * 0.7
+    local thirtycut = posy + (70 * 0.35) + height - height * 0.3
 
     if extGaugetype == -1  then
         if gameplay.gauge > 0.5 then
@@ -778,7 +777,7 @@ end
 function draw_earlate(deltaTime)
     earlateTimer = math.max(earlateTimer - deltaTime,0)
     if earlateTimer == 0 then return nil end
-	local alpha = math.min(earlateTimer * 250,127)
+    local alpha = math.min(earlateTimer * 250,127)
     local arrowalpha = math.floor(earlateTimer * 20) % 2
     arrowalpha = math.min(math.min(arrowalpha * alpha + 55, 127), alpha)
     gfx.BeginPath()
@@ -790,12 +789,12 @@ function draw_earlate(deltaTime)
         gfx.FillColor(0,255,255, alpha)
         gfx.Text("LATE", desw / 2, ypos)
         gfx.FillColor(0,255,255, arrowalpha)
-		gfx.Text(">     <", desw / 2, ypos)
+        gfx.Text(">     <", desw / 2, ypos)
     else
         gfx.FillColor(255,0,255, alpha)
         gfx.Text("EARLY", desw / 2, ypos)
         gfx.FillColor(255,0,255, arrowalpha)
-		gfx.Text(">      <", desw / 2, ypos)
+        gfx.Text(">      <", desw / 2, ypos)
     end
 end
 --------------------------------------------------------------------------------
@@ -823,72 +822,101 @@ function gfx.DrawLine(x,y,dx,dy,w)
     gfx.LineTo(x + dx, y + dy)
     gfx.StrokeWidth(w)
     gfx.Stroke()
-	
+
 end
 --------------------------------------------------------------------------------
-local lspeed, rspeed, lfirst, rfirst, llast, rlast = 0, 0, 0, 0, 0, 0
-local ls, rs = {0}, {0}
+local lspeed, rspeed, lfirst, rfirst, llast, rlast, lsc, rsc, lmax, rmax, lmaxlist, rmaxlist = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, {}, {}
+local ls, rs, templs, temprs = {}, {}, {}, {}
+local cdtimer = 0
 --------------------------------------------------------------------------------
-function draw_condisp()
-	--Nutchapol's CONtroller DISPlay v3
-	--https://github.com/NutchapolSal/files/tree/master/usc/condisp
-	--total wxh= 227x108
-	--margins: 13px
-	--with margins=253x134
-	--top left anchor, does not include margin
-	gfx.Save()
-	
-	local posx = 13 --13 = attached to left, desw - 183 or 1097 = attached to right
-	local posy = desh - 121 --13 = attached to top, desh - 121 or 599 = attached to bottom
-    local smax = 0.0065 --max speed for knob
-	
-	lfirst = game.GetKnob(0)--get some
-	rfirst = game.GetKnob(1)--knob measurements
-	
-	--intro animations
-	--select one & remove comment, comment out using -- or delete the others
-	
-	--fly in from left
-	gfx.Translate(((posx + 253) * (1 - math.max(introTimer - 1, 0))) - 253, posy)
-	--fly in from top
-	--gfx.Translate(posx,((posy + 134) * (1 - math.max(introTimer - 1, 0))) - 134)
-	--fly in from right
-	--gfx.Translate(posx + ((desw - posx) * math.max(introTimer - 1, 0)), posy)
-	--fly in from bottom
-	--gfx.Translate(posx,posy + ((desh - posy) * math.max(introTimer - 1, 0)))
-	
-	gfx.FillColor(0, 0, 0, 128) --transparent bg
-	gfx.DrawRectBool(true, false, -13, -13, 253, 134)
-	
+function draw_condisp(deltaTime)
+    --Nutchapol's CONtroller DISPlay v3
+    --https://github.com/NutchapolSal/files/tree/master/usc/condisp
+    --total wxh= 227x108
+    --margins: 13px
+    --with margins=253x134
+    --top left anchor, does not include margin
     gfx.Save()
-	gfx.Translate(114, 9)
-	gfx.Rotate(math.rad(45))
-	gfx.StrokeColor(0, 0, 128) --start
-	gfx.FillColor(0, 0, 255)
-	gfx.DrawRectBool(game.GetButtonPressed(6), true, -9, -9, 19, 19)
-    gfx.Restore()	
-	
-	gfx.StrokeColor(255, 255, 255) --bt
-	gfx.FillColor(0, 128, 255)
-	gfx.DrawRectBool(game.GetButtonPressed(0), true, 28, 36, 36, 36)
-	gfx.DrawRectBool(game.GetButtonPressed(1), true, 73, 36, 36, 36)
-	gfx.DrawRectBool(game.GetButtonPressed(2), true, 118, 36, 36, 36)
-	gfx.DrawRectBool(game.GetButtonPressed(3), true, 163, 36, 36, 36)
-	
-	gfx.StrokeColor(50, 50, 50) --fx
-	gfx.FillColor(255, 0, 0)
-	gfx.DrawRectBool(game.GetButtonPressed(4), true, 54, 89, 29, 19)
-	gfx.DrawRectBool(game.GetButtonPressed(5), true, 144, 89, 29, 19)
-	
-	--here starts the knobs
-	ls1 = lfirst - llast--calculate knob speeds
-	rs1 = rfirst - rlast
-	if ls1 < -0.03 then ls1 = 0.029 end--cutoff when the getknob value jumps back to 0 (common)
-	if ls1 > 0.03 then ls1 = -0.029 end
-	if rs1 < -0.03 then rs1 = 0.029 end
-	if rs1 > 0.03 then rs1 = -0.029 end
-    
+
+    local posx = 13 --13 = attached to left, desw - 183 or 1097 = attached to right
+    local posy = desh - 121 --13 = attached to top, desh - 121 or 599 = attached to bottom
+
+    lfirst = game.GetKnob(0)--get some
+    rfirst = game.GetKnob(1)--knob measurements
+
+    --intro animations
+    --select one & remove comment, comment out using -- or delete the others
+
+    --fly in from left
+    gfx.Translate(((posx + 253) * (1 - math.max(introTimer - 1, 0))) - 253, posy)
+    --fly in from top
+    --gfx.Translate(posx,((posy + 134) * (1 - math.max(introTimer - 1, 0))) - 134)
+    --fly in from right
+    --gfx.Translate(posx + ((desw - posx) * math.max(introTimer - 1, 0)), posy)
+    --fly in from bottom
+    --gfx.Translate(posx,posy + ((desh - posy) * math.max(introTimer - 1, 0)))
+
+    gfx.FillColor(0, 0, 0, 128) --transparent bg
+    gfx.DrawRectBool(true, false, -13, -13, 253, 134)
+
+    gfx.Save()
+    gfx.Translate(114, 9)
+    gfx.Rotate(math.rad(45))
+    gfx.StrokeColor(0, 0, 128) --start
+    gfx.FillColor(0, 0, 255)
+    gfx.DrawRectBool(game.GetButtonPressed(6), true, -9, -9, 19, 19)
+    gfx.Restore()
+
+    gfx.StrokeColor(255, 255, 255) --bt
+    gfx.FillColor(0, 128, 255)
+    gfx.DrawRectBool(game.GetButtonPressed(0), true, 28, 36, 36, 36)
+    gfx.DrawRectBool(game.GetButtonPressed(1), true, 73, 36, 36, 36)
+    gfx.DrawRectBool(game.GetButtonPressed(2), true, 118, 36, 36, 36)
+    gfx.DrawRectBool(game.GetButtonPressed(3), true, 163, 36, 36, 36)
+
+    gfx.StrokeColor(50, 50, 50) --fx
+    gfx.FillColor(255, 0, 0)
+    gfx.DrawRectBool(game.GetButtonPressed(4), true, 54, 89, 29, 19)
+    gfx.DrawRectBool(game.GetButtonPressed(5), true, 144, 89, 29, 19)
+
+    --here starts the knobs
+    lsc = lfirst - llast--calculate knob speeds
+    rsc = rfirst - rlast
+    if lsc < -0.03 then lsc = 0.029 end--cutoff when the getknob value jumps back to 0 (common)
+    if lsc > 0.03 then lsc = -0.029 end
+    if rsc < -0.03 then rsc = 0.029 end
+    if rsc > 0.03 then rsc = -0.029 end
+
     lspeed = 0 --reset knobspeed
+    rspeed = 0
+    if cdtimer > 0.008 then --every 0.008 seconds
+        table.insert(templs, 1, lsc) -- put readings
+        table.insert(temprs, 1, rsc)
+
+        for i, v in pairs(templs) do --sum the speeds obtained from all readings between last 0.05 and this 0.05
+            lspeed = lspeed + v
+        end
+        for i, v in pairs(temprs) do
+            rspeed = rspeed + v
+        end
+
+        lspeed = lspeed / #templs --average them out
+        rspeed = rspeed / #temprs
+
+        table.insert(ls, 1, lspeed) --put it in the fps-normalized(? lmao idk) table
+        table.insert(rs, 1, rspeed)
+
+        templs = {}
+        temprs = {}
+
+        cdtimer = cdtimer - 0.008 + deltaTime
+    else
+        table.insert(templs, 1, lsc) -- put readings into wait
+        table.insert(temprs, 1, rsc)
+        cdtimer = cdtimer + deltaTime
+    end
+
+    lspeed = 0
     rspeed = 0
 
     for i, v in pairs(ls) do --sum the table
@@ -897,54 +925,78 @@ function draw_condisp()
     for i, v in pairs(rs) do
         rspeed = rspeed + v
     end
-	
-    lspeed = lspeed / #ls --averaging last x frames of knobspeed
-	rspeed = rspeed / #rs
 
-	gfx.StrokeColor(game.GetLaserColor(0))
-	gfx.FillLaserColor(1, math.min(math.abs(lspeed) * (255 / smax),255))--set fill color to knob color w/ transparency. opaque = u spin knob, can't see knob fill = u no spin knob
-	gfx.DrawLine(9.5, 3.5, lspeed * (16 / smax), 0, 2) --the bar
-	gfx.DrawCircleBool(true, true, 8.5, 13.5, 9) --the knob circle
-	
-	gfx.StrokeColor(game.GetLaserColor(1))
-	gfx.FillLaserColor(2, math.min(math.abs(rspeed) * (255 / smax),255))
-	gfx.DrawLine(218.5, 3.5, rspeed * (16 / smax), 0, 2)
-	gfx.DrawCircleBool(true, true, 217.5, 13.5, 9)
-	
-    table.insert(ls, 1, ls1) --table management
-    table.insert(rs, 1, rs1)
-    if #ls > 50 then table.remove(ls, #ls) end --remove off limit entries
-    if #rs > 50 then table.remove(rs, #rs) end
+    lspeed = lspeed / #ls --average them out
+    rspeed = rspeed / #rs
 
-	llast = game.GetKnob(0)--get some
-	rlast = game.GetKnob(1)--knob measurements for next time
-	gfx.Restore()
+    if #ls > 20 then table.remove(ls, #ls) end --remove off limit entries
+    if #rs > 20 then table.remove(rs, #rs) end
+
+    if #lmaxlist < 20 then
+        table.insert(lmaxlist, 1, math.abs(lspeed))
+    elseif math.abs(lspeed) > lmaxlist[1] then
+        table.insert(lmaxlist, 1, math.abs(lspeed))
+        table.remove(lmaxlist, #lmaxlist)
+    end
+    
+    if #rmaxlist < 20 then
+        table.insert(rmaxlist, 1, math.abs(rspeed))
+    elseif math.abs(rspeed) > rmaxlist[1] then
+        table.insert(rmaxlist, 1, math.abs(rspeed))
+        table.remove(rmaxlist, #rmaxlist)
+    end
+
+    lmax = 0
+    rmax = 0
+    for i, v in pairs(lmaxlist) do
+        lmax = lmax + v
+    end
+    for i, v in pairs(rmaxlist) do
+        rmax = rmax + v
+    end
+    lmax = lmax / #lmaxlist
+    rmax = rmax / #rmaxlist
+
+    gfx.StrokeColor(game.GetLaserColor(0))
+    gfx.FillLaserColor(1, 128)
+    -- gfx.FillLaserColor(1, math.floor(math.min(math.abs(lspeed) / lmax * 255,255)))--set fill color to knob color w/ transparency. opaque = u spin knob, can't see knob fill = u no spin knob
+    gfx.DrawLine(9.5, 3.5, lspeed * (16 / lmax), 0, 2) --the bar
+    gfx.DrawCircleBool(true, true, 8.5, 13.5, 9) --the knob circle
+
+    gfx.StrokeColor(game.GetLaserColor(1))
+    -- gfx.FillLaserColor(1, math.floor(math.min(math.abs(rspeed) / rmax * 255,255)))
+    gfx.DrawLine(218.5, 3.5, rspeed * (16 / rmax), 0, 2)
+    gfx.DrawCircleBool(true, true, 217.5, 13.5, 9)
+
+    llast = game.GetKnob(0)--get some
+    rlast = game.GetKnob(1)--knob measurements for next time
+    gfx.Restore()
 end
 --------------------------------------------------------------------------------
 function draw_scoregraph()
-	local length = 200 --all bar width
-	local count = #gameplay.scoreReplays --too lazy to type this thing
+    local length = 200 --all bar width
+    local count = #gameplay.scoreReplays --too lazy to type this thing
     local height = 5 --past yous' bar height
     local gutter = 1 --space between each bar
-	gfx.Save()
+    gfx.Save()
 
-	gfx.Translate(5, 130)
+    gfx.Translate(5, 130)
 
-	gfx.FillColor(63, 63, 63) --background
-	gfx.DrawRectBool(true, false, 0, 0 , length, 5)
+    gfx.FillColor(63, 63, 63) --background
+    gfx.DrawRectBool(true, false, 0, 0 , length, 5)
 
-	if count == 0 then --your score
-		gfx.FillColor(255, 255, 255) --first score on map
-	elseif gameplay.scoreReplays[1].currentScore < score then
-		gfx.FillColor(127, 255, 127) --above best scorereplay
-	elseif gameplay.scoreReplays[1].currentScore > score then
+    if count == 0 then --your score
+        gfx.FillColor(255, 255, 255) --first score on map
+    elseif gameplay.scoreReplays[1].currentScore < score then
+        gfx.FillColor(127, 255, 127) --above best scorereplay
+    elseif gameplay.scoreReplays[1].currentScore > score then
         gfx.FillColor(255, 127, 127) --below
     else
-		gfx.FillColor(255, 255, 255) --equal
-	end
-	gfx.DrawRectBool(true, false, 0, 0 , (score / 10000000) * length, 5)
+        gfx.FillColor(255, 255, 255) --equal
+    end
+    gfx.DrawRectBool(true, false, 0, 0 , (score / 10000000) * length, 5)
 
-	gfx.Translate(0, 5) --here comes past yous
+    gfx.Translate(0, 5) --here comes past yous
     if count > 5 then --past yous bars' gets smaller the more past yous you have
         height = 3 --small mode
     elseif count > 10 then
@@ -953,56 +1005,56 @@ function draw_scoregraph()
     if count > 10 then --no gutter if more past yous
         gutter = 0
     end
-	if count == 0 then else --no looking at nil values
+    if count == 0 then else --no looking at nil values
         local j = 1 --y pos in case a score gets killed(look below) so it wont leave holes in the graph
-		for i = 1, count, 1 do --for each past yous
+        for i = 1, count, 1 do --for each past yous
 
             if i == 1 then --no looking at nil values, and also i dont need you to die so
             elseif gameplay.scoreReplays[i] == 10000000 then --only 1 perfect can exist in this score graph
                 j = j - 1
                 goto die
-            end 
+            end
 
-			gfx.FillColor(63, 63, 63) --background
-			gfx.DrawRectBool(true, false, 0, (height + gutter) * j, length, height)
+            gfx.FillColor(63, 63, 63) --background
+            gfx.DrawRectBool(true, false, 0, (height + gutter) * j, length, height)
 
-        	if gameplay.scoreReplays[i].maxScore == 10000000 then --final score colors
-				gfx.FillColor(127, 127, 0) --gold for perfects
+            if gameplay.scoreReplays[i].maxScore == 10000000 then --final score colors
+                gfx.FillColor(127, 127, 0) --gold for perfects
             elseif i == 1 then --no looking at nil values
                 gfx.FillColor(127, 127, 127) --you get gray
             elseif gameplay.scoreReplays[i].maxScore == gameplay.scoreReplays[i - 1].maxScore then
                 gfx.FillColor(0, 0, 127) --blue for this one equal to above
-			else
-				gfx.FillColor(127, 127, 127) --gray for others
-			end
-			gfx.DrawRectBool(true, false, 0, (height + gutter) * j, (gameplay.scoreReplays[i].maxScore / 10000000) * length, height)
+            else
+                gfx.FillColor(127, 127, 127) --gray for others
+            end
+            gfx.DrawRectBool(true, false, 0, (height + gutter) * j, (gameplay.scoreReplays[i].maxScore / 10000000) * length, height)
 
-			if gameplay.scoreReplays[i].maxScore == 10000000 then
-				gfx.FillColor(255, 255, 191) --always bright yellow for perfects
-			elseif i == count then --no looking at nil values
-				gfx.FillColor(191, 191, 191) --bright gray for last score
-			elseif gameplay.scoreReplays[i + 1].currentScore > gameplay.scoreReplays[i].currentScore then
-				gfx.FillColor(255, 191, 191) --pink for this one worse than under
-			elseif i == 1 then --no looking at nil values
+            if gameplay.scoreReplays[i].maxScore == 10000000 then
+                gfx.FillColor(255, 255, 191) --always bright yellow for perfects
+            elseif i == count then --no looking at nil values
+                gfx.FillColor(191, 191, 191) --bright gray for last score
+            elseif gameplay.scoreReplays[i + 1].currentScore > gameplay.scoreReplays[i].currentScore then
+                gfx.FillColor(255, 191, 191) --pink for this one worse than under
+            elseif i == 1 then --no looking at nil values
                 gfx.FillColor(191, 191, 191) --bright gray for first score
             elseif gameplay.scoreReplays[i - 1].currentScore == gameplay.scoreReplays[i].currentScore then
                 gfx.FillColor(191, 191, 255) --bright blue for this one equal above
             else
-				gfx.FillColor(191, 191, 191) --bright gray otherwise
-			end
-			gfx.DrawRectBool(true, false, 0, (height + gutter) * j , (gameplay.scoreReplays[i].currentScore / 10000000) * length, height)
+                gfx.FillColor(191, 191, 191) --bright gray otherwise
+            end
+            gfx.DrawRectBool(true, false, 0, (height + gutter) * j , (gameplay.scoreReplays[i].currentScore / 10000000) * length, height)
             ::die::
             j = j + 1
-		end
-	end
-	gfx.Restore()
+        end
+    end
+    gfx.Restore()
 end
 --------------------------------------------------------------------------------
 function draw_remain()
-	gfx.FillColor(255, 255, 255, 63)
-	gfx.StrokeColor(127, 127, 127)
-	gfx.DrawRectBool(true, false, (desw / 2) - ((1 - gameplay.progress) * 100), 3, (1 - gameplay.progress) * 200, 10)
-	gfx.DrawRectBool(false, true, (desw / 2) - 100, 3, 200, 10)
+    gfx.FillColor(255, 255, 255, 63)
+    gfx.StrokeColor(127, 127, 127)
+    gfx.DrawRectBool(true, false, (desw / 2) - ((1 - gameplay.progress) * 100), 3, (1 - gameplay.progress) * 200, 10)
+    gfx.DrawRectBool(false, true, (desw / 2) - 100, 3, 200, 10)
 end
 --------------------------------------------------------------------------------
 local grades = {
@@ -1030,7 +1082,6 @@ local gradesimg = {
     gfx.CreateSkinImage("score/C.png", 0),
     gfx.CreateSkinImage("score/D.png", 0),
 }
-
 
 local badges = {
     1.1,  -- PUC
@@ -1072,7 +1123,7 @@ function draw_liveforce()
     local force, maxForce, replayForce = 0, 0, 0 --force stuffs
     local badgeSize, gradeSize, gradew, gradeh, badgew, badgeh --graphic stuffs
     local prefix, diff --force diff stuffs
-    local mainx, mainy, mainw, mainh, subx, suby, subw, subh, maxx, maxy, maxx2, maxy2, clsx, clsy, clsx2, clsy2 -- text bounds
+    local mainx, mainy, mainx2, mainy2, subx, suby, subx2, suby2, maxx, maxy, maxx2, maxy2, clsx, clsy, clsx2, clsy2
     local class, clv, cr, cg, cb --volforce class stuffs
 
     gfx.Save()
@@ -1130,8 +1181,6 @@ function draw_liveforce()
         end
     end
 
-
-
     gradew, gradeh = gfx.ImageSize(gradesimg[grade]) --image size infos
     badgew, badgeh = gfx.ImageSize(badgesimg[badge])
     gradew, gradeh = (gradew / gradeh) * 30, 30 --limit height to 30, scale down proportionally
@@ -1174,7 +1223,6 @@ function draw_liveforce()
     gfx.FillColor(cr, cg, cb)
     gfx.FontSize(20)
     gfx.Text(class .. " " .. clv, 0, maxy2)
-
 
     --images
     gfx.FillColor(255, 255, 255, 255)
@@ -1266,7 +1314,7 @@ function fsPressHist(deltaTime)
 
     if phTime > 0.005 and outroTimer == 0 then
         table.insert(pressHist, 1, {["a"] = game.GetButtonPressed(0), ["b"] = game.GetButtonPressed(1), ["c"] = game.GetButtonPressed(2), ["d"] = game.GetButtonPressed(3), ["fl"] = game.GetButtonPressed(4), ["fr"] = game.GetButtonPressed(5), ["l"] = lspeed, ["r"] = rspeed})
-        phTime = 0
+        phTime = phTime - 0.005 + deltaTime
     elseif outroTimer ~=0 and #pressHist ~= 0 then
         local i, j = math.random(1, #pressHist), math.random(1, #pressHist)
         table.remove(pressHist, j)
@@ -1274,13 +1322,13 @@ function fsPressHist(deltaTime)
     else
         phTime = phTime + deltaTime
     end
-   
+
     for i, v in pairs(pressHist) do
 
-        gfx.FillLaserColor(1, math.min(math.abs(v.l) * (255 / smax),255))
+        -- gfx.FillLaserColor(1, math.min(math.abs(v.l) * (255 / smax),255))
         gfx.DrawRectBool(true, false, 0, (i - 1) * 1.001, 3, 1.001)
 
-        gfx.FillLaserColor(2, math.min(math.abs(v.r) * (255 / smax),255))
+        -- gfx.FillLaserColor(2, math.min(math.abs(v.r) * (255 / smax),255))
         gfx.DrawRectBool(true, false, 20, (i - 1) * 1.001, 3, 1.001)
 
         if v.fl then
@@ -1329,7 +1377,6 @@ function fsPong(deltaTime)
     if ballsave.sx == 69 and ballsave.sy == 420 then
         local range = 70
         local a = math.rad(90 - range / 2 + math.random(0, range) + (math.random(0, 1) * 180))
-        angle = a
         ballsave.sx = math.sin(a)
         ballsave.sy = math.cos(a)
     end
@@ -1339,7 +1386,6 @@ function fsPong(deltaTime)
     gfx.FillColor(0, 0, 0, 128) --transparent bg
     gfx.DrawRectBool(true, false, -3, 0, winW + 6, winH)
 
-
     gfx.StrokeColor(255, 255, 255, 128)
     gfx.Scissor(-3, 1, winW + 6, winH - 2)
     gfx.DrawRectBool(false, true, -3, 0, winW + 6, winH)
@@ -1348,7 +1394,6 @@ function fsPong(deltaTime)
     gfx.Scissor(-3, 0, winW + 6, winH)
     gfx.DrawRectBool(false, true, -4, 0, winW + 8, winH)
     gfx.ResetScissor()
-
 
     gfx.FillColor(255, 255, 255)
     gfx.DrawCircleBool(true, false, ball.x, ball.y, 1.5)
@@ -1418,11 +1463,9 @@ function fsPong(deltaTime)
     gfx.Text(pongscore.p, (winW / 2) + 5, 5)
     gfx.TextAlign(gfx.TEXT_ALIGN_MIDDLE + gfx.TEXT_ALIGN_BOTTOM)
     gfx.Text(ball.r, winW / 2, winH - 5)
-    
+
     ballsave = {["x"] = ball.x / winW, ["y"] = ball.y / winH, ["sx"] = ball.sx, ["sy"] = ball.sy, ["r"] = ball.r}
     gfx.Restore()
-    debox(gameplay.level * 3 + 10)
-    debox(ball.y - paddle.b * winH)
 end
 -- -------------------------------------------------------------------------- --
 -- draw_alerts:                                                               --
@@ -1433,8 +1476,8 @@ function draw_alerts(deltaTime)
         gfx.Save()
         local posx = desw / 2 - 350
         local posy = desh * critLinePos[1] - 135
-        if portrait then 
-            posy = desh * critLinePos[2] - 135 
+        if portrait then
+            posy = desh * critLinePos[2] - 135
             posx = 65
         end
         gfx.Translate(posx,posy)
@@ -1537,4 +1580,18 @@ function laser_alert(isRight) --for starting laser alert animations
     elseif alertTimers[1] < -1.5 then
         alertTimers[1] = 1.5
     end
+end
+
+function satisfy_luacheck()
+    update_score()
+    update_combo()
+    near_hit()
+    laser_alert()
+    satisfy_luacheck()
+    UpdateButtonStatesAfterProcessed()
+    render()
+    render_crit_overlay()
+    render_crit_base()
+    render_intro()
+    render_outro()
 end
