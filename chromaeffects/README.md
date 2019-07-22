@@ -7,36 +7,48 @@ click on image to download
 click on effect name to go back to jump list
 
 #### jump list
-. | ![aa] | ![am] | ![br] | ![fi] | ![re] | ![ri] | ![sc] | ![sl] | ![st] | ![wa] | ![wh]
----|---|---|---|---|---|---|---|---|---|---|---
-[acorigins](#acorigins)||||||||✓||✓|
-[alleffects](#alleffects)|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓
-[barmeter](#barmeter)||✓|||||||||
-[barmeter2](#barmeter2)||✓||✓||||✓|||
-[birthdaycake](#birthdaycake)||✓|||✓|✓||✓|✓||
-[blurple](#blurple)||✓|||✓|✓||✓|✓||
-[coplightscode2](#coplightscode2)||||||||||✓|
-[default](#default)|✓|✓|||✓|✓||✓||✓|
-[discofloor](#discofloor)||||||✓||✓|||
-[england](#england)|||||||||✓||
-[fishfettish](#fishfettish)||✓||||||||✓|
-[minesweeper](#minesweeper)||||||✓|||✓|✓|
-[mohamed](#mohamed)||||||||||✓|
-[mudrive](#mudrive)||||||✓|||✓||
-[overcharged](#overcharged)||||||✓||✓|✓|✓|
-[radar](#radar)|||||✓|✓||✓|||✓
-[rainbowspiral](#rainbowspiral)||||||✓|||||✓
-[raindrop](#raindrop)||✓||||✓|||✓||
-[rainingneon](#rainingneon)||||||||||✓|
-[reactiveblackout](#reactiveblackout)|||||✓|✓||||✓|
-[rearviewmirror](#rearviewmirror)|||||✓|||||✓|
-[seriesoftubes](#seriesoftubes)|||||||||✓|✓|
-[sparkles](#sparkles)|||||✓|✓||✓|||
-[tea](#tea)||✓|||✓|✓|||✓|✓|
-[watchdogs2](#watchdogs2)||✓||||✓||✓|✓|✓|
-[wigwag](#wigwag)|||||||||✓|✓|
+. | groupings | ![aa] | ![am] | ![br] | ![fi] | ![re] | ![ri] | ![sc] | ![sl] | ![st] | ![wa] | ![wh]
+---|---|---|---|---|---|---|---|---|---|---|---|---
+[acorigins](#acorigins)|rg||||||||✓||✓|
+[alleffects](#alleffects)|r|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓
+[barmeter](#barmeter)|c||✓|||||||||
+[barmeter2](#barmeter2)|c||✓||✓||||✓|||
+[birthdaycake](#birthdaycake)|r||✓|||✓|✓||✓|✓||
+[blurple](#blurple)|o||✓|||✓|✓||✓|✓||
+[coplightscode2](#coplightscode2)|rp2||||||||||✓|
+[default](#default)|o|✓|✓|||✓|✓||✓||✓|
+[discofloor](#discofloor)|o||||||✓||✓|||
+[england](#england)|r|||||||||✓||
+[fishfettish](#fishfettish)|o||✓||||||||✓|
+[minesweeper](#minesweeper)|rg||||||✓|||✓|✓|
+[mohamed](#mohamed)|r||||||||||✓|
+[mudrive](#mudrive)|og||||||✓|||✓||
+[overcharged](#overcharged)|r2t||||||✓||✓|✓|✓|
+[radar](#radar)|o|||||✓|✓||✓|||✓
+[rainbowspiral](#rainbowspiral)|r||||||✓|||||✓
+[raindrop](#raindrop)|rt||✓||||✓|||✓||
+[rainingneon](#rainingneon)|r2||||||||||✓|
+[reactiveblackout](#reactiveblackout)|rc|||||✓|✓||||✓|
+[rearviewmirror](#rearviewmirror)|rp2|||||✓|||||✓|
+[seriesoftubes](#seriesoftubes)|o|||||||||✓|✓|
+[sparkles](#sparkles)|o|||||✓|✓||✓|||
+[tea](#tea)|o||✓|||✓|✓|||✓|✓|
+[watchdogs2](#watchdogs2)|og||✓||||✓||✓|✓|✓|
+[wigwag](#wigwag)|rp|||||||||✓|✓|
 
 gifs are limited to 5 seconds because i'm too lazy to change the duration
+
+grouping | meaning
+---|---
+o|original
+r|requested
+c|proof of concept
+---|---
+p|police
+g|games
+---|---
+2|recreation from s2
+t|with some modifications by me
 
 ## [acorigins](#jump-list)
 [![acorigins](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/acorigins.gif "acorigins")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-acorigins.ChromaEffects)
