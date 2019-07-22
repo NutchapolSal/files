@@ -21,7 +21,7 @@ local effector = 0
 local searchText = gfx.CreateLabel("",5,0)
 local searchIndex = 1
 local jacketFallback = gfx.CreateSkinImage("song_select/loading.png", 0)
-gfx.LoadSkinFont("UDDigiKyokashoNP-B.ttf");
+local showGuide = game.GetSkinSetting("show_guide")
 local legendTable = {
   {["labelSingleLine"] =  gfx.CreateLabel("DIFFICULTY SELECT",16, 0), ["labelMultiLine"] =  gfx.CreateLabel("DIFFICULTY\nSELECT",16, 0), ["image"] = gfx.CreateSkinImage("legend/knob-left.png", 0)},
   {["labelSingleLine"] =  gfx.CreateLabel("MUSIC SELECT",16, 0),      ["labelMultiLine"] =  gfx.CreateLabel("MUSIC\nSELECT",16, 0),      ["image"] = gfx.CreateSkinImage("legend/knob-right.png", 0)},
@@ -50,7 +50,7 @@ local badges = {
     gfx.CreateSkinImage("badges/perfect.png", 0)
 }
 
-gfx.LoadSkinFont("segoeui.ttf");
+gfx.LoadSkinFont("NotoSans-Regular.ttf");
 
 game.LoadSkinSample("menu_click")
 game.LoadSkinSample("click-02")
@@ -126,6 +126,10 @@ check_or_create_cache = function(song, loadJacket)
 
     if not songCache[song.id]["bpm"] then
         songCache[song.id]["bpm"] = gfx.CreateLabel(string.format("BPM: %s",song.bpm), 20, 0)
+    end
+	
+	if not songCache[song.id]["effector"] then
+        songCache[song.id]["effector"] = gfx.CreateLabel(string.format("BPM: %s",song.bpm), 20, 0)
     end
 
     if not songCache[song.id]["jacket"] and loadJacket then
@@ -216,6 +220,7 @@ draw_diff_icon = function(diff, x, y, w, h, selected)
 end
 
 draw_cursor = function(x,y,rotation,width)
+	gfx.Save()
     gfx.BeginPath();
     gfx.Translate(x,y)
     gfx.Rotate(rotation)
@@ -223,8 +228,7 @@ draw_cursor = function(x,y,rotation,width)
     gfx.StrokeWidth(4)
     gfx.Rect(-width/2, -width/2, width, width)
     gfx.Stroke()
-    gfx.Rotate(-rotation)
-    gfx.Translate(-x,-y)
+    gfx.Restore()
 end
 
 draw_diffs = function(diffs, x, y, w, h)
@@ -261,6 +265,7 @@ draw_diffs = function(diffs, x, y, w, h)
   gfx.ResetScissor()
   draw_cursor(x + w/2, y +diffHeight/2, timer * math.pi, diffHeight / 1.5)
 end
+
 draw_selected = function(song, x, y, w, h)
     check_or_create_cache(song)
     -- set up padding and margins
@@ -284,7 +289,6 @@ draw_selected = function(song, x, y, w, h)
     end
     --Border
     local diff = song.difficulties[selectedDiff]
-    effector = gfx.CreateLabel(diff.effector,20,0)
     gfx.BeginPath()
     gfx.RoundedRectVarying(xpos,ypos,width,height,yPadding,yPadding,yPadding,yPadding)
     gfx.FillColor(30,30,30)
@@ -326,8 +330,7 @@ draw_selected = function(song, x, y, w, h)
       gfx.DrawLabel(songCache[song.id]["artist"], xpos+xPadding+imageSize+3, y+yMargin+yPadding + 45, width-imageSize-20)
       gfx.FontSize(20)
       gfx.DrawLabel(songCache[song.id]["bpm"], xpos+xPadding+imageSize+3, y+yMargin+yPadding + 85, width-imageSize-20)
-      gfx.FastText("Effector:", xpos+xPadding+imageSize+3, y+yMargin+yPadding + 115)
-      gfx.DrawLabel(effector, xpos+xPadding+imageSize+80, y+yMargin+yPadding + 115, width-imageSize-20)
+      gfx.FastText(string.format("Effector: %s", diff.effector), xpos+xPadding+imageSize+3, y+yMargin+yPadding + 115)
     else
       gfx.FontSize(40)
       gfx.TextAlign(gfx.TEXT_ALIGN_TOP + gfx.TEXT_ALIGN_LEFT)
@@ -337,8 +340,7 @@ draw_selected = function(song, x, y, w, h)
       gfx.FillColor(255,255,255)
       gfx.FontSize(20)
       gfx.DrawLabel(songCache[song.id]["bpm"], xpos+10, (height/10)*6 + 85)
-      gfx.FastText("Effector:",xpos+10, (height/10)*6 + 115)
-      gfx.DrawLabel(effector, xpos+85, (height/10)*6 + 115, width-95)
+      gfx.FastText(string.format("Effector: %s", diff.effector),xpos+10, (height/10)*6 + 115)
     end
     if aspectRatio == "PortraitWidescreen" then
       draw_scores(diff, xpos+xPadding+imageSize+3,  (height/3)*2, width-imageSize-20, (height/3)-yPadding)
@@ -442,7 +444,7 @@ draw_search = function(x,y,w,h)
   gfx.Fill()
   gfx.Stroke()
   gfx.BeginPath();
-  gfx.LoadSkinFont("segoeui.ttf");
+  gfx.LoadSkinFont("NotoSans-Regular.ttf");
   gfx.TextAlign(gfx.TEXT_ALIGN_LEFT + gfx.TEXT_ALIGN_MIDDLE);
   gfx.DrawLabel(searchText, xpos+10,y+(h/2), w-20)
 
@@ -454,7 +456,7 @@ render = function(deltaTime)
     resx,resy = game.GetResolution();
     adjustScreen(resx,resy);
     gfx.BeginPath();
-    gfx.LoadSkinFont("segoeui.ttf");
+    gfx.LoadSkinFont("NotoSans-Regular.ttf");
     gfx.FontSize(40);
     gfx.FillColor(255,255,255);
     if songwheel.songs[1] ~= nil then
@@ -470,11 +472,13 @@ render = function(deltaTime)
       end
     end
     --Draw Legend Information
-    if aspectRatio == "PortraitWidescreen" then
-      draw_legend(0,(fifthY/3)*14, fullX, (fifthY/3)*1)
-    else
-      draw_legend(0,(fifthY/2)*9, fullX, (fifthY/2))
-    end
+	if showGuide then
+		if aspectRatio == "PortraitWidescreen" then
+			draw_legend(0,(fifthY/3)*14, fullX, (fifthY/3)*1)
+		else
+			draw_legend(0,(fifthY/2)*9, fullX, (fifthY/2))
+		end
+	end
 
     --draw text search
     if aspectRatio == "PortraitWidescreen" then
@@ -501,7 +505,7 @@ render = function(deltaTime)
 		local forceText = string.format("Force: %.2f", totalForce)
 		gfx.Text(forceText, 0, fullY)
 	end
-    gfx.LoadSkinFont("segoeui.ttf");
+    gfx.LoadSkinFont("NotoSans-Regular.ttf");
     gfx.ResetTransform()
     gfx.ForceRender()
 end

@@ -11,10 +11,11 @@ local RECT_STROKE = "stroke"
 local RECT_FILL_STROKE = RECT_FILL .. RECT_STROKE
 
 gfx._ImageAlpha = 1
-
-gfx._FillColor = gfx.FillColor
-gfx._StrokeColor = gfx.StrokeColor
-gfx._SetImageTint = gfx.SetImageTint
+if gfx._FillColor == nil then
+	gfx._FillColor = gfx.FillColor
+	gfx._StrokeColor = gfx.StrokeColor
+	gfx._SetImageTint = gfx.SetImageTint
+end
 
 -- we aren't even gonna overwrite it here, it's just dead to us
 gfx.SetImageTint = nil
@@ -153,11 +154,13 @@ local scale -- the scale to get from design to actual units
 local jacketFallback = gfx.CreateSkinImage("song_select/loading.png", 0)
 local bottomFill = gfx.CreateSkinImage("console/console.png", 0)
 local topFill = gfx.CreateSkinImage("fill_top.png", 0)
-local critAnim = gfx.CreateSkinImage("crit_anim.png", 0)
+local critAnimImg = gfx.CreateSkinImage("crit_anim.png", gfx.IMAGE_REPEATX)
+local critAnim = gfx.ImagePattern(0,-50,100,100,0,critAnimImg,1)
 local critCap = gfx.CreateSkinImage("crit_cap.png", 0)
 local critCapBack = gfx.CreateSkinImage("crit_cap_back.png", 0)
 local laserCursor = gfx.CreateSkinImage("pointer.png", 0)
 local laserCursorOverlay = gfx.CreateSkinImage("pointer_overlay.png", 0)
+local earlatePos = game.GetSkinSetting("earlate_position")
 
 local ioConsoleDetails = {
     gfx.CreateSkinImage("console/detail_left.png", 0),
@@ -178,9 +181,10 @@ local consoleAnimImages = {
 }
 -- -------------------------------------------------------------------------- --
 -- Timers, used for animations:                                               --
-local introTimer = 2
-local outroTimer = 0
-
+if introTimer == nil then
+	introTimer = 2
+	outroTimer = 0
+end
 local alertTimers = {-2,-2}
 
 local earlateTimer = 0
@@ -198,7 +202,6 @@ local comboScale = 1.0
 local late = false
 local diffNames = {"NOV", "ADV", "EXH", "INF"}
 local clearTexts = {"TRACK FAILED", "TRACK COMPLETE", "TRACK COMPLETE", "FULL COMBO", "PERFECT" }
---------------------------------------------------------------------------------
 -- -------------------------------------------------------------------------- --
 -- ResetLayoutInformation:                                                    --
 -- Resets the layout values used by the skin.                                 --
@@ -224,23 +227,17 @@ function render(deltaTime)
     -- TODO: this shouldn't be necessary!!!
     gfx.ResetTransform()
     deboxi = 0
-    -- While the intro timer is running, we fade in from black
-    if introTimer > 0 then
-        gfx.FillColor(0, 0, 0, math.floor(255 * math.min(introTimer, 1)))
-        gfx.DrawRect(RECT_FILL, 0, 0, resx, resy)
-    end
 
     if not(seedset) then
         math.randomseed(os.time())
         seedset = math.random() + math.random() + math.random() + math.random() + math.random()
         seedset = true
     end
-
     gfx.Scale(scale, scale)
     local yshift = 0
 
     -- In portrait, we draw a banner across the top
-    -- The rest of the UI needs to co drawn below that banner
+    -- The rest of the UI needs to be drawn below that banner
     -- TODO: this isn't how it'll work in the long run, I don't think
     if portrait then yshift = draw_banner(deltaTime) end
 
@@ -249,9 +246,12 @@ function render(deltaTime)
     draw_score(deltaTime)
     gfx.Translate(0, -yshift + 150 * math.max(introTimer - 1, 0))
     draw_gauge(deltaTime)
-    draw_earlate(deltaTime)
+	if earlatePos ~= "off" then
+		draw_earlate(deltaTime)
+	end
     draw_combo(deltaTime)
     draw_alerts(deltaTime)
+
     draw_condisp(deltaTime)
     draw_scoregraph()
     draw_remain()
@@ -314,7 +314,7 @@ function render_crit_base(deltaTime)
     local critWidth = resx * (portrait and 1 or 0.8)
 
     -- get the scaled dimensions of the crit line pieces
-    local clw, clh = gfx.ImageSize(critAnim)
+    local clw, clh = gfx.ImageSize(critAnimImg)
     local critAnimHeight = 15 * scale
     local critAnimWidth = critAnimHeight * (clw / clh)
 
@@ -335,26 +335,30 @@ function render_crit_base(deltaTime)
 
     -- render the core of the crit line
     do
-        -- The crit line is made up of many small pieces scrolling outward
-        -- Calculate how many pieces, starting at what offset, are require to
-        --  completely fill the space with no gaps from edge to center
+        -- The crit line is made up of two rects with a pattern that scrolls in opposite directions on each rect
         local numPieces = 1 + math.ceil(critWidth / (critAnimWidth * 2))
         local startOffset = critAnimWidth * ((critAnimTimer * 1.5) % 1)
 
         -- left side
         -- Use a scissor to limit the drawable area to only what should be visible
+        gfx.UpdateImagePattern(critAnim,
+            -startOffset, -critAnimHeight/2, critAnimWidth, critAnimHeight, 0, 1)
         gfx.Scissor(-critWidth / 2, -critAnimHeight / 2, critWidth / 2, critAnimHeight)
-        for i = 1, numPieces do
-            gfx.DrawRect(critAnim, -startOffset - critAnimWidth * (i - 1), -critAnimHeight / 2, critAnimWidth, critAnimHeight)
-        end
+        gfx.BeginPath()
+        gfx.Rect(-critWidth / 2, -critAnimHeight / 2, critWidth / 2, critAnimHeight)
+        gfx.FillPaint(critAnim)
+        gfx.Fill()
         gfx.ResetScissor()
 
         -- right side
         -- exactly the same, but in reverse
+        gfx.UpdateImagePattern(critAnim,
+            startOffset, -critAnimHeight/2, critAnimWidth, critAnimHeight, 0, 1)
         gfx.Scissor(0, -critAnimHeight / 2, critWidth / 2, critAnimHeight)
-        for i = 1, numPieces do
-            gfx.DrawRect(critAnim, -critAnimWidth + startOffset + critAnimWidth * (i - 1), -critAnimHeight / 2, critAnimWidth, critAnimHeight)
-        end
+        gfx.BeginPath()
+        gfx.Rect(0, -critAnimHeight / 2, critWidth / 2, critAnimHeight)
+        gfx.FillPaint(critAnim)
+        gfx.Fill()
         gfx.ResetScissor()
     end
 
@@ -540,7 +544,7 @@ function draw_song_info(deltaTime)
     if portrait then gfx.Scale(0.7, 0.7) end
 
     -- Ensure the font has been loaded
-    gfx.LoadSkinFont("segoeui.ttf")
+    gfx.LoadSkinFont("NotoSans-Regular.ttf")
 
     -- Draw the background, a simple grey box
     gfx.FillColor(20, 20, 20, 200)
@@ -559,6 +563,7 @@ function draw_song_info(deltaTime)
     gfx.FontSize(30)
 
     gfx.FillColor(255, 255, 255)
+
     local textX = jacketWidth + 10
     local titleWidth = songInfoWidth - jacketWidth - 20
     local x1, y1, x2, y2 = gfx.TextBounds(0, 0, gameplay.title)
@@ -627,10 +632,11 @@ function draw_best_diff(deltaTime, x, y)
         gfx.FillColor(255, 50, 50)
         difference = math.abs(difference)
         prefix = "-"
-    elseif difference > 0 then
+    elseif difference > 0 then --ayy mine
         gfx.FillColor(50, 255, 50)
         prefix = "+"
     end
+
     -- %08d formats a number to 8 characters
     -- This includes the minus sign, so we do that separately
     gfx.Text(string.format("%s%08d", prefix, difference), x, y)
@@ -673,24 +679,24 @@ function draw_gauge(deltaTime)
     end
     gfx.DrawGauge(gameplay.gauge, posx, posy, width, height, deltaTime)
 
-    --draw gauge % label
-    posx = posx / scale
-    posx = posx + (100 * 0.35) 
-    height = 880 * 0.35
-    posy = posy / scale
-    if portrait then
-        height = height * 0.8;
-    end
+	--draw gauge % label
+	posx = posx / scale
+	posx = posx + (100 * 0.35)
+	height = 880 * 0.35
+	posy = posy / scale
+	if portrait then
+		height = height * 0.8;
+	end
 
-    posy = posy + (70 * 0.35) + height - height * gameplay.gauge
-    gfx.BeginPath()
-    gfx.Rect(posx-35, posy-10, 40, 20)
-    gfx.FillColor(0,0,0,200)
-    gfx.Fill()
-    gfx.FillColor(255,255,255)
-    gfx.TextAlign(gfx.TEXT_ALIGN_RIGHT + gfx.TEXT_ALIGN_MIDDLE)
-    gfx.FontSize(20)
-    gfx.Text(string.format("%d%%", math.floor(gameplay.gauge * 100)), posx, posy )
+	posy = posy + (70 * 0.35) + height - height * gameplay.gauge
+	gfx.BeginPath()
+	gfx.Rect(posx-35, posy-10, 40, 20)
+	gfx.FillColor(0,0,0,200)
+	gfx.Fill()
+	gfx.FillColor(255,255,255)
+	gfx.TextAlign(gfx.TEXT_ALIGN_RIGHT + gfx.TEXT_ALIGN_MIDDLE)
+	gfx.FontSize(20)
+	gfx.Text(string.format("%d%%", math.floor(gameplay.gauge * 100)), posx, posy )
 
     --gaugegraph
 
@@ -777,24 +783,25 @@ end
 function draw_earlate(deltaTime)
     earlateTimer = math.max(earlateTimer - deltaTime,0)
     if earlateTimer == 0 then return nil end
-    local alpha = math.min(earlateTimer * 250,127)
-    local arrowalpha = math.floor(earlateTimer * 20) % 2
-    arrowalpha = math.min(math.min(arrowalpha * alpha + 55, 127), alpha)
+    local alpha = math.floor(earlateTimer * 20) % 2
+    alpha = alpha * 200 + 55
     gfx.BeginPath()
     gfx.FontSize(20)
     gfx.TextAlign(gfx.TEXT_ALIGN_CENTER, gfx.TEXT_ALIGN_MIDDLE)
-    local ypos = desh * critLinePos[1] - 400
-    if portrait then ypos = desh * critLinePos[2] - 150 end
+    local ypos = desh * critLinePos[1] - 150
+    if portrait then ypos = desh * critLinePos[2] - 200 end
+	if earlatePos == "middle" then
+		ypos = ypos - 200
+	elseif earlatePos == "top" then
+		ypos = ypos - 400
+	end
+
     if late then
         gfx.FillColor(0,255,255, alpha)
-        gfx.Text("LATE", desw / 2, ypos)
-        gfx.FillColor(0,255,255, arrowalpha)
-        gfx.Text(">     <", desw / 2, ypos)
+        gfx.Text("> LATE <", desw / 2, ypos)
     else
         gfx.FillColor(255,0,255, alpha)
-        gfx.Text("EARLY", desw / 2, ypos)
-        gfx.FillColor(255,0,255, arrowalpha)
-        gfx.Text(">      <", desw / 2, ypos)
+        gfx.Text("> EARLY <", desw / 2, ypos)
     end
 end
 --------------------------------------------------------------------------------
@@ -828,6 +835,7 @@ end
 local lspeed, rspeed, lfirst, rfirst, llast, rlast, lsc, rsc, lmax, rmax, lmaxlist, rmaxlist = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, {}, {}
 local ls, rs, templs, temprs = {}, {}, {}, {}
 local cdtimer = 0
+local debuglist = {}
 --------------------------------------------------------------------------------
 function draw_condisp(deltaTime)
     --Nutchapol's CONtroller DISPlay v3
@@ -882,10 +890,9 @@ function draw_condisp(deltaTime)
     --here starts the knobs
     lsc = lfirst - llast--calculate knob speeds
     rsc = rfirst - rlast
-    if lsc < -0.03 then lsc = 0.029 end--cutoff when the getknob value jumps back to 0 (common)
-    if lsc > 0.03 then lsc = -0.029 end
-    if rsc < -0.03 then rsc = 0.029 end
-    if rsc > 0.03 then rsc = -0.029 end
+
+    if not(lsc > -6 and lsc < 6) then lsc = 0 end--cutoff when the getknob value jumps back to 0 (common)
+    if not(rsc > -6 and rsc < 6) then rsc = 0 end
 
     lspeed = 0 --reset knobspeed
     rspeed = 0
@@ -929,21 +936,21 @@ function draw_condisp(deltaTime)
     lspeed = lspeed / #ls --average them out
     rspeed = rspeed / #rs
 
-    if lspeed ~= lspeed then lspeed = 0 end -- fuck nan
-    if rspeed ~= rspeed then rspeed = 0 end
+    if #ls == 0 then lspeed = 0 end
+    if #rs == 0 then rspeed = 0 end
 
     if #ls > 20 then table.remove(ls, #ls) end --remove off limit entries
     if #rs > 20 then table.remove(rs, #rs) end
 
     if #lmaxlist < 20 then
-        table.insert(lmaxlist, 1, math.max(math.abs(lspeed),0))
+        table.insert(lmaxlist, 1, math.max(math.abs(lspeed),1e-20))
     elseif math.abs(lspeed) > lmaxlist[1] then
         table.insert(lmaxlist, 1, math.abs(lspeed))
         table.remove(lmaxlist, #lmaxlist)
     end
-    
+
     if #rmaxlist < 20 then
-        table.insert(rmaxlist, 1, math.max(math.abs(rspeed),0))
+        table.insert(rmaxlist, 1, math.max(math.abs(rspeed),1e-20))
     elseif math.abs(rspeed) > rmaxlist[1] then
         table.insert(rmaxlist, 1, math.abs(rspeed))
         table.remove(rmaxlist, #rmaxlist)
@@ -960,14 +967,32 @@ function draw_condisp(deltaTime)
     lmax = lmax / #lmaxlist
     rmax = rmax / #rmaxlist
 
+    dc(game.GetLaserColor(0))
+    debox(game.GetKnob(0))
+    dc(game.GetLaserColor(0))
+    debox(lspeed)
+    dc(game.GetLaserColor(0))
+    debox(lmax)
+    dc(game.GetLaserColor(0))
+    debox(lspeed / lmax)
+    debox("")
+    dc(game.GetLaserColor(1))
+    debox(game.GetKnob(1))
+    dc(game.GetLaserColor(1))
+    debox(rspeed)
+    dc(game.GetLaserColor(1))
+    debox(rmax)
+    dc(game.GetLaserColor(1))
+    debox(rspeed / rmax)
+
     gfx.StrokeColor(game.GetLaserColor(0))
     gfx.FillLaserColor(1, math.floor(math.min(math.abs(lspeed) / lmax * 255,255)))--set fill color to knob color w/ transparency. opaque = u spin knob, can't see knob fill = u no spin knob
-    gfx.DrawLine(9.5, 3.5, lspeed * (16 / lmax), 0, 2) --the bar
+    gfx.DrawLine(9.5, 3.5, lspeed * (24 / lmax), 0, 2) --the bar
     gfx.DrawCircleBool(true, true, 8.5, 13.5, 9) --the knob circle
 
     gfx.StrokeColor(game.GetLaserColor(1))
     gfx.FillLaserColor(2, math.floor(math.min(math.abs(rspeed) / rmax * 255,255)))
-    gfx.DrawLine(218.5, 3.5, rspeed * (16 / rmax), 0, 2)
+    gfx.DrawLine(218.5, 3.5, rspeed * (24 / rmax), 0, 2)
     gfx.DrawCircleBool(true, true, 217.5, 13.5, 9)
 
     llast = game.GetKnob(0)--get some
@@ -1311,26 +1336,29 @@ local phTime = 0
 function fsPressHist(deltaTime)
     gfx.Save()
     gfx.Translate(1252,130)
-    local kL, kR = false, false
     local smax = 0.0065 --stolen from condisp
 
     if phTime > 0.005 and outroTimer == 0 then
         table.insert(pressHist, 1, {["a"] = game.GetButtonPressed(0), ["b"] = game.GetButtonPressed(1), ["c"] = game.GetButtonPressed(2), ["d"] = game.GetButtonPressed(3), ["fl"] = game.GetButtonPressed(4), ["fr"] = game.GetButtonPressed(5), ["l"] = lspeed, ["r"] = rspeed})
         phTime = phTime - 0.005 + deltaTime
-    elseif outroTimer ~=0 and #pressHist ~= 0 then
-        local i, j = math.random(1, #pressHist), math.random(1, #pressHist)
-        table.remove(pressHist, j)
-        pressHist = table.move(pressHist, i, i+1, j)
     else
         phTime = phTime + deltaTime
     end
 
     for i, v in pairs(pressHist) do
 
-        -- gfx.FillLaserColor(1, math.min(math.abs(v.l) * (255 / smax),255))
+        if v.l < 0 then
+            gfx.FillLaserColor(1, math.min(math.abs(v.l) * (255 / smax),255))
+        else
+            gfx.FillLaserColor(2, math.min(math.abs(v.l) * (255 / smax),255))
+        end
         gfx.DrawRectBool(true, false, 0, (i - 1) * 1.001, 3, 1.001)
 
-        -- gfx.FillLaserColor(2, math.min(math.abs(v.r) * (255 / smax),255))
+        if v.r < 0 then
+            gfx.FillLaserColor(1, math.min(math.abs(v.r) * (255 / smax),255))
+        else
+            gfx.FillLaserColor(2, math.min(math.abs(v.r) * (255 / smax),255))
+        end
         gfx.DrawRectBool(true, false, 20, (i - 1) * 1.001, 3, 1.001)
 
         if v.fl then
@@ -1367,88 +1395,99 @@ end
 function fsInvaders(deltaTime)
 end
 -----
-local ballsave = {["x"] = 0.5, ["y"] = 0.5, ["sx"] = 69, ["sy"] = 420, ["r"] = 0}
-local paddle = {["b"] = 0.5, ["l"] = 0.5, ["r"] = 0.5}
-local pongscore = {["p"] = 0, ["b"] = 0}
+local ballsave = {["x"] = 0.5, ["y"] = 0.5, ["sx"] = 69, ["sy"] = 420, ["r"] = 0} --x and y here are compatible with any window size, x and y are percentage of the window, where the ball is. r is rally count
+local paddle = {["b"] = 0.5, ["l"] = 0.5, ["r"] = 0.5} --paddle locations
+local pongscore = {["p"] = 0, ["b"] = 0} --scores
 local paddlewidth = 15
-local ponglineoffset = 0
+local ponglineoffset = 0 --for animating dashed middle line
 function fsPong(deltaTime)
     gfx.Save()
-    -- window width, window height
-    local winW, winH = 128, 72
-    if ballsave.sx == 69 and ballsave.sy == 420 then
+
+    local winW, winH = 128, 72 -- window width, window height
+    if ballsave.sx == 69 and ballsave.sy == 420 then --initialize ball
         local range = 70
         local a = math.rad(90 - range / 2 + math.random(0, range) + (math.random(0, 1) * 180))
-        ballsave.sx = math.sin(a)
-        ballsave.sy = math.cos(a)
+        ballsave.sx = math.sin(a) --convert angle to vectors
+        ballsave.sy = math.cos(a) --it's easier for collisions
     end
-    local ball = {["x"] = ballsave.x * winW, ["y"] = ballsave.y * winH, ["sx"] = ballsave.sx, ["sy"] = ballsave.sy, ["r"] = ballsave.r}
+    local ball = {["x"] = ballsave.x * winW, ["y"] = ballsave.y * winH, ["sx"] = ballsave.sx, ["sy"] = ballsave.sy, ["r"] = ballsave.r} --convert format, x and y are coordinates
 
     gfx.Translate(1135 - winW, 707 - winH)
+
     gfx.FillColor(0, 0, 0, 128) --transparent bg
     gfx.DrawRectBool(true, false, -3, 0, winW + 6, winH)
 
-    gfx.StrokeColor(255, 255, 255, 128)
+    gfx.StrokeColor(255, 255, 255, 128) --goal lines
     gfx.Scissor(-3, 1, winW + 6, winH - 2)
     gfx.DrawRectBool(false, true, -3, 0, winW + 6, winH)
 
-    gfx.StrokeColor(255, 255, 255)
+    gfx.StrokeColor(255, 255, 255) --walls
     gfx.Scissor(-3, 0, winW + 6, winH)
     gfx.DrawRectBool(false, true, -4, 0, winW + 8, winH)
     gfx.ResetScissor()
 
-    gfx.FillColor(255, 255, 255)
+    gfx.FillColor(255, 255, 255) --ball
     gfx.DrawCircleBool(true, false, ball.x, ball.y, 1.5)
 
-    gfx.FillLaserColor(1, 255)
+    gfx.FillLaserColor(1, 255) --paddles, left knob
     gfx.DrawRectBool(true, false, winW - 1, winH * paddle.l - paddlewidth / 2, 2, paddlewidth)
-    gfx.FillLaserColor(2, 255)
+    gfx.FillLaserColor(2, 255) --right knob
     gfx.DrawRectBool(true, false, winW - 1, winH * paddle.r - paddlewidth / 2, 2, paddlewidth)
-    gfx.FillColor(255, 255, 255)
+    gfx.FillColor(255, 255, 255) -- ai knob
     gfx.DrawRectBool(true, false, -1, winH * paddle.b - paddlewidth / 2, 2, paddlewidth)
 
+    --paddle calculations
     paddle.l = math.max(paddlewidth / 2 / winH, math.min((winH - paddlewidth / 2) / winH , paddle.l + lspeed / winH * 50))
     paddle.r = math.max(paddlewidth / 2 / winH, math.min((winH - paddlewidth / 2) / winH , paddle.r + rspeed / winH * 50))
+
+    -- ai paddle calculations
+    -- it's speed is dependent on chart's level
     paddle.b = math.max(paddlewidth / 2 / winH, math.min((winH - paddlewidth / 2) / winH , (paddle.b + (math.max(math.min((ball.y - paddle.b * winH), gameplay.level + 10), -gameplay.level + 10) * deltaTime * (gameplay.level / 20 * 4)) / winH)))
 
-    local ballspeed = gameplay.bpm * (1 / 60) * 20 * ((ball.r + 25) / 25)
+    local ballspeed = gameplay.bpm * (1 / 60) * 20 * ((ball.r + 25) / 25) --ball speed depends on bpm and rally count
 
-    ball.x = ball.x + ball.sx * ballspeed * deltaTime
+    ball.x = ball.x + ball.sx * ballspeed * deltaTime -- update ball location
     ball.y = ball.y + ball.sy * ballspeed * deltaTime
 
-    if ball.y > winH - 1.5 or ball.y < 1.5 then
-        ball.sy = -ball.sy
-        ball.y = math.max(math.min(winH - 1.5, ball.y), 1.5)
-    end
-
-    if ball.x > winW - 1.5 and ball.x < winW and (((ball.y < paddle.l * winH + paddlewidth / 2) and (ball.y > paddle.l * winH - paddlewidth / 2)) or ((ball.y < paddle.r * winH + paddlewidth / 2) and (ball.y > paddle.r * winH - paddlewidth / 2))) then
-        ball.sx = -ball.sx
-        ball.x = math.max(math.min(winW - 1.5, ball.x), 1.5)
-        ball.r = ball.r + 1
-    elseif ball.x < 1.5 and ball.x > 0 and (ball.y < paddle.b * winH + paddlewidth / 2) and (ball.y > paddle.b * winH - paddlewidth / 2) then
-        ball.sx = -ball.sx
-        ball.x = math.max(math.min(winW - 1.5, ball.x), 1.5)
-        ball.r = ball.r + 1
-    end
-
-    if ball.x > winW - -3 or ball.x < -3 then
-        if ball.x < winW / 2 then
-            pongscore.p = pongscore.p + 1
-        else
-            pongscore.b = pongscore.b + 1
+    if outroTimer == 0 then --walls are just a suggestion when it's outro
+        if ball.y > winH - 1.5 or ball.y < 1.5 then --if ball bounce wall
+            ball.sy = -ball.sy
+            ball.y = math.max(math.min(winH - 1.5, ball.y), 1.5)
         end
 
-        ball.x = winW / 2
-        ball.y = winH / 2
-        local range = 70
-        local a = math.rad(90 - range / 2 + math.random(0, range) + (math.random(0, 1) * 180))
-        ball.sx = math.sin(a)
-        ball.sy = math.cos(a)
-        ball.r = 0
+        -- if ball bounce paddle
+        if ball.x > winW - 1.5 and ball.x < winW and (((ball.y < paddle.l * winH + paddlewidth / 2) and (ball.y > paddle.l * winH - paddlewidth / 2)) or ((ball.y < paddle.r * winH + paddlewidth / 2) and (ball.y > paddle.r * winH - paddlewidth / 2))) then
+            ball.sx = -ball.sx
+            ball.x = math.max(math.min(winW - 1.5, ball.x), 1.5)
+            ball.r = ball.r + 1
+        elseif ball.x < 1.5 and ball.x > 0 and (ball.y < paddle.b * winH + paddlewidth / 2) and (ball.y > paddle.b * winH - paddlewidth / 2) then
+            ball.sx = -ball.sx
+            ball.x = math.max(math.min(winW - 1.5, ball.x), 1.5)
+            ball.r = ball.r + 1
+        end
+
+        --if ball touch goal lines
+        if ball.x > winW - -3 or ball.x < -3 then
+            if ball.x < winW / 2 then
+                pongscore.p = pongscore.p + 1
+            else
+                pongscore.b = pongscore.b + 1
+            end
+
+            ball.x = winW / 2 --re init ball
+            ball.y = winH / 2
+            local range = 70
+            local a = math.rad(90 - range / 2 + math.random(0, range) + (math.random(0, 1) * 180))
+            ball.sx = math.sin(a)
+            ball.sy = math.cos(a)
+            ball.r = 0
+        end
     end
 
-    ponglineoffset = (ponglineoffset + deltaTime * 3 + ball.r / 300) % 10
-    do
+    -- dashed middle line
+    ponglineoffset = (ponglineoffset + gameplay.bpm * (1 / 60) * deltaTime * 10 + ball.r / 300) % 10
+
+    do --same logic with the crit line
         local numpieces = 1 + math.ceil(winH / 10)
         gfx.Scissor(0, 0, winW, winH)
         for i = 1, numpieces do
@@ -1457,14 +1496,34 @@ function fsPong(deltaTime)
         end
         gfx.ResetScissor()
     end
+
+    -- texts
     gfx.FontSize(15)
     gfx.FillColor(255, 255, 255, 255)
     gfx.TextAlign(gfx.TEXT_ALIGN_RIGHT + gfx.TEXT_ALIGN_TOP)
     gfx.Text(pongscore.b, (winW / 2) - 5, 5)
     gfx.TextAlign(gfx.TEXT_ALIGN_LEFT + gfx.TEXT_ALIGN_TOP)
     gfx.Text(pongscore.p, (winW / 2) + 5, 5)
-    gfx.TextAlign(gfx.TEXT_ALIGN_MIDDLE + gfx.TEXT_ALIGN_BOTTOM)
+    gfx.TextAlign(gfx.TEXT_ALIGN_CENTER + gfx.TEXT_ALIGN_BASELINE)
     gfx.Text(ball.r, winW / 2, winH - 5)
+
+    if outroTimer ~= 0 then
+        gfx.FillColor(0, 0, 0, 128) --transparent bg
+        gfx.DrawRectBool(true, false, -3, 0, winW + 6, winH)
+
+        gfx.FontSize(30)
+        local wintext
+        if pongscore.b == pongscore.p then
+            wintext = "DRAW"
+        elseif pongscore.b > pongscore.p then
+            wintext = "LOSE"
+        else
+            wintext = "WIN"
+        end
+        gfx.FillColor(255, 255, 255)
+        gfx.TextAlign(gfx.TEXT_ALIGN_CENTER + gfx.TEXT_ALIGN_MIDDLE)
+        gfx.Text(wintext, winW / 2, winH / 2)
+    end
 
     ballsave = {["x"] = ball.x / winW, ["y"] = ball.y / winH, ["sx"] = ball.sx, ["sy"] = ball.sy, ["r"] = ball.r}
     gfx.Restore()
@@ -1505,8 +1564,8 @@ function draw_alerts(deltaTime)
         gfx.Save()
         local posx = desw / 2 + 350
         local posy = desh * critLinePos[1] - 135
-        if portrait then 
-            posy = desh * critLinePos[2] - 135 
+        if portrait then
+            posy = desh * critLinePos[2] - 135
             posx = desw - 65
         end
         gfx.Translate(posx,posy)
@@ -1529,33 +1588,65 @@ function draw_alerts(deltaTime)
         gfx.Restore()
     end
 end
+
+function change_earlatepos()
+	if earlatePos == "top" then
+		earlatePos = "off"
+	elseif earlatePos == "off" then
+		earlatePos = "bottom"
+	elseif earlatePos == "bottom" then
+		earlatePos = "middle"
+	elseif earlatePos == "middle" then
+		earlatePos = "top"
+	end
+	game.SetSkinSetting("earlate_position", earlatePos)
+end
+
 -- -------------------------------------------------------------------------- --
 -- render_intro:                                                              --
+local bta_last = false
 function render_intro(deltaTime)
+    if gameplay.demoMode then
+        introTimer = 0
+        return true
+    end
     if not game.GetButton(game.BUTTON_STA) or introTimer >= 0.1 then
         introTimer = introTimer - deltaTime
-    end
+		earlateTimer = 0
+	else
+		earlateTimer = 1
+		if (not bta_last) and game.GetButton(game.BUTTON_BTA) then
+			change_earlatepos()
+		end
+	end
+	bta_last = game.GetButton(game.BUTTON_BTA)
     introTimer = math.max(introTimer, 0)
+
     return introTimer <= 0
 end
 -- -------------------------------------------------------------------------- --
 -- render_outro:                                                              --
 function render_outro(deltaTime, clearState)
     if clearState == 0 then return true end
-    gfx.ResetTransform()
-    gfx.BeginPath()
-    gfx.Rect(0,0,resx,resy)
-    gfx.FillColor(0,0,0, math.floor(127 * math.min(outroTimer, 1)))
-    gfx.Fill()
-    gfx.Scale(scale,scale)
-    gfx.TextAlign(gfx.TEXT_ALIGN_CENTER + gfx.TEXT_ALIGN_MIDDLE)
-    gfx.FillColor(255,255,255, math.floor(255 * math.min(outroTimer, 1)))
-    gfx.LoadSkinFont("NovaMono.ttf")
-    gfx.FontSize(70)
-    gfx.Text(clearTexts[clearState], desw / 2, desh / 2)
-    oclearState = clearState
-    outroTimer = outroTimer + deltaTime
-    return outroTimer > 2, 1 - outroTimer
+    if not gameplay.demoMode then
+        gfx.ResetTransform()
+        gfx.BeginPath()
+        gfx.Rect(0,0,resx,resy)
+        gfx.FillColor(0,0,0, math.floor(127 * math.min(outroTimer, 1)))
+        gfx.Fill()
+        gfx.Scale(scale,scale)
+        gfx.TextAlign(gfx.TEXT_ALIGN_CENTER + gfx.TEXT_ALIGN_MIDDLE)
+        gfx.FillColor(255,255,255, math.floor(255 * math.min(outroTimer, 1)))
+        gfx.LoadSkinFont("NovaMono.ttf")
+        gfx.FontSize(70)
+        gfx.Text(clearTexts[clearState], desw / 2, desh / 2)
+        outroTimer = outroTimer + deltaTime
+        return outroTimer > 2, 1 - outroTimer
+    else
+        outroTimer = outroTimer + deltaTime
+        return outroTimer > 2, 1
+    end
+
 end
 -- -------------------------------------------------------------------------- --
 -- update_score:                                                              --

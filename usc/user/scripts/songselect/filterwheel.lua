@@ -15,7 +15,6 @@ local selectedLevel = 1;
 local selectedFolder = 1;
 local levelLabels = {}
 local folderLabels = {}
-local txt
 
 --timing settings
 local levelOffset = 0;
@@ -31,7 +30,7 @@ render = function(deltaTime, shown)
     gfx.FillColor(0,0,0,200)
     gfx.FastRect(0,0,resx,resy)
     gfx.BeginPath();
-    gfx.LoadSkinFont("segoeui.ttf");
+    gfx.LoadSkinFont("NotoSans-Regular.ttf");
     gfx.TextAlign(gfx.TEXT_ALIGN_RIGHT + gfx.TEXT_ALIGN_MIDDLE);
     gfx.FontSize(40);
     gfx.FastText(folderOffset,0,0)
@@ -66,12 +65,6 @@ render = function(deltaTime, shown)
     end
     levelOffset = levelOffset * 0.7
     folderOffset = folderOffset * 0.7
-
-    gfx.BeginPath();
-    gfx.TextAlign(gfx.TEXT_ALIGN_RIGHT + gfx.TEXT_ALIGN_MIDDLE);
-    gfx.FontSize(40);
-    txt = gfx.CreateLabel(50, 40, 0);
-    gfx.DrawLabel(txt, 50, 50);
 end
 
 set_selection = function(newIndex, isFolder)

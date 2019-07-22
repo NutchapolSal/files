@@ -5,8 +5,14 @@ local buttonWidth = 250;
 local buttonHeight = 75;
 local buttonBorder = 2;
 local label = -1;
-gfx.GradientColors(0,128,255,255,0,128,255,0)
+
+local gr_r, gr_g, gr_b, gr_a = game.GetSkinSetting("col_test")
+gfx.GradientColors(0,127,255,255,0,128,255,0)
 local gradient = gfx.LinearGradient(0,0,0,1)
+local bgPattern = gfx.CreateSkinImage("bg_pattern.png", gfx.IMAGE_REPEATX + gfx.IMAGE_REPEATY)
+local bgAngle = 0.5
+local bgPaint = gfx.ImagePattern(0,0, 256,256, bgAngle, bgPattern, 1.0)
+local bgPatternTimer = 0
 
 view_update = function()
     if package.config:sub(1,1) == '\\' then --windows
@@ -47,7 +53,23 @@ draw_button = function(name, x, y, hoverindex)
     gfx.Text(name, x, y);
 end;
 
+function updateGradient()
+	gr_r, gr_g, gr_b, gr_a = game.GetSkinSetting("col_test")
+	if gr_r == nil then return end
+	gfx.GradientColors(gr_r,gr_g,gr_b,gr_a,0,128,255,0)
+	gradient = gfx.LinearGradient(0,0,0,1)
+end
+
+function updatePattern(dt)
+	bgPatternTimer = (bgPatternTimer + dt) % 1.0
+	local bgx = math.cos(bgAngle) * (bgPatternTimer * 256)
+	local bgy = math.sin(bgAngle) * (bgPatternTimer * 256)
+	gfx.UpdateImagePattern(bgPaint, bgx, bgy, 256, 256, bgAngle, 1.0)
+end
+
 render = function(deltaTime)
+	updateGradient()
+	updatePattern(deltaTime)
     resx,resy = game.GetResolution();
     mposx,mposy = game.GetMousePos();
     gfx.Scale(resx, resy / 3)
@@ -56,10 +78,20 @@ render = function(deltaTime)
     gfx.Fill()
     gfx.ResetTransform()
     gfx.BeginPath()
+	gfx.Scale(0.5,0.5)
+	gfx.Rect(0,0,resx * 2,resy * 2)
+	gfx.GlobalCompositeOperation(gfx.BLEND_OP_DESTINATION_IN)
+    gfx.FillPaint(bgPaint)
+    gfx.Fill()
+	gfx.ResetTransform()
+	gfx.BeginPath()
+	gfx.GlobalCompositeOperation(gfx.BLEND_OP_SOURCE_OVER)
     buttonY = resy / 2;
     hovered = nil;
-    gfx.LoadSkinFont("segoeui.ttf");
+    gfx.LoadSkinFont("NotoSans-Regular.ttf");
     draw_button("Start", resx / 2, buttonY, Menu.Start);
+    buttonY = buttonY + 100;
+    draw_button("Get Songs BETA", resx / 2, buttonY, Menu.DLScreen);
     buttonY = buttonY + 100;
     draw_button("Settings", resx / 2, buttonY, Menu.Settings);
     buttonY = buttonY + 100;
@@ -79,6 +111,7 @@ render = function(deltaTime)
        gfx.FontSize(30)
        gfx.Text(string.format("Version %s is now available", updateVersion), 5, resy - buttonHeight - 10)
        draw_button("View", buttonWidth / 2 + 5, resy - buttonHeight / 2 - 5, view_update);
+       draw_button("Update", buttonWidth * 1.5 + 15, resy - buttonHeight / 2 - 5, Menu.Update)
     end
 end;
 
