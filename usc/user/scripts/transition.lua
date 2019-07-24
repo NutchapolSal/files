@@ -22,13 +22,14 @@ function sign(x)
 end
 
 function render_bars(progress)
-    for i=0,resx/50 do
+    for i=0,resx*1.5/50 do
         local dir = sign((i % 2) - 0.5)
-        local yoff = dir * resy * (1 - progress)
+        local yoff = dir * resy * (1 - progress) - (resy * 0.7)
         gfx.Save()
+        gfx.Rotate(math.rad(45))
         gfx.Translate(0,yoff)
         gfx.BeginPath()
-        gfx.Rect(60 * i, yoff, 60, resy)
+        gfx.Rect(60 * i, yoff, 60, resy * 2.5)
         gfx.FillColor(0,64, 150 + 25 * dir)
         gfx.Fill()
         gfx.Restore()
