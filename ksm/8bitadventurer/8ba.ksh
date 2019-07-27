@@ -1,7 +1,7 @@
 ﻿title=8bit Adventurer
 artist=Lime
 effect=NutchapolSal
-jacket=8ba.png
+jacket=8ba.jpg
 illustrator=
 difficulty=extended
 level=1
@@ -20,6 +20,7 @@ chokkakuvol=50
 ver=167
 --
 beat=4/4
+//
 0000|00|--
 --
 0000|00|--
@@ -37,6 +38,14 @@ beat=4/4
 0000|00|--
 --
 //start
+fx-r=
+0000|01|--
+0000|01|--
+0000|00|--
+0000|00|--
+0000|00|--
+0000|00|--
+0000|00|--
 0000|00|--
 --
 0000|00|--
