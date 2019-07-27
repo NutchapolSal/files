@@ -133,7 +133,10 @@ check_or_create_cache = function(song, loadJacket)
     end
 
     if not songCache[song.id]["jacket"] and loadJacket then
-        songCache[song.id]["jacket"] = gfx.CreateImage(song.difficulties[1].jacketPath, 0)
+        songCache[song.id]["jacket"] = gfx.LoadImageJob(song.difficulties[1].jacketPath, 0, 0)
+        if songCache[song.id]["jacket"] == 0 then
+          songCache[song.id]["jacket"] = nil
+        end
     end
 end
 
@@ -189,20 +192,21 @@ draw_song = function(song, x, y, w, h, selected)
     end
     gfx.Fill()
     gfx.Stroke()
+
+    if songCache[song.id]["jacket"] then
+    gfx.ImageRect(x+w-h, y, h, h, songCache[song.id]["jacket"], 1, 0)
+
+    gfx.BeginPath()
+    gfx.RoundedRectVarying(x,y, w-h, h,0,0,0,40)
+    gfx.FillColor(0,0,0,192)
+    gfx.Fill()
+    end
+
     gfx.FillColor(255,255,255)
     gfx.TextAlign(gfx.TEXT_ALIGN_TOP + gfx.TEXT_ALIGN_LEFT)
-    gfx.DrawLabel(songCache[song.id]["title"], x+10, y + 5, w-10)
-    gfx.DrawLabel(songCache[song.id]["artist"], x+20, y + 50, w-10)
-
-    local jacket
-    if songCache[song.id]["jacket"] then
-      jacket = songCache[song.id]["jacket"]
-    else
-      jacket = jacketFallback
-    end
-    gfx.ImageRect(x+w-h, y, h, h, jacket, 1, 0)
+    gfx.DrawLabel(songCache[song.id]["title"], x+10, y + 5, w-10-h)
+    gfx.DrawLabel(songCache[song.id]["artist"], x+20, y + 50, w-10-h)
     gfx.ForceRender()
-
 end
 
 draw_diff_icon = function(diff, x, y, w, h, selected)
