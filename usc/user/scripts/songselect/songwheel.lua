@@ -177,7 +177,7 @@ draw_scores = function(difficulty, x, y, w, h)
 end
 
 draw_song = function(song, x, y, w, h, selected)
-    check_or_create_cache(song)
+    check_or_create_cache(song, true)
     gfx.BeginPath()
     gfx.RoundedRectVarying(x,y, w, h,0,0,0,40)
     gfx.FillColor(30,30,30)
@@ -193,6 +193,14 @@ draw_song = function(song, x, y, w, h, selected)
     gfx.TextAlign(gfx.TEXT_ALIGN_TOP + gfx.TEXT_ALIGN_LEFT)
     gfx.DrawLabel(songCache[song.id]["title"], x+10, y + 5, w-10)
     gfx.DrawLabel(songCache[song.id]["artist"], x+20, y + 50, w-10)
+
+    local jacket
+    if songCache[song.id]["jacket"] then
+      jacket = songCache[song.id]["jacket"]
+    else
+      jacket = jacketFallback
+    end
+    gfx.ImageRect(x+w-h, y, h, h, jacket, 1, 0)
     gfx.ForceRender()
 
 end
