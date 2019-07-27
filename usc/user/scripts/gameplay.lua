@@ -944,24 +944,6 @@ function draw_condisp(deltaTime)
     lmax = lmax / #lmaxlist
     rmax = rmax / #rmaxlist
 
-    dc(game.GetLaserColor(0))
-    debox(game.GetKnob(0))
-    dc(game.GetLaserColor(0))
-    debox(lspeed)
-    dc(game.GetLaserColor(0))
-    debox(lmax)
-    dc(game.GetLaserColor(0))
-    debox(lspeed / lmax)
-    debox("")
-    dc(game.GetLaserColor(1))
-    debox(game.GetKnob(1))
-    dc(game.GetLaserColor(1))
-    debox(rspeed)
-    dc(game.GetLaserColor(1))
-    debox(rmax)
-    dc(game.GetLaserColor(1))
-    debox(rspeed / rmax)
-
     gfx.StrokeColor(game.GetLaserColor(0))
     gfx.FillLaserColor(1, math.floor(math.min(math.abs(lspeed) / lmax * 255,255)))--set fill color to knob color w/ transparency. opaque = u spin knob, can't see knob fill = u no spin knob
     gfx.DrawLine(9.5, 3.5, lspeed * (24 / lmax), 0, 2) --the bar
