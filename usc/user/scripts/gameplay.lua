@@ -113,30 +113,7 @@ function gfx.FillLaserColor(index, alpha)
     gfx.FillColor(r, g, b, alpha)
 end
 
-local deboxi = 0
-local deboxr = 255
-local deboxg = 255
-local deboxb = 255
 
-function dc(r, g, b)
-    deboxr = math.floor(r or 255)
-    deboxg = math.floor(g or 255)
-    deboxb = math.floor(b or 255)
-end
-
-function debox(text)
-    gfx.Save()
-    gfx.ResetTransform()
-    gfx.Scale(1.5, 1.5)
-    gfx.BeginPath()
-    gfx.FontSize(12)
-    gfx.TextAlign(gfx.TEXT_ALIGN_LEFT, gfx.TEXT_ALIGN_BOTTOM)
-    gfx.FillColor(deboxr, deboxg, deboxb, 255)
-    gfx.Text(tostring(text), 0, 200 + (14 * deboxi))
-    dc(255, 255, 255)
-    deboxi = deboxi + 1
-    gfx.Restore()
-end
 -- -------------------------------------------------------------------------- --
 -- -------------------------------------------------------------------------- --
 -- -------------------------------------------------------------------------- --
@@ -1339,7 +1316,7 @@ function fsPressHist(deltaTime)
     local smax = 0.0065 --stolen from condisp
 
     if phTime > 0.005 and outroTimer == 0 then
-        table.insert(pressHist, 1, {["a"] = game.GetButtonPressed(0), ["b"] = game.GetButtonPressed(1), ["c"] = game.GetButtonPressed(2), ["d"] = game.GetButtonPressed(3), ["fl"] = game.GetButtonPressed(4), ["fr"] = game.GetButtonPressed(5), ["l"] = lspeed, ["r"] = rspeed})
+        table.insert(pressHist, 1, {["s"] = game.GetButtonPressed(6), ["a"] = game.GetButtonPressed(0), ["b"] = game.GetButtonPressed(1), ["c"] = game.GetButtonPressed(2), ["d"] = game.GetButtonPressed(3), ["fl"] = game.GetButtonPressed(4), ["fr"] = game.GetButtonPressed(5), ["l"] = lspeed, ["r"] = rspeed})
         phTime = phTime - 0.005 + deltaTime
     else
         phTime = phTime + deltaTime
@@ -1361,30 +1338,18 @@ function fsPressHist(deltaTime)
         end
         gfx.DrawRectBool(true, false, 20, (i - 1) * 1.001, 3, 1.001)
 
-        if v.fl then
-            gfx.FillColor(255, 128, 0)
-            gfx.DrawRectBool(true, false, 4, (i - 1) * 1.001, 8, 1.001)
-        end
-        if v.fr then
-            gfx.FillColor(255, 128, 0)
-            gfx.DrawRectBool(true, false, 12, (i - 1) * 1.001, 8, 1.001)
-        end
-        if v.a then
-            gfx.FillColor(255, 255, 255)
-            gfx.DrawRectBool(true, false, 4.5, (i - 1) * 1.001, 3, 1.001)
-        end
-        if v.b then
-            gfx.FillColor(255, 255, 255)
-            gfx.DrawRectBool(true, false, 8.5, (i - 1) * 1.001, 3, 1.001)
-        end
-        if v.c then
-            gfx.FillColor(255, 255, 255)
-            gfx.DrawRectBool(true, false, 12.5, (i - 1) * 1.001, 3, 1.001)
-        end
-        if v.d then
-            gfx.FillColor(255, 255, 255)
-            gfx.DrawRectBool(true, false, 16.5, (i - 1) * 1.001, 3, 1.001)
-        end
+        gfx.FillColor(0, 0, 255)
+        gfx.DrawRectBool(v.s, false, 4, (i - 1) * 1.001, 16, 1.001)
+
+        gfx.FillColor(255, 128, 0)
+        gfx.DrawRectBool(v.fl, false, 4.5, (i - 1) * 1.001, 7, 1.001)
+        gfx.DrawRectBool(v.fr, false, 12.5, (i - 1) * 1.001, 7, 1.001)
+
+        gfx.FillColor(255, 255, 255)
+        gfx.DrawRectBool(v.a, false, 4.5, (i - 1) * 1.001, 3, 1.001)
+        gfx.DrawRectBool(v.b, false, 8.5, (i - 1) * 1.001, 3, 1.001)
+        gfx.DrawRectBool(v.c, false, 12.5, (i - 1) * 1.001, 3, 1.001)
+        gfx.DrawRectBool(v.d, false, 16.5, (i - 1) * 1.001, 3, 1.001)
     end
 
     if #pressHist > 500 then table.remove(pressHist, #pressHist) end
