@@ -8,7 +8,6 @@ click on effect name to go back to jump list
 
 #### jump list
 
-
 . | groupings | ![aa] | ![am] | ![br] | ![fi] | ![re] | ![ri] | ![sc] | ![sl] | ![st] | ![wa] | ![wh]
 ---|---|---|---|---|---|---|---|---|---|---|---|---
 [acorigins](#acorigins)|rg||||||||✓||✓|
