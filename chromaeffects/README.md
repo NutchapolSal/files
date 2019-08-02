@@ -9,6 +9,7 @@ click on effect name to go back to jump list
 #### jump list
 . | groupings | ![aa] | ![am] | ![br] | ![fi] | ![re] | ![ri] | ![sc] | ![sl] | ![st] | ![wa] | ![wh]
 ---|---|---|---|---|---|---|---|---|---|---|---|---
+
 [acorigins](#acorigins)|rg||||||||✓||✓|
 [alleffects](#alleffects)|r|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓
 [barmeter](#barmeter)|c||✓|||||||||
@@ -35,11 +36,6 @@ click on effect name to go back to jump list
 [tea](#tea)|o||✓|||✓|✓|||✓|✓|
 [watchdogs2](#watchdogs2)|og||✓||||✓||✓|✓|✓|
 [wigwag](#wigwag)|rp|||||||||✓|✓|
-
-
-asojkdhoash|oajishdosahdoih|oasihdoiashd|oasihdsaoih
----|---|---|---
-aspodj|aspidh|apsidkh|aspdkhn
 
 gifs are limited to 5 seconds because i'm too lazy to change the duration
 
