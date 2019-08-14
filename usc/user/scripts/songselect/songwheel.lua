@@ -179,6 +179,7 @@ draw_scores = function(difficulty, x, y, w, h)
 	end
 end
 
+local badgecolors = {{255,255,255},{0,128,0},{0,255,0},{255,0,255},{255,0,0},{255,255,0}}
 draw_song = function(song, x, y, w, h, selected)
     check_or_create_cache(song, true)
     gfx.BeginPath()
@@ -206,6 +207,45 @@ draw_song = function(song, x, y, w, h, selected)
     gfx.TextAlign(gfx.TEXT_ALIGN_TOP + gfx.TEXT_ALIGN_LEFT)
     gfx.DrawLabel(songCache[song.id]["title"], x+10, y + 5, w-10-h)
     gfx.DrawLabel(songCache[song.id]["artist"], x+20, y + 50, w-10-h)
+
+    for i,v in ipairs(song.difficulties) do
+      do
+        local r,g,b = diffColors[v.difficulty+1][1],diffColors[v.difficulty+1][2],diffColors[v.difficulty+1][3]
+        gfx.StrokeColor(r,g,b)
+      end
+      gfx.BeginPath()
+      gfx.Rect(x+w-h-(math.abs(v.difficulty-4)*((h/3)+h/10)),y+h-(h/3)-(h/10),h/3,h/3)
+      gfx.FillColor(0,0,0,128)
+      gfx.Fill()
+      gfx.Stroke()
+
+      gfx.FontSize(25)
+      do
+        local r,g,b = badgecolors[v.topBadge+1][1],badgecolors[v.topBadge+1][2],badgecolors[v.topBadge+1][3]
+        gfx.FillColor(r,g,b)
+      end
+      gfx.TextAlign(TEXT_ALIGN_CENTER + TEXT_ALIGN_MIDDLE)
+      gfx.Text(v.level,x + w - h - (math.abs(v.difficulty-4) * ((h/3) + h/10)) + h/6,y + h - h/3 - h/10 + h/11)
+
+
+      local xoffset = x + w - h - (math.abs(v.difficulty-4) * ((h/3) + h/10)) + h/6
+      if v.scores[1] ~= nil then
+        local highScore = v.scores[1]
+        for i,v in ipairs(grades) do
+          if v.max > highScore.score then
+            gfx.BeginPath()
+            local iw,ih = gfx.ImageSize(v.image)
+            iw, ih = iw/ih, ih/ih
+            local imageHeight = h/8.5
+            gfx.ImageRect(xoffset - (iw * imageHeight)/2,y + h - h/3 - h/10 + h/4.25 - imageHeight/2,iw * imageHeight, imageHeight, v.image, 1, 0)
+            break
+          end
+        end
+      end
+
+    end
+    
+
     gfx.ForceRender()
 end
 
@@ -263,9 +303,9 @@ draw_diffs = function(diffs, x, y, w, h)
       if  i ~= selectedDiff then
         draw_diff_icon(diff, xpos, y, diffWidth, diffHeight, false)
       end
-    end
-    local diff = diffs[selectedDiff]
-    local xpos = x + ((w/2 - diffWidth/2) + (doffset)*(-0.8*diffWidth))
+  end
+  local diff = diffs[selectedDiff]
+  local xpos = x + ((w/2 - diffWidth/2) + (doffset)*(-0.8*diffWidth))
   draw_diff_icon(diff, xpos, y, diffWidth, diffHeight, true)
   gfx.BeginPath()
   gfx.FillColor(0,128,255)
@@ -474,6 +514,7 @@ draw_search = function(x,y,w,h)
 end
 
 render = function(deltaTime)
+    deboxi = -13
     timer = (timer + deltaTime)
     timer = timer % 2
     resx,resy = game.GetResolution();
