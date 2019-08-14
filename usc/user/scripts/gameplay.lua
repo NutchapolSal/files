@@ -523,12 +523,19 @@ function draw_song_info(deltaTime)
     -- Ensure the font has been loaded
     gfx.LoadSkinFont("NotoSans-Regular.ttf")
 
-    -- Draw the background, a simple grey box
+    --start of my shit--
+    -- Draw the background, a "feature" of the game
+    gfx.BeginPath()
+    gfx.Rect(0, 0, songInfoWidth, 100)
     gfx.FillColor(20, 20, 20, 200)
-    gfx.DrawRect(RECT_FILL, 0, 0, songInfoWidth, 100)
+    gfx.Fill()
     -- Draw the jacket
     gfx.FillColor(255, 255, 255)
-    gfx.DrawRect(jacket, 0, 0, jacketWidth, jacketWidth)
+    gfx.ImageRect(0, 0, jacketWidth, jacketWidth, jacket, 1, 0)
+
+    gfx.FillColor(0, 0, 0, 192)
+    gfx.DrawRect(RECT_FILL, jacketWidth, 0, songInfoWidth - jacketWidth, 100)
+    --end of my shit--
     -- Draw a background for the following level stat
     gfx.FillColor(0, 0, 0, 200)
     gfx.DrawRect(RECT_FILL, 0, 85, 60, 15)

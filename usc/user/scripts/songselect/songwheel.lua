@@ -321,8 +321,19 @@ draw_selected = function(song, x, y, w, h)
     end
 
     if songCache[song.id][selectedDiff] then
-        gfx.BeginPath()
         gfx.ImageRect(imageXPos, y+yMargin+yPadding, imageSize, imageSize, songCache[song.id][selectedDiff], 1, 0)
+
+        gfx.BeginPath()
+        gfx.RoundedRectVarying(xpos,ypos,width,height,yPadding,yPadding,yPadding,yPadding)
+        gfx.FillColor(0,0,0,220)
+        gfx.Scissor(xpos,ypos,imageXPos-xpos,height)
+        gfx.Fill()
+        gfx.Scissor(imageSize+imageXPos,ypos,imageXPos-xpos,height)
+        gfx.Fill()
+        gfx.Scissor(imageXPos,y,imageSize,yMargin+yPadding)
+        gfx.Fill()
+        gfx.Scissor(imageXPos,y+yMargin+yPadding+imageSize,imageSize,height-y-imageSize)
+        gfx.Fill()
     end
     -- difficulty should take up 1/6 of height, full width, and be centered
     if aspectRatio == "PortraitWidescreen" then
