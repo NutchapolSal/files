@@ -117,11 +117,11 @@ check_or_create_cache = function(song, loadJacket)
     if not songCache[song.id] then songCache[song.id] = {} end
 
     if not songCache[song.id]["title"] then
-        songCache[song.id]["title"] = gfx.CreateLabel(song.title, 40, 0)
+        songCache[song.id]["title"] = gfx.CreateLabel(song.title, 35, 0)
     end
 
     if not songCache[song.id]["artist"] then
-        songCache[song.id]["artist"] = gfx.CreateLabel(song.artist, 25, 0)
+        songCache[song.id]["artist"] = gfx.CreateLabel(song.artist, 20, 0)
     end
 
     if not songCache[song.id]["bpm"] then
@@ -180,7 +180,7 @@ draw_scores = function(difficulty, x, y, w, h)
 end
 
 local badgecolors = {{255,255,255},{0,128,0},{0,255,0},{255,0,255},{255,0,0},{255,255,0}}
-draw_song = function(song, x, y, w, h, selected)
+draw_song = function(song, x, y, w, h, selected, timer)
     check_or_create_cache(song, true)
     gfx.BeginPath()
     gfx.RoundedRectVarying(x,y, w, h,0,0,0,40)
@@ -413,11 +413,11 @@ draw_selected = function(song, x, y, w, h)
     gfx.ForceRender()
 end
 
-draw_songwheel = function(x,y,w,h)
+draw_songwheel = function(x,y,w,h,timer)
   local offsetX = fifthX/2
   local width = math.floor((w/5)*4)
   if aspectRatio == "landscapeWidescreen" then
-    wheelSize = 12
+    wheelSize = 16
     offsetX = 80
   elseif aspectRatio == "landscapeStandard" then
     wheelSize = 10
@@ -432,25 +432,25 @@ draw_songwheel = function(x,y,w,h)
   for i = math.max(selectedIndex - wheelSize/2, 1), math.max(selectedIndex - 1,0) do
       local song = songwheel.songs[i]
       local xpos = x + offsetX + ((selectedIndex - i + ioffset) ^ 2) * 3
-      local offsetY = (selectedIndex - i + ioffset) * ( height - (wheelSize/2*((selectedIndex-i + ioffset)*aspectFloat)))
+      local offsetY = (selectedIndex - i + ioffset) * ( height - (wheelSize/8*((selectedIndex-i + ioffset)*aspectFloat)))
       local ypos = y+((h/2 - height/2) - offsetY)
-      draw_song(song, xpos, ypos, width, height)
+      draw_song(song, xpos, ypos, width, height, false, timer)
   end
 
   --after selected
   for i = math.min(selectedIndex + wheelSize/2, #songwheel.songs), selectedIndex + 1,-1 do
       local song = songwheel.songs[i]
       local xpos = x + offsetX + ((i - selectedIndex - ioffset) ^ 2) * 2
-      local offsetY = (selectedIndex - i + ioffset) * ( height - (wheelSize/2*((i-selectedIndex - ioffset)*aspectFloat)))
+      local offsetY = (selectedIndex - i + ioffset) * ( height - (wheelSize/8*((i-selectedIndex - ioffset)*aspectFloat)))
       local ypos = y+((h/2 - height/2) - (selectedIndex - i) - offsetY)
       local alpha = 255 - (selectedIndex - i + ioffset) * 31
-      draw_song(song, xpos, ypos, width, height)
+      draw_song(song, xpos, ypos, width, height, false, timer)
   end
   -- draw selected
   local xpos = x + offsetX/1.2 + ((-ioffset) ^ 2) * 2
   local offsetY = (ioffset) * ( height - (wheelSize/2*((1)*aspectFloat)))
   local ypos = y+((h/2 - height/2) - (ioffset) - offsetY)
-  draw_song(songwheel.songs[selectedIndex], xpos, ypos, width, height, true)
+  draw_song(songwheel.songs[selectedIndex], xpos, ypos, width, height, true, timer)
   return songwheel.songs[selectedIndex]
 end
 draw_legend_pane = function(x,y,w,h,obj)
@@ -526,11 +526,11 @@ render = function(deltaTime)
     if songwheel.songs[1] ~= nil then
       --draw songwheel and get selected song
       if aspectRatio == "PortraitWidescreen" then
-        local song = draw_songwheel(0,0,fullX,fullY)
+        local song = draw_songwheel(0,0,fullX,fullY,timer)
         --render selected song information
         draw_selected(song, 0,0,fullX,fifthY)
       else
-        local song = draw_songwheel(fifthX*2,0,fifthX*3,fullY)
+        local song = draw_songwheel(fifthX*2,0,fifthX*3,fullY,timer)
         --render selected song information
         draw_selected(song, 0,0,fifthX*2,(fifthY/2)*9)
       end
