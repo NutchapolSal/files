@@ -14,8 +14,8 @@ click on effect name to go back to jump list
 [alleffects](#alleffects)|r|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓
 [barmeter](#barmeter)|c||✓|||||||||
 [barmeter2](#barmeter2)|c||✓||✓||||✓|||
-[birthdaycake](#birthdaycake)|r||✓|||✓|✓||✓|✓||
-[bluevsred](#bluevsred)|r||✓|||✓|✓||✓||✓|
+[birthdaycake](#birthdaycake)|ra||✓|||✓|✓||✓|✓||
+[bluevsred](#bluevsred)|ra||✓|||✓|✓||✓||✓|
 [blurple](#blurple)|o||✓|||✓|✓||✓|✓||
 [coplightscode2](#coplightscode2)|rp2||||||||||✓|
 [default](#default)|o|✓|✓|||✓|✓||✓||✓|
@@ -34,7 +34,7 @@ click on effect name to go back to jump list
 [rearviewmirror](#rearviewmirror)|rp2|||||✓|||||✓|
 [seriesoftubes](#seriesoftubes)|o|||||||||✓|✓|
 [sparkles](#sparkles)|o|||||✓|✓||✓|||
-[tea](#tea)|o||✓|||✓|✓|||✓|✓|
+[tea](#tea)|oa||✓|||✓|✓|||✓|✓|
 [watchdogs2](#watchdogs2)|og||✓||||✓||✓|✓|✓|
 [wigwag](#wigwag)|rp|||||||||✓|✓|
 
@@ -49,6 +49,7 @@ c|proof of concept
 p|police
 g|games
 ---|---
+a|recommended audio profiles
 2|recreation from s2
 t|with some modifications by me
 
