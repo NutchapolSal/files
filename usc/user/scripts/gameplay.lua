@@ -218,8 +218,8 @@ function render(deltaTime)
     -- TODO: this isn't how it'll work in the long run, I don't think
     if portrait then yshift = draw_banner(deltaTime) end
 
-    gfx.Translate(0, yshift - 150 * math.max(introTimer - 1, 0))
     draw_song_info(deltaTime)
+    gfx.Translate(0, yshift - 150 * math.max(introTimer - 1, 0))
     draw_score(deltaTime)
     gfx.Translate(0, -yshift + 150 * math.max(introTimer - 1, 0))
     draw_gauge(deltaTime)
