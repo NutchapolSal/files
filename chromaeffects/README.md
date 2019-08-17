@@ -191,7 +191,9 @@ don't really want to complicate things so no fade black before switching colors 
 
 ![aa] ![am] ![re] ![ri] ![sl] ![wa]
 
-my default
+~~my default~~ no longer
+
+my default will just be the [latest profile](https://github.com/NutchapolSal/files/commits/master/chromaeffects) with `a` grouping
 
 ## [discofloor](#jump-list)
 [![discofloor](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/discofloor.gif "discofloor")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-discofloor.ChromaEffects)
