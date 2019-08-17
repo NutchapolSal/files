@@ -231,7 +231,6 @@ function render(deltaTime)
 
     draw_condisp(deltaTime)
     draw_scoregraph()
-    draw_remain()
     draw_liveforce()
     draw_funshits(deltaTime)
 end
@@ -1043,13 +1042,6 @@ function draw_scoregraph()
     gfx.Restore()
 end
 --------------------------------------------------------------------------------
-function draw_remain()
-    gfx.FillColor(255, 255, 255, 63)
-    gfx.StrokeColor(127, 127, 127)
-    gfx.DrawRectBool(true, false, (desw / 2) - ((1 - gameplay.progress) * 100), 3, (1 - gameplay.progress) * 200, 10)
-    gfx.DrawRectBool(false, true, (desw / 2) - 100, 3, 200, 10)
-end
---------------------------------------------------------------------------------
 local grades = {
     {["num"] = 1, ["min"] = 9900000, ["rate"] = 1.05}, -- S
     {["num"] = 2, ["min"] = 9800000, ["rate"] = 1.02}, -- AAA+
@@ -1226,10 +1218,43 @@ function draw_liveforce()
 end
 -- -------------------------------------------------------------------------- --
 function draw_funshits(deltaTime)
+    fsRemain()
     fsRipples(deltaTime)
     fsPressHist(deltaTime)
     fsInvaders(deltaTime)
     fsPong(deltaTime)
+end
+-----
+function fsRemain()
+    local c = {["x"] = desw/2, ["y"] = 20, ["r"] = 15, ["p"] = gameplay.progress * math.pi * 2} --c is for constants; x,y = center position; r = radius; p = progress as angle
+    gfx.Save()
+    gfx.StrokeWidth(1)
+    gfx.Translate(c.x, c.y)
+    gfx.Rotate(math.rad(-90))
+
+    gfx.BeginPath() --center point
+    gfx.Circle(0, 0, 1)
+    gfx.FillColor(255, 255, 255)
+    gfx.Fill()
+
+    gfx.BeginPath() --outer ring
+    gfx.Circle(0, 0, c.r)
+    gfx.StrokeColor(255, 255, 255, 63)
+    gfx.Stroke()
+
+    gfx.BeginPath() --section fill
+    gfx.MoveTo(0, 0)
+    gfx.Arc(0, 0, c.r, c.p, math.pi * 2, 2) --1 for ccw, 2 for cw
+    gfx.ClosePath()
+    gfx.FillColor(255, 255, 255, 63)
+    gfx.Fill()
+
+    gfx.BeginPath() --section stroke
+    gfx.Arc(0, 0, c.r, c.p, math.pi * 2, 2) 
+    gfx.StrokeColor(255, 255, 255)
+    gfx.Stroke()
+
+    gfx.Restore()
 end
 -----
 local btpresses = {}
