@@ -15,6 +15,7 @@ click on effect name to go back to jump list
 [barmeter](#barmeter)|c||✓|||||||||
 [barmeter2](#barmeter2)|c||✓||✓||||✓|||
 [birthdaycake](#birthdaycake)|r||✓|||✓|✓||✓|✓||
+[bluevsred](#bluevsred)|r||✓|||✓|✓||✓||✓|
 [blurple](#blurple)|o||✓|||✓|✓||✓|✓||
 [coplightscode2](#coplightscode2)|rp2||||||||||✓|
 [default](#default)|o|✓|✓|||✓|✓||✓||✓|
@@ -141,6 +142,26 @@ inspirations:
 also if you quickly shut off the music, you could see some confetti gracefully falling
 
 *30 June 2019* - better distribution of audio meter ranges
+
+# [bluevsred](#jump-list)
+[![bluevsred](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/bluevsred.gif "bluevsred")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-bluevsred.ChromaEffects)
+
+![am] ![re] ![ri] ![sl] ![wa]
+
+**requested by _ThatSiimonツ_**
+
+> Hey Guys, can anyone make a profile for me with red vs blue fight so the top is red and its fighting against blue with little sparkles pls dm me
+
+i thought i'm going to just do a simple red/blue profile but i made a complete profile w/ audio reactive parts too
+
+and i really like it
+
+> pls dm me
+
+nope.
+
+
+guess this is what comes out after a whole month of not doing profiles (i do other stuff too! just look at [my commit history](https://github.com/NutchapolSal/files/commits/master))
 
 ## [blurple](#jump-list)
 [![blurple](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/blurple.gif "blurple")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-blurple.ChromaEffects)
