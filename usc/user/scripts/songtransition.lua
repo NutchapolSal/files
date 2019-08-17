@@ -5,14 +5,14 @@ local jacket = 0
 
 function render(deltaTime)
     deboxi = 0
-    render_screen(transitionTimer, false)
-    transitionTimer = transitionTimer + deltaTime * 2
-    transitionTimer = math.min(transitionTimer,1)
     if song.jacket == 0 and jacket == 0 then
-        jacket = gfx.CreateSkinImage("song_select/loading.png", 0)
+        jacket = gfx.LoadImageJob("song_select/loading.png", 0)
     elseif jacket == 0 then
         jacket = song.jacket
     end
+    render_screen(transitionTimer, false)
+    transitionTimer = transitionTimer + deltaTime * 2
+    transitionTimer = math.min(transitionTimer,1)
     return transitionTimer >= 1
 end
 
