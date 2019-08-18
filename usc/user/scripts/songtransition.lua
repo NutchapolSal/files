@@ -28,30 +28,41 @@ function sign(x)
   return x>0 and 1 or x<0 and -1 or 0
 end
 
-function render_screen(progress, isOut)
+function render_screen(progress, isOut) --new argument: isOut - exactly what it says on the tin
     --jacket vars
+    local easeprog, beginx, beginy, beginsize, finalx, finaly, finalsize
+    --easeprog only applies to jacket for now (lol there isn't even easing currently)
 
-    local rprog, beginx, beginy, beginsize, finalx, finaly, finalsize
     if isOut then
-        rprog = progress - 1
-        beginx, beginy, beginsize = (resx/2)-150, resy/2+100-150-200, 300
-        finalx, finaly, finalsize = 5 * resx / 1280, 5 * resx / 1280, 100 * resx / 1280
+        easeprog = progress - 1
+        beginx, beginy, beginsize = (resx/2)-150, resy/2+100-150-200, 300 --copied from below
+        finalx, finaly, finalsize = 5 * resx / 1280, 5 * resx / 1280, 100 * resx / 1280 -- this is literally the variables for rendering jacket on draw_song_info, but broken down back into resx,resy and math operations and design scale stuff
     else
-        rprog = progress
-        beginx, beginy, beginsize = ((((resx/5*2)-((math.floor(resx/5*2/16))*2))/2) - ((math.floor(((resy/5/2*9)-((math.floor(resy/5/2*9/32))*2))/3))/2)) + (math.floor((resx/5*2)/16)), math.floor(resy/5/2*9/32)+math.floor(resy/5/2*9/32), math.floor(((resy/5/2*9)-((math.floor(resy/5/2*9/32))*2))/3)
-        finalx, finaly, finalsize = (resx/2)-150, resy/2+100-150-200, 300
+        easeprog = progress
+        beginx, beginy, beginsize = ((((resx/5*2)-((math.floor(resx/5*2/16))*2))/2) - ((math.floor(((resy/5/2*9)-((math.floor(resy/5/2*9/32))*2))/3))/2)) + (math.floor((resx/5*2)/16)), math.floor(resy/5/2*9/32)+math.floor(resy/5/2*9/32), math.floor(((resy/5/2*9)-((math.floor(resy/5/2*9/32))*2))/3) -- this is literally the variables for rendering jacket on sone_selected, but broken down back into resx,resy and math operations
+        finalx, finaly, finalsize = (resx/2)-150, resy/2+100-150-200, 300 --replicate original location
     end
+
+    -- do easing here (if those exist)
+    -- output it as easeprog
     
-    local nowx, nowy, nowsize = beginx + ((finalx - beginx) * rprog), beginy + ((finaly - beginy) * rprog), beginsize + ((finalsize - beginsize) * rprog)
+    local nowx, nowy, nowsize = beginx + ((finalx - beginx) * easeprog), beginy + ((finaly - beginy) * easeprog), beginsize + ((finalsize - beginsize) * easeprog) --this is where the movement comes
     --
-    if not isOut then
+
+    --darken the song_selected's or draw_song_info's jackets first
+    if isOut then
+        gfx.BeginPath()
+        gfx.Rect(finalx, finaly, finalsize, finalsize)
+        gfx.FillColor(0, 0, 0, 220)
+        gfx.Fill()
+    else
         gfx.BeginPath()
         gfx.Rect(beginx, beginy, beginsize, beginsize)
         gfx.FillColor(0, 0, 0, 220)
         gfx.Fill()
     end
     
-    for i=0,resx*1.5/50 do
+    for i=0,resx*1.5/50 do --just some cool diagonal lines nothing to see here
         local dir = sign((i % 2) - 0.5)
         local yoff = dir * resy * (1 - progress) - (resy * 0.7)
         gfx.Save()
@@ -64,13 +75,12 @@ function render_screen(progress, isOut)
         gfx.Restore()
     end
     local y = (resy/2 + 100) * (math.sin(0.5 * progress * math.pi)^7) - 200
+    
     gfx.Save()
-    do
-        gfx.BeginPath()
-        gfx.Translate(nowx, nowy)
-        gfx.ImageRect(0,0,nowsize,nowsize,jacket,1,0)
-        gfx.Restore()
-    end
+    gfx.BeginPath()
+    gfx.Translate(nowx, nowy)
+    gfx.ImageRect(0,0,nowsize,nowsize,jacket,1,0) --draw the actual jacket
+    gfx.Restore()
 
     gfx.Save()
     gfx.Translate(resx/2, resy - y - 50)
