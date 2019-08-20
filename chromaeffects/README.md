@@ -161,8 +161,9 @@ and i really like it
 
 nope.
 
-
 guess this is what comes out after a whole month of not doing profiles (i do other stuff too! just look at [my commit history](https://github.com/NutchapolSal/files/commits/master))
+
+*20 August 2019* - **requested by _ThatSiimonツ_** change blue to red & viceversa. [n-bluevsredinvert](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-bluevsredinvert.ChromaEffects)
 
 ## [blurple](#jump-list)
 [![blurple](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/blurple.gif "blurple")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-blurple.ChromaEffects)
