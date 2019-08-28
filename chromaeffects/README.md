@@ -21,6 +21,7 @@ click on effect name to go back to jump list
 [default](#default)|o|✓|✓|||✓|✓||✓||✓|
 [discofloor](#discofloor)|o||||||✓||✓|||
 [england](#england)|r|||||||||✓||
+[fez](#fez)|og||||||✓||✓|✓|✓|
 [fishfettish](#fishfettish)|o||✓||||||||✓|
 [minesweeper](#minesweeper)|rg||||||✓|||✓|✓|
 [mohamed](#mohamed)|r||||||||||✓|
@@ -209,6 +210,26 @@ seizure warning, made using a bunch of starlights
 ![st]
 
 **requested by _Beanme666_** - just a static england flag
+
+## [fez](#jump-list)
+[![fez](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/fez.gif "fez")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-fez.ChromaEffects)
+
+![ri] ![sl] ![st] ![wa]
+
+default keybinds profile for fez. bright keys are binded, less bright ones are just for looks.
+
+color | meaning
+--- | ---
+red | mess with your head
+cyan | camera control
+white | movement
+green | interact
+yellow | cancel / talk
+purple | inventory
+magenta | pause
+white/gold | world map
+
+[it's free on the epic game store](https://www.epicgames.com/store/en-US/product/fez/home) until 29 august 2019 so grab it while you can
 
 ## [fishfettish](#jump-list)
 [![fishfettish](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/fishfettish.gif "fishfettish")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-fishfettish.ChromaEffects)
