@@ -248,7 +248,6 @@ saw fish images in profile-requests, so i had to make it
 
 **requested by _FuLLeNN_**
 
-i0S11:
 > Can someone do me a profile with my name and some cool effects? i wanted something  creative but i can t do it
 
 challenge accepted
