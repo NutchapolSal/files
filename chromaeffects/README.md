@@ -23,6 +23,7 @@ click on effect name to go back to jump list
 [england](#england)|r|||||||||✓||
 [fez](#fez)|og||||||✓||✓|✓|✓|
 [fishfettish](#fishfettish)|o||✓||||||||✓|
+[fullenn](#fullenn)|r||✓||||✓||||✓|
 [minesweeper](#minesweeper)|rg||||||✓|||✓|✓|
 [mohamed](#mohamed)|r||||||||||✓|
 [mudrive](#mudrive)|og||||||✓|||✓||
@@ -239,6 +240,20 @@ white/gold | world map
 saw fish images in profile-requests, so i had to make it
 
 *06 April 2019* - fixed no sound making the above half of the sea pitch black by using a one colored speed 0 wave because i don’t want to add static to the entry lol
+
+## [fullenn](#jump-list)
+[![fullenn](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/fullenn.gif "fullenn")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-fullenn.ChromaEffects)
+
+![am] ![ri] ![wa]
+
+**requested by _FuLLeNN_**
+
+i0S11:
+> Can someone do me a profile with my name and some cool effects? i wanted something  creative but i can t do it
+
+challenge accepted
+
+> Those who do not learn [history](#mohamed) are doomed to repeat it.
 
 ## [minesweeper](#jump-list)
 [![minesweeper](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/minesweeper.gif "minesweeper")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-minesweeper.ChromaEffects)
