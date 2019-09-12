@@ -346,9 +346,11 @@ not quite, but makes a cool effect nontheless
 
 ![wa]
 
-**requested by _syed\_bokhari_, original by possibly _puffnpluky76_**
+**requested by _syed\_bokhari_, original by _The Silent Navi_**
 
-> hello guys, there used to be a black widow chroma lighting effect profile, called Raining neon. You can see it in this video in spot number 3 https://www.youtube.com/watch?v=PTv9nN71cSY. Can some one make it into a huntsman elite profile?\
+> hello guys, there used to be a black widow chroma lighting effect profile, called Raining neon. You can see it in this video in spot number 3 [https://www.youtube.com/watch?v=PTv9nN71cSY](https://youtu.be/PTv9nN71cSY?t=121). Can some one make it into a huntsman elite profile?\
+
+*12 Sep 2019* - Thanks to _Aarryah_, the original vid from syed didn't include the ripple so from [this better reference](https://www.youtube.com/watch?v=mgJgS5Fu4Xw), i updated it.
 
 ## [reactiveblackout](#jump-list)
 [![reactiveblackout](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/reactiveblackout.gif "reactiveblackout")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-reactiveblackout.ChromaEffects)
