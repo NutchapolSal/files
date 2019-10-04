@@ -122,8 +122,13 @@ end
 
 local lastKnobs = nil
 local knobProgress = 0
+local enableSelect = false
 function handle_controller()
-	if game.GetButton(game.BUTTON_STA) then
+    if not(enableSelect) then
+        if not(game.GetButton(game.BUTTON_STA)) then
+            enableSelect = true
+        end
+    elseif game.GetButton(game.BUTTON_STA) then
 		buttons[cursorIndex][2]()
 	end
 
