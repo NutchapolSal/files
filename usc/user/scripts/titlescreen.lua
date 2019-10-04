@@ -145,6 +145,7 @@ function handle_controller()
 end
 
 render = function(deltaTime)
+	deboxi = 0
 	setButtons()
 	updateGradient()
 	updatePattern(deltaTime)

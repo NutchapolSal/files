@@ -193,6 +193,7 @@ end
 -- not default
 local seedset = false
 --
+local timer = 0
 
 -- -------------------------------------------------------------------------- --
 -- render:                                                                    --
@@ -204,6 +205,10 @@ function render(deltaTime)
     -- TODO: this shouldn't be necessary!!!
     gfx.ResetTransform()
     deboxi = 0
+
+    -- global timer
+    -- for all my timey needs
+    timer = deltaTime + timer
 
     if not(seedset) then
         math.randomseed(os.time())
@@ -229,18 +234,11 @@ function render(deltaTime)
     draw_combo(deltaTime)
     draw_alerts(deltaTime)
 
-    if gameplay.autoplay then
-        gfx.LoadSkinFont("NotoSans-Regular.ttf")
-        gfx.FontSize(30)
-        gfx.TextAlign(gfx.TEXT_ALIGN_TOP + gfx.TEXT_ALIGN_CENTER)
-        gfx.FillColor(255,255,255)
-        gfx.Text("Autoplay", desw/2, yshift)
-    end
-    
     draw_condisp(deltaTime)
     draw_scoregraph()
     draw_liveforce()
     draw_funshits(deltaTime)
+    draw_infobar(deltaTime)
 end
 -- -------------------------------------------------------------------------- --
 -- SetUpCritTransform:                                                        --
@@ -882,8 +880,8 @@ function draw_condisp(deltaTime)
     lsc = lfirst - llast--calculate knob speeds
     rsc = rfirst - rlast
 
-    if not(lsc > -6 and lsc < 6) then lsc = 0 end--cutoff when the getknob value jumps back to 0 (common)
-    if not(rsc > -6 and rsc < 6) then rsc = 0 end
+    if not(lsc > -1 and lsc < 1) then lsc = 0 end--cutoff when the getknob value jumps back to 0 (common)
+    if not(rsc > -1 and rsc < 1) then rsc = 0 end
 
     lspeed = 0 --reset knobspeed
     rspeed = 0
@@ -891,7 +889,7 @@ function draw_condisp(deltaTime)
         table.insert(templs, 1, lsc) -- put readings
         table.insert(temprs, 1, rsc)
 
-        for i, v in pairs(templs) do --sum the speeds obtained from all readings between last 0.05 and this 0.05
+        for i, v in pairs(templs) do --sum the speeds obtained from all readings between last time and this time
             lspeed = lspeed + v
         end
         for i, v in pairs(temprs) do
@@ -930,10 +928,10 @@ function draw_condisp(deltaTime)
     if #ls == 0 then lspeed = 0 end
     if #rs == 0 then rspeed = 0 end
 
-    if #ls > 20 then table.remove(ls, #ls) end --remove off limit entries
-    if #rs > 20 then table.remove(rs, #rs) end
+    if #ls > 10 then table.remove(ls, #ls) end --remove off limit entries
+    if #rs > 10 then table.remove(rs, #rs) end
 
-    if #lmaxlist < 20 then
+    if #lmaxlist < 20 then --update the maximums
         table.insert(lmaxlist, 1, math.max(math.abs(lspeed),1e-20))
     elseif math.abs(lspeed) > lmaxlist[1] then
         table.insert(lmaxlist, 1, math.abs(lspeed))
@@ -1005,12 +1003,12 @@ function draw_scoregraph()
     if count > 10 then --no gutter if more past yous
         gutter = 0
     end
-    if count == 0 then else --no looking at nil values
+    if not(count == 0) then --no looking at nil values
         local j = 1 --y pos in case a score gets killed(look below) so it wont leave holes in the graph
         for i = 1, count, 1 do --for each past yous
 
             if i == 1 then --no looking at nil values, and also i dont need you to die so
-            elseif gameplay.scoreReplays[i] == 10000000 then --only 1 perfect can exist in this score graph
+            elseif gameplay.scoreReplays[i].maxScore == 10000000 then --only 1 perfect can exist in this score graph
                 j = j - 1
                 goto die
             end
@@ -1258,7 +1256,7 @@ function fsRemain()
     gfx.Fill()
 
     gfx.BeginPath() --section stroke
-    gfx.Arc(0, 0, c.r, c.p, math.pi * 2, 2) 
+    gfx.Arc(0, 0, c.r, c.p, math.pi * 2, 2)
     gfx.StrokeColor(255, 255, 255)
     gfx.Stroke()
 
@@ -1474,7 +1472,7 @@ function fsPong(deltaTime)
     -- dashed middle line
     ponglineoffset = (ponglineoffset + gameplay.bpm * (1 / 60) * deltaTime * 10 + ball.r / 300) % 10
 
-    do --same logic with the crit line
+    do --same logic with the old crit line logic
         local numpieces = 1 + math.ceil(winH / 10)
         gfx.Scissor(0, 0, winW, winH)
         for i = 1, numpieces do
@@ -1514,6 +1512,32 @@ function fsPong(deltaTime)
 
     ballsave = {["x"] = ball.x / winW, ["y"] = ball.y / winH, ["sx"] = ball.sx, ["sy"] = ball.sy, ["r"] = ball.r}
     gfx.Restore()
+end
+-- -------------------------------------------------------------------------- --
+function draw_infobar(deltaTime)
+    local infotext = ""
+    if gameplay.demoMode then
+        infotext = " DEMO -       -"
+    elseif gameplay.autoplay then
+        infotext = " AUTO -       -"
+    else
+        return
+    end
+
+    gfx.FillColor(0, 0, 0, 192)
+    gfx.DrawRectBool(true, false, 0, 0, desw, 25)
+
+    gfx.FontSize(25)
+    gfx.FillColor(255, 255, 255)
+    gfx.TextAlign(gfx.TEXT_ALIGN_LEFT + gfx.TEXT_ALIGN_TOP)
+    do
+        local x1, y1, x2, y2 = gfx.TextBounds(0, 0, infotext)
+        local numPieces = 1 + math.ceil(desw / x2)
+        local startOffset = x2 * ((timer * 0.3) % 1)
+        for i = 0, numPieces, 1 do
+            gfx.Text(infotext, ((i - 1) * x2) + startOffset, 0)
+        end
+    end
 end
 -- -------------------------------------------------------------------------- --
 -- draw_alerts:                                                               --
@@ -1781,15 +1805,17 @@ function draw_users(detaTime)
 end
 
 function satisfy_luacheck()
-    update_score()
-    update_combo()
-    near_hit()
-    laser_alert()
-    satisfy_luacheck()
-    UpdateButtonStatesAfterProcessed()
-    render()
-    render_crit_overlay()
-    render_crit_base()
-    render_intro()
-    render_outro()
+    if 1 == 2 then
+        update_score()
+        update_combo()
+        near_hit()
+        laser_alert()
+        UpdateButtonStatesAfterProcessed()
+        render()
+        render_crit_overlay()
+        render_crit_base()
+        render_intro()
+        render_outro()
+        satisfy_luacheck()
+    end
 end
