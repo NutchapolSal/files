@@ -42,5 +42,15 @@
 		"type": "color",
 		"label": "Color Test",
 		"default": "007FFFFF"
+	},
+	"show_condisp": {
+		"label" : "Show ConDisp",
+		"type": "bool",
+		"default": true
+	},
+	"show_liveforce": {
+		"label" : "Show LiveForce",
+		"type": "bool",
+		"default": true
 	}
 }
