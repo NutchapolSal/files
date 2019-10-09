@@ -45,7 +45,7 @@ function render_screen(progress, isOut) --new argument: isOut - exactly what it 
 
     -- do easing here (if those exist)
     -- output it as easeprog
-    
+
     local nowx, nowy, nowsize = beginx + ((finalx - beginx) * easeprog), beginy + ((finaly - beginy) * easeprog), beginsize + ((finalsize - beginsize) * easeprog) --this is where the movement comes
     --
 
@@ -61,7 +61,7 @@ function render_screen(progress, isOut) --new argument: isOut - exactly what it 
         gfx.FillColor(0, 0, 0, 220)
         gfx.Fill()
     end
-    
+
     for i=0,resx*1.5/50 do --just some cool diagonal lines nothing to see here
         local dir = sign((i % 2) - 0.5)
         local yoff = dir * resy * (1 - progress) - (resy * 0.7)
@@ -75,7 +75,7 @@ function render_screen(progress, isOut) --new argument: isOut - exactly what it 
         gfx.Restore()
     end
     local y = (resy/2 + 100) * (math.sin(0.5 * progress * math.pi)^7) - 200
-    
+
     gfx.Save()
     gfx.BeginPath()
     gfx.Translate(nowx, nowy)

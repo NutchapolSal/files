@@ -112,7 +112,7 @@ function roundToZero(x)
 end
 
 function deltaKnob(delta)
-	if math.abs(delta) > 1.5 * math.pi then 
+	if math.abs(delta) > 1.5 * math.pi then
 		return delta + 2 * math.pi * sign(delta) * -1
 	end
 	return delta
