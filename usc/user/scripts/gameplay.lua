@@ -238,7 +238,9 @@ function render(deltaTime)
     draw_scoregraph()
     draw_liveforce()
     draw_funshits(deltaTime)
-    draw_infobar(deltaTime)
+    draw_infobar()
+
+    draw_startbox(deltaTime)
 end
 -- -------------------------------------------------------------------------- --
 -- SetUpCritTransform:                                                        --
@@ -1525,13 +1527,119 @@ function draw_infobar()
     gfx.FillColor(255, 255, 255)
     gfx.TextAlign(gfx.TEXT_ALIGN_LEFT + gfx.TEXT_ALIGN_TOP)
     do
-        local x1, y1, x2, y2 = gfx.TextBounds(0, 0, infotext)
+        local x1, y1, x2 = gfx.TextBounds(0, 0, infotext)
         local numPieces = 1 + math.ceil(desw / x2)
         local startOffset = x2 * ((timer * 0.3) % 1)
         for i = 0, numPieces, 1 do
             gfx.Text(infotext, ((i - 1) * x2) + startOffset, 0)
         end
     end
+end
+-- -------------------------------------------------------------------------- --
+local startboxScissor = 0
+function draw_startbox(deltaTime)
+    do
+        local deltaTime = deltaTime * 5
+        if game.GetButton(6) then
+            startboxScissor = math.min(startboxScissor + deltaTime, 1)
+        else
+            startboxScissor = math.max(startboxScissor - deltaTime, 0)
+        end
+    end
+
+    local startboxList = {}
+    local function startboxInsert(ltext, rtext, lr, lg, lb, rr, rg, rb)
+        local ltable = {}
+        ltable.t = ltext
+        if lr then
+            ltable.r = lr
+            ltable.g = lg
+            ltable.b = lb
+        end
+
+        local rtable = {}
+        rtable.t = rtext
+        if rr then
+            rtable.r = rr
+            rtable.g = rg
+            rtable.b = rb
+        end
+        table.insert(startboxList, {["l"] = ltable, ["r"] = rtable})
+    end
+
+    startboxInsert("HiSpeed", string.format("%.0f x %.1f = %.0f", gameplay.bpm, gameplay.hispeed, gameplay.bpm * gameplay.hispeed))
+    startboxInsert()
+    startboxInsert("Early/Late Position", "BT-A")
+    startboxInsert("  " .. earlatePos)
+    startboxInsert()
+    startboxInsert("Hidden/Sudden")
+    if (not game.GetButton(2)) or (game.GetButton(1) and game.GetButton(2)) then
+        startboxInsert("  Cutoff", "Hold BT-B  ")
+    end
+    if not game.GetButton(1) then
+        startboxInsert("  Fade", "Hold BT-C  ")
+    end
+    if game.GetButton(1) or game.GetButton(2) then
+        local r0, g0, b0 = game.GetLaserColor(0)
+        local r1, g1, b1 = game.GetLaserColor(1)
+        startboxInsert("    VOL-L | Hidden", "Sudden | VOL-R    ", r0, g0, b0, r1, g1, b1)
+    end
+
+    local height
+    local textheight
+    do
+        gfx.LoadSkinFont("slant.ttf")
+        gfx.FontSize(25)
+        gfx.TextAlign(gfx.TEXT_ALIGN_LEFT + gfx.TEXT_ALIGN_TOP)
+        local x1, y1, x2, y2 = gfx.TextBounds(0, 0, "I")
+        textheight = y2
+    end
+
+    local width = desw / 3
+    height = textheight * #startboxList
+    local textpad = 10 -- text padding
+
+    gfx.Save()
+    gfx.Translate((desw - width) / 2, (desh - height) / 2)
+    do
+        local scissorWidth = width * startboxScissor * 3
+        local scissorHeight = height * startboxScissor * 1.2
+        gfx.Scissor((width / 2) - (scissorWidth / 2), (height / 2) - (scissorHeight / 2), scissorWidth, scissorHeight)
+    end
+
+    gfx.FillColor(0, 0, 255, 32)
+    do
+        local textpad = textpad / 2
+        gfx.DrawRectBool(true, false, 0, 0 - textpad, width, height + (textpad * 2))
+    end
+
+    gfx.LoadSkinFont("slant.ttf")
+    gfx.FontSize(25)
+    for i, v in ipairs(startboxList) do
+        local texty = (i - 1) * textheight
+        for j, w in pairs(v) do
+            local textx
+            if j == "r" then
+                gfx.TextAlign(gfx.TEXT_ALIGN_RIGHT + gfx.TEXT_ALIGN_TOP)
+                textx = width - textpad
+            else
+                gfx.TextAlign(gfx.TEXT_ALIGN_LEFT + gfx.TEXT_ALIGN_TOP)
+                textx = textpad
+            end
+
+            if w.r then
+                gfx.FillColor(w.r, w.g, w.b)
+            else
+                gfx.FillColor(255, 255, 255)
+            end
+
+            if w.t then
+                gfx.Text(w.t, textx, texty)
+            end
+        end
+    end
+
+    gfx.Restore()
 end
 -- -------------------------------------------------------------------------- --
 -- draw_alerts:                                                               --
@@ -1615,11 +1723,16 @@ function render_intro(deltaTime)
         introTimer = 0
         return true
     end
-    if not game.GetButton(game.BUTTON_STA) or introTimer >= 0.1 then
+    if not game.GetButton(game.BUTTON_STA) or introTimer >= 1 then
         introTimer = introTimer - deltaTime
 		earlateTimer = 0
-	else
+    end
+
+	if game.GetButton(game.BUTTON_STA) then
 		earlateTimer = 1
+        if introTimer < 1 then
+            introTimer = 1
+        end
 		if (not bta_last) and game.GetButton(game.BUTTON_BTA) then
 			change_earlatepos()
 		end
