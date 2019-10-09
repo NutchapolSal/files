@@ -123,11 +123,20 @@ end
 local lastKnobs = nil
 local knobProgress = 0
 local enableSelect = false
+-- 0-3 bts, 4-5 fx, 6 start
 function handle_controller()
+	local chordValue = 0
+	if game.GetButton(0) then chordValue = chordValue + 1 end
+	if game.GetButton(1) then chordValue = chordValue + 1 end
+	if game.GetButton(2) then chordValue = chordValue + 1 end
+	if game.GetButton(3) then chordValue = chordValue + 1 end
+
     if not(enableSelect) then
         if not(game.GetButton(game.BUTTON_STA)) then
             enableSelect = true
         end
+    elseif chordValue > 2 and game.GetButton(6) then
+    	cursorIndex = #buttons
     elseif game.GetButton(game.BUTTON_STA) then
 		buttons[cursorIndex][2]()
 	end
@@ -143,7 +152,7 @@ function handle_controller()
 		lastKnobs = newKnobs
 
 		if math.abs(knobProgress) > 1 then
-			cursorIndex = (((cursorIndex - 1) + roundToZero(knobProgress)) % #buttons) + 1
+			cursorIndex = math.max(math.min(cursorIndex + roundToZero(knobProgress),#buttons),1)
 			knobProgress = knobProgress - roundToZero(knobProgress)
 		end
 	end
