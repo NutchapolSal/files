@@ -835,23 +835,15 @@ function draw_condisp(deltaTime)
     --top left anchor, does not include margin
     gfx.Save()
 
-    local posx = 13 --13 = attached to left, desw - 183 or 1097 = attached to right
-    local posy = desh - 121 --13 = attached to top, desh - 121 or 599 = attached to bottom
+    local condispscale = 0.5
+    local posx = (13 * condispscale) --13 = attached to left, desw - 183 or 1097 = attached to right
+    local posy = desh - (121 * condispscale) --13 = attached to top, desh - 121 or 599 = attached to bottom
 
     lfirst = game.GetKnob(0)--get some
     rfirst = game.GetKnob(1)--knob measurements
 
-    --intro animations
-    --select one & remove comment, comment out using -- or delete the others
-
-    --fly in from left
     gfx.Translate(((posx + 253) * (1 - math.max(introTimer - 1, 0))) - 253, posy)
-    --fly in from top
-    --gfx.Translate(posx,((posy + 134) * (1 - math.max(introTimer - 1, 0))) - 134)
-    --fly in from right
-    --gfx.Translate(posx + ((desw - posx) * math.max(introTimer - 1, 0)), posy)
-    --fly in from bottom
-    --gfx.Translate(posx,posy + ((desh - posy) * math.max(introTimer - 1, 0)))
+    gfx.Scale(condispscale, condispscale)
 
     gfx.FillColor(0, 0, 0, 128) --transparent bg
     gfx.DrawRectBool(true, false, -13, -13, 253, 134)
@@ -861,20 +853,20 @@ function draw_condisp(deltaTime)
     gfx.Rotate(math.rad(45))
     gfx.StrokeColor(0, 0, 128) --start
     gfx.FillColor(0, 0, 255)
-    gfx.DrawRectBool(game.GetButtonPressed(6), true, -9, -9, 19, 19)
+    gfx.DrawRectBool(game.GetButton(6), true, -9, -9, 19, 19)
     gfx.Restore()
 
     gfx.StrokeColor(255, 255, 255) --bt
     gfx.FillColor(0, 128, 255)
-    gfx.DrawRectBool(game.GetButtonPressed(0), true, 28, 36, 36, 36)
-    gfx.DrawRectBool(game.GetButtonPressed(1), true, 73, 36, 36, 36)
-    gfx.DrawRectBool(game.GetButtonPressed(2), true, 118, 36, 36, 36)
-    gfx.DrawRectBool(game.GetButtonPressed(3), true, 163, 36, 36, 36)
+    gfx.DrawRectBool(game.GetButton(0), true, 28, 36, 36, 36)
+    gfx.DrawRectBool(game.GetButton(1), true, 73, 36, 36, 36)
+    gfx.DrawRectBool(game.GetButton(2), true, 118, 36, 36, 36)
+    gfx.DrawRectBool(game.GetButton(3), true, 163, 36, 36, 36)
 
     gfx.StrokeColor(50, 50, 50) --fx
     gfx.FillColor(255, 0, 0)
-    gfx.DrawRectBool(game.GetButtonPressed(4), true, 54, 89, 29, 19)
-    gfx.DrawRectBool(game.GetButtonPressed(5), true, 144, 89, 29, 19)
+    gfx.DrawRectBool(game.GetButton(4), true, 54, 89, 29, 19)
+    gfx.DrawRectBool(game.GetButton(5), true, 144, 89, 29, 19)
 
     --here starts the knobs
     lsc = lfirst - llast--calculate knob speeds
@@ -1111,11 +1103,12 @@ function draw_liveforce()
     --https://github.com/NutchapolSal/files/tree/master/usc/liveforce
 
     local grade, gradeRate, badge, badgeRate --informations
-    local force, maxForce, replayForce = 0, 0, 0 --force stuffs
+    local force, maxForce, replayForce--force stuffs
     local badgeSize, gradeSize, gradew, gradeh, badgew, badgeh --graphic stuffs
     local prefix, diff --force diff stuffs
     local mainx, mainy, mainx2, mainy2, subx, suby, subx2, suby2, maxx, maxy, maxx2, maxy2, clsx, clsy, clsx2, clsy2
     local class, clv, cr, cg, cb --volforce class stuffs
+    local liveforcescale = 0.75
 
     gfx.Save()
 
@@ -1177,7 +1170,8 @@ function draw_liveforce()
     gradew, gradeh = (gradew / gradeh) * 30, 30 --limit height to 30, scale down proportionally
     badgew, badgeh = (badgew / badgeh) * 30, 30
 
-    gfx.Translate(13, 455)
+    gfx.Translate(13, 555)
+    gfx.Scale(liveforcescale,liveforcescale)
 
     gfx.BeginPath()
     gfx.LoadSkinFont("NovaMono.ttf")
@@ -1514,8 +1508,8 @@ function fsPong(deltaTime)
     gfx.Restore()
 end
 -- -------------------------------------------------------------------------- --
-function draw_infobar(deltaTime)
-    local infotext = ""
+function draw_infobar()
+    local infotext
     if gameplay.demoMode then
         infotext = " DEMO -       -"
     elseif gameplay.autoplay then
