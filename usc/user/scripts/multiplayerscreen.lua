@@ -26,6 +26,7 @@ local hard_mode = false;
 local rotate_host = false;
 local start_game_soon = false;
 local host = nil;
+local owner = nil;
 local missing_song = false;
 local placeholderJacket = gfx.CreateSkinImage("song_select/loading.png", 0)
 local did_exit = false;
@@ -144,7 +145,7 @@ draw_checkbox = function(text, x, y, hoverindex, current, can_click)
     local rx = x - (buttonWidth / 2);
     local ty = y - (buttonHeight / 2);
     gfx.BeginPath();
-
+    
     if can_click then
         gfx.FillColor(255,255,255);
     else
@@ -232,7 +233,7 @@ draw_user = function(user, x, y, buttonWidth, rank)
         gfx.Text(combo_text, x+buttonWidth/2 - 5, second_y-5);
         local xmin,ymin,xmax,ymax = gfx.TextBounds(x+buttonWidth/2 - 5, second_y-5, combo_text);
 
-
+        
         local score_text = '  '..string.format("%08d",user.score);
         gfx.FillColor(255,255,255)
         gfx.Text(score_text, xmin, second_y-5);
@@ -265,7 +266,7 @@ draw_user = function(user, x, y, buttonWidth, rank)
 
 
         if user.badge then
-            gfx.BeginPath()
+            gfx.BeginPath() 
             local iw, ih = gfx.ImageSize(user.badge)
             local iar = iw/ih;
             local badge_height = buttonHeight/2 - 10
@@ -466,7 +467,7 @@ change_selected_room = function(off)
     local second_half_rooms = math.ceil(num_rooms_visible/2) - 1
 
     if off > 0 and (selected_room_index < first_half_rooms or selected_room_index >= #rooms - second_half_rooms - 1) then
-    elseif off < 0 and (selected_room_index <= first_half_rooms or selected_room_index >= #rooms - second_half_rooms) then
+    elseif off < 0 and (selected_room_index <= first_half_rooms or selected_room_index >= #rooms - second_half_rooms) then 
     else
         ioffset = ioffset - new_index + selected_room_index;
     end
@@ -505,11 +506,15 @@ function render_lobby(deltaTime)
     buttonY = user_y_off + 125 + userHeight/2
     for i, user in ipairs(lobby_users) do
         draw_user(user, split/2, buttonY, split*3/4, i)
-        if host == user_id and user.id ~= user_id then
+        local side_button_off = 0
+        if owner == user_id and user.id ~= user_id then
             draw_button("K",split/2 + split*3/8+10+25, buttonY, 50, function()
                 kick_user(user);
             end)
-            draw_button("H",split/2 + split*3/8+10+25+60, buttonY, 50, function()
+            side_button_off = 60;
+        end
+        if (owner == user_id or host == user_id) and user.id ~= host then
+            draw_button("H",split/2 + split*3/8+10+25+side_button_off, buttonY, 50, function()
                 change_host(user);
             end)
         end
@@ -540,7 +545,7 @@ function render_lobby(deltaTime)
     else
         gfx.Text(selected_song.title, split/2 + song_x_off, 175)
         draw_diffs(selected_song.all_difficulties, split/2 + song_x_off - 150, 200, 300, 100, selected_song.diff_index+1)
-
+        
         if selected_song.jacket == nil or selected_song.jacket == placeholderJacket then
             selected_song.jacket = gfx.LoadImageJob(selected_song.jacketPath, placeholderJacket)
             jacket = selected_song.jacket
@@ -550,9 +555,9 @@ function render_lobby(deltaTime)
     gfx.BeginPath()
     gfx.Translate(split/2 + song_x_off, 325+jacket_size/2)
     gfx.ImageRect(-jacket_size/2,-jacket_size/2,jacket_size,jacket_size,jacket,1,0)
-
+    
     if mouse_clipped(split/2 + song_x_off-jacket_size/2, 325, jacket_size,jacket_size) and host == user_id then
-        hovered = function()
+        hovered = function() 
             missing_song = false
             mpScreen.SelectSong()
         end
@@ -563,14 +568,14 @@ function render_lobby(deltaTime)
     else
         if host == user_id then
             if selected_song == nil or not selected_song.self_picked then
-                draw_button_color("Select song", split/2 + song_x_off, 375+jacket_size, 600, function()
+                draw_button_color("Select song", split/2 + song_x_off, 375+jacket_size, 600, function() 
                     missing_song = false
                     mpScreen.SelectSong()
                 end, 0, math.min(255, 128 + math.floor(32 * math.cos(timer * math.pi))), 0);
             elseif user_ready and all_ready then
                 draw_button("Start game", split/2 + song_x_off, 375+jacket_size, 600, start_game)
             elseif user_ready and not all_ready then
-                draw_button("Waiting for others", split/2 + song_x_off, 375+jacket_size, 600, function()
+                draw_button("Waiting for others", split/2 + song_x_off, 375+jacket_size, 600, function() 
                     missing_song = false
                     mpScreen.SelectSong()
                 end)
@@ -594,8 +599,9 @@ function render_lobby(deltaTime)
 
     draw_checkbox("Excessive", split/2 + song_x_off - 150, 375+jacket_size + 70, toggle_hard, hard_mode, not start_game_soon)
     draw_checkbox("Mirror", split/2 + song_x_off, 375+jacket_size + 70, toggle_mirror, mirror_mode, not start_game_soon)
-
-    draw_checkbox("Rotate Host", split/2 + song_x_off + 150 + 20, 375+jacket_size + 70, toggle_rotate, do_rotate, host == user_id and not start_game_soon)
+    
+    draw_checkbox("Rotate Host", split/2 + song_x_off + 150 + 20, 375+jacket_size + 70, toggle_rotate, do_rotate,
+                    (owner == user_id or host == user_id) and not start_game_soon)
 end
 
 function render_room_list(deltaTime)
@@ -607,7 +613,7 @@ function render_room_list(deltaTime)
     gfx.Rect(0, 0, resX, 145)
     gfx.Rect(0, resY-170, resX, 170)
     gfx.Fill()
-
+    
     gfx.BeginPath()
     gfx.FillColor(60, 60, 60)
     gfx.Rect(0, 145, resX, 2)
@@ -634,18 +640,18 @@ function render_password_screen(deltaTime)
     gfx.Text("Joining "..selected_room.name.."...", resX/2, resY/4)
 
     gfx.FillColor(50,50,50)
-    gfx.BeginPath()
+    gfx.BeginPath() 
     gfx.Rect(0, resY/2-10, resX, 40)
-    gfx.Fill();
+    gfx.Fill(); 
 
     gfx.FillColor(255,255,255)
     gfx.Text("Please enter room password:", resX/2, resY/2-40)
-    gfx.Text(string.rep("*",#textInput.text), resX/2, resY/2+40)
+    gfx.Text(string.rep("*",#textInput.text), resX/2, resY/2+40) 
     if passwordError then
-
+        
         gfx.FillColor(255,50,50)
         gfx.FontSize(60 + math.floor(passwordErrorOffset*20))
-        gfx.Text("Invalid password", resX/2, resY/2+80)
+        gfx.Text("Invalid password", resX/2, resY/2+80) 
     end
     draw_button("Join", resX/2, resY*3/4, resX/2,  mpScreen.JoinWithPassword);
 end
@@ -657,13 +663,13 @@ function render_new_room_password(delta_time)
     gfx.Text("Create New Room", resX/2, resY/4)
 
     gfx.FillColor(50,50,50)
-    gfx.BeginPath()
+    gfx.BeginPath() 
     gfx.Rect(0, resY/2-10, resX, 40)
-    gfx.Fill();
+    gfx.Fill(); 
 
     gfx.FillColor(255,255,255)
     gfx.Text("Enter room password:", resX/2, resY/2-40)
-    gfx.Text(string.rep("*",#textInput.text), resX/2, resY/2+40)
+    gfx.Text(string.rep("*",#textInput.text), resX/2, resY/2+40) 
     draw_button("Create Room", resX/2, resY*3/4, resX/2, mpScreen.NewRoomStep);
 end
 
@@ -674,13 +680,13 @@ function render_new_room_name(deltaTime)
     gfx.Text("Create New Room", resX/2, resY/4)
 
     gfx.FillColor(50,50,50)
-    gfx.BeginPath()
+    gfx.BeginPath() 
     gfx.Rect(0, resY/2-10, resX, 60)
-    gfx.Fill();
+    gfx.Fill(); 
 
     gfx.FillColor(255,255,255)
     gfx.Text("Please enter room name:", resX/2, resY/2-40)
-    gfx.Text(textInput.text, resX/2, resY/2+40)
+    gfx.Text(textInput.text, resX/2, resY/2+40) 
     draw_button("Next", resX/2, resY*3/4, resX/2, mpScreen.NewRoomStep);
 end
 
@@ -691,13 +697,13 @@ function render_set_username(deltaTime)
     gfx.Text("First things first...", resX/2, resY/4)
 
     gfx.FillColor(50,50,50)
-    gfx.BeginPath()
+    gfx.BeginPath() 
     gfx.Rect(0, resY/2-10, resX, 60)
-    gfx.Fill();
+    gfx.Fill(); 
 
     gfx.FillColor(255,255,255)
     gfx.Text("Enter a display name:", resX/2, resY/2-40)
-    gfx.Text(textInput.text, resX/2, resY/2+40)
+    gfx.Text(textInput.text, resX/2, resY/2+40) 
     draw_button("Join Multiplayer", resX/2, resY*3/4, resX/2, function()
         loading = true;
         mpScreen.SaveUsername()
@@ -717,7 +723,7 @@ render = function(deltaTime)
     passwordErrorOffset = passwordErrorOffset * 0.9
     timer = (timer + deltaTime)
     timer = timer % 2
-
+    
     hovered = nil;
 
     gfx.LoadSkinFont(normal_font);
@@ -761,6 +767,7 @@ end
 
 function new_room()
     host = user_id
+    owner = user_id
     mpScreen.NewRoomStep()
 end
 
@@ -788,7 +795,7 @@ function start_game()
     if (start_game_soon) then
         return
     end
-
+    
     Tcp.SendLine(json.encode({topic="room.game.start"}))
 end
 
@@ -814,7 +821,7 @@ button_pressed = function(button)
                 new_room()
             else
                 -- TODO navigate room selection
-                join_room(rooms[selected_room_index])
+                join_room(rooms[selected_room_index]) 
             end
         elseif screenState == "inRoom" then
             if host == user_id then
@@ -834,7 +841,7 @@ button_pressed = function(button)
             end
         end
     end
-
+    
     if button == game.BUTTON_FXL then
         toggle_hard();
     end
@@ -949,6 +956,11 @@ Tcp.SetTopicHandler("room.update", function(data)
         last_song = data.song
     end
     host = data.host
+    if data.owner then
+        owner = data.owner
+    else
+        owner = host
+    end
     hard_mode = data.hard_mode
     mirror_mode = data.mirror_mode
     do_rotate = data.do_rotate

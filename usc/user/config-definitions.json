@@ -52,5 +52,12 @@
 		"label" : "Show LiveForce",
 		"type": "bool",
 		"default": true
+	},
+
+	"secret_value" : {
+		"type" : "text",
+		"label" : "Secret value test",
+		"default" : "usc123",
+		"secret" : true
 	}
 }

@@ -592,11 +592,21 @@ function draw_song_info(deltaTime)
     if game.GetButton(game.BUTTON_STA) then
         gfx.FillColor(20, 20, 20, 200);
         gfx.DrawRect(RECT_FILL, 100, 100, songInfoWidth - 100, 20)
-
         gfx.FillColor(255, 255, 255)
-        gfx.Text(string.format("HiSpeed: %.0f x %.1f = %.0f",
-                gameplay.bpm, gameplay.hispeed, gameplay.bpm * gameplay.hispeed),
-                textX, 115)
+        if game.GetButton(game.BUTTON_BTB) then
+            gfx.Text(string.format("Hid/Sud Cutoff: %.1f%% / %.1f%%",
+                    gameplay.hiddenCutoff * 100, gameplay.suddenCutoff * 100),
+                    textX, 115)
+
+        elseif game.GetButton(game.BUTTON_BTC) then
+            gfx.Text(string.format("Hid/Sud Fade: %.1f%% / %.1f%%",
+                    gameplay.hiddenFade * 100, gameplay.suddenFade * 100),
+                    textX, 115)
+        else
+            gfx.Text(string.format("HiSpeed: %.0f x %.1f = %.0f",
+                    gameplay.bpm, gameplay.hispeed, gameplay.bpm * gameplay.hispeed),
+                    textX, 115)
+        end
     end
 
     -- aaaand, scene!
