@@ -1547,15 +1547,34 @@ function draw_infobar()
 end
 -- -------------------------------------------------------------------------- --
 local startboxScissor = 0
+local introlock = false
+local lastBtD = false
 function draw_startbox(deltaTime)
+    local function sbGButton(bt)
+        return game.GetButton(bt) and game.GetButton(6)
+    end
+
     do
         local deltaTime = deltaTime * 5
-        if game.GetButton(6) then
+        if sbGButton(6) then
             startboxScissor = math.min(startboxScissor + deltaTime, 1)
         else
             startboxScissor = math.max(startboxScissor - deltaTime, 0)
         end
+        if startboxScissor == 0 then
+            return
+        end
     end
+
+    if lastBtD ~= sbGButton(3) and lastBtD then
+        if introLock then
+            introLock = false
+        else
+            introLock = true
+        end
+    end
+    lastBtD = sbGButton(3)
+
 
     local startboxList = {}
     local function startboxInsert(ltext, rtext, lr, lg, lb, rr, rg, rb)
@@ -1577,22 +1596,44 @@ function draw_startbox(deltaTime)
         table.insert(startboxList, {["l"] = ltable, ["r"] = rtable})
     end
 
-    startboxInsert("HiSpeed", string.format("%.0f x %.1f = %.0f", gameplay.bpm, gameplay.hispeed, gameplay.bpm * gameplay.hispeed))
+    if sbGButton(1) or sbGButton(2) then
+        startboxInsert("HiSpeed", string.format("%.0f x %.1f = %.0f", gameplay.bpm, gameplay.hispeed, gameplay.bpm * gameplay.hispeed))
+    else
+        startboxInsert("HiSpeed", string.format("%.0f x %.1f = %.0f", gameplay.bpm, gameplay.hispeed, gameplay.bpm * gameplay.hispeed), 128, 255, 128, 128, 255, 128)
+    end
     startboxInsert()
     startboxInsert("Early/Late Position", "BT-A")
     startboxInsert("  " .. earlatePos)
     startboxInsert()
     startboxInsert("Hidden/Sudden")
-    if (not game.GetButton(2)) or (game.GetButton(1) and game.GetButton(2)) then
+    if sbGButton(1) then
+        startboxInsert("> Cutoff", "Hold BT-B  ", 128, 255, 128, 128, 255, 128)
+        startboxInsert("  Fade", "Hold BT-C  ")
+    elseif sbGButton(2) then
         startboxInsert("  Cutoff", "Hold BT-B  ")
-    end
-    if not game.GetButton(1) then
+        startboxInsert("> Fade", "Hold BT-C  ", 128, 255, 128, 128, 255, 128)
+    else
+        startboxInsert("  Cutoff", "Hold BT-B  ")
         startboxInsert("  Fade", "Hold BT-C  ")
     end
-    if game.GetButton(1) or game.GetButton(2) then
+    if sbGButton(1) or sbGButton(2) then
         local r0, g0, b0 = game.GetLaserColor(0)
         local r1, g1, b1 = game.GetLaserColor(1)
         startboxInsert("    VOL-L | Hidden", "Sudden | VOL-R    ", r0, g0, b0, r1, g1, b1)
+    end
+    startboxInsert("[hidsudbar]")
+    do
+        local r0, g0, b0 = game.GetLaserColor(0)
+        local r1, g1, b1 = game.GetLaserColor(1)
+        if sbGButton(1) then
+            startboxInsert(string.format("    %.1f%%", gameplay.hiddenCutoff * 100), string.format("%.1f%%    ", gameplay.suddenCutoff * 100), r0, g0, b0, r1, g1, b1)
+        elseif sbGButton(2) then
+            startboxInsert(string.format("    %.1f%%", gameplay.hiddenFade * 100), string.format("%.1f%%    ", gameplay.suddenFade * 100), r0, g0, b0, r1, g1, b1)
+        end
+    end
+
+    if introLock then
+        startboxInsert("introLock")
     end
 
     local height
@@ -1623,6 +1664,83 @@ function draw_startbox(deltaTime)
         gfx.DrawRectBool(true, false, 0, 0 - textpad, width, height + (textpad * 2))
     end
 
+    local function drawHidSudBar(texty)
+        gfx.Save()
+        local hidsudWidth = width - (textpad * 5)
+
+        gfx.Translate(textpad * 2.5, texty + (textheight - (textheight / 3)))
+        gfx.IntersectScissor(-1, -(textheight / 3), hidsudWidth + 2, textheight / 3 * 2)
+        gfx.FillColor(64, 64, 64)
+        gfx.DrawRectBool(true, false, 0, 0, hidsudWidth, textheight / 3)
+
+        local r0, g0, b0 = game.GetLaserColor(0)
+        local r1, g1, b1 = game.GetLaserColor(1)
+
+        local cRgbMul, fRgbMul = 1, 1 -- color multipliers, c for cutoff, f for fade
+        if sbGButton(1) then
+            fRgbMul = 0.5
+        elseif sbGButton(2) then
+            cRgbMul = 0.5
+        else
+            cRgbMul = 0.5
+            fRgbMul = 0.5
+        end
+
+        if gameplay.suddenCutoff < gameplay.hiddenCutoff then
+            -- hidden
+            gfx.GradientColors(math.ceil(r0 * fRgbMul), math.ceil(g0 * fRgbMul), math.ceil(b0 * fRgbMul), 255, math.ceil(r0 * fRgbMul), math.ceil(g0 * fRgbMul), math.ceil(b0 * fRgbMul), 0)
+            gfx.FillPaint(gfx.LinearGradient(hidsudWidth * gameplay.hiddenCutoff, 0, (hidsudWidth * gameplay.hiddenCutoff) + (hidsudWidth * gameplay.hiddenFade), 0))
+            gfx.DrawRectBool(true, false, hidsudWidth * gameplay.suddenCutoff, -(textheight / 3 / 2), ((gameplay.hiddenCutoff - gameplay.suddenCutoff) * hidsudWidth) + (hidsudWidth * gameplay.hiddenFade), textheight / 3 / 2)
+
+            gfx.FillColor(r0 * fRgbMul, g0 * fRgbMul, b0 * fRgbMul)
+            gfx.DrawRectBool(true, false, (hidsudWidth * gameplay.hiddenCutoff) + (hidsudWidth * gameplay.hiddenFade), -(textheight / 3), 1, (textheight / 3))
+
+            --sudden
+            gfx.GradientColors(math.ceil(r1 * fRgbMul), math.ceil(g1 * fRgbMul), math.ceil(b1 * fRgbMul), 255, math.ceil(r1 * fRgbMul), math.ceil(g1 * fRgbMul), math.ceil(b1 * fRgbMul), 0)
+            gfx.FillPaint(gfx.LinearGradient(hidsudWidth * gameplay.suddenCutoff, 0, (gameplay.suddenCutoff * hidsudWidth) - (gameplay.suddenFade * hidsudWidth), 0))
+            gfx.DrawRectBool(true, false, (gameplay.suddenCutoff * hidsudWidth) - (gameplay.suddenFade * hidsudWidth), -(textheight / 3), ((gameplay.hiddenCutoff - gameplay.suddenCutoff) * hidsudWidth) + (hidsudWidth * gameplay.suddenFade), textheight / 3 / 2)
+
+            gfx.FillColor(r1 * fRgbMul, g1 * fRgbMul, b1 * fRgbMul)
+            gfx.DrawRectBool(true, false, (hidsudWidth * gameplay.suddenCutoff) - (hidsudWidth * gameplay.suddenFade), -(textheight / 3), 1, (textheight / 3))
+        else
+            -- hidden
+            gfx.GradientColors(math.ceil(r0 * fRgbMul), math.ceil(g0 * fRgbMul), math.ceil(b0 * fRgbMul), 255, math.ceil(r0 * fRgbMul), math.ceil(g0 * fRgbMul), math.ceil(b0 * fRgbMul), 0)
+            gfx.FillPaint(gfx.LinearGradient((hidsudWidth * gameplay.hiddenCutoff) - (hidsudWidth * gameplay.hiddenFade), 0, hidsudWidth * gameplay.hiddenCutoff, 0))
+            gfx.DrawRectBool(true, false, 0, -(textheight / 3 / 2), hidsudWidth * gameplay.hiddenCutoff, textheight / 3 / 2)
+
+            gfx.FillColor(r0 * fRgbMul, g0 * fRgbMul, b0 * fRgbMul)
+            gfx.DrawRectBool(true, false, (hidsudWidth * gameplay.hiddenCutoff) - (hidsudWidth * gameplay.hiddenFade), -(textheight / 3), 1, (textheight / 3))
+
+            -- sudden
+            gfx.GradientColors(math.ceil(r1 * fRgbMul), math.ceil(g1 * fRgbMul), math.ceil(b1 * fRgbMul), 255, math.ceil(r1 * fRgbMul), math.ceil(g1 * fRgbMul), math.ceil(b1 * fRgbMul), 0)
+            gfx.FillPaint(gfx.LinearGradient((hidsudWidth * gameplay.suddenCutoff) + (hidsudWidth * gameplay.suddenFade), 0, hidsudWidth * gameplay.suddenCutoff, 0))
+            gfx.DrawRectBool(true, false, hidsudWidth * gameplay.suddenCutoff, -(textheight / 3), hidsudWidth - (hidsudWidth * gameplay.suddenCutoff), textheight / 3 / 2)
+
+            gfx.FillColor(r1 * fRgbMul, g1 * fRgbMul, b1 * fRgbMul)
+            gfx.DrawRectBool(true, false, (hidsudWidth * gameplay.suddenCutoff) + (hidsudWidth * gameplay.suddenFade), -(textheight / 3), 1, (textheight / 3))
+        end
+
+        if gameplay.suddenCutoff < gameplay.hiddenCutoff then -- for when it blocks the middle
+            gfx.Save()
+            gfx.IntersectScissor((hidsudWidth * gameplay.suddenCutoff), -(textheight / 3), (hidsudWidth * (gameplay.hiddenCutoff - gameplay.suddenCutoff)) + 1.5, (textheight / 3) * 2)
+        end
+
+        gfx.FillColor(r0 * cRgbMul, g0 * cRgbMul, b0 * cRgbMul)
+        gfx.DrawRectBool(true, false, 0, 0, hidsudWidth * gameplay.hiddenCutoff, textheight / 3) -- hidden fill
+        gfx.DrawRectBool(true, false, hidsudWidth * gameplay.hiddenCutoff, -(textheight / 3), 1, (textheight / 3) * 2) -- hidden cursor
+
+        gfx.FillColor(r1 * cRgbMul, g1 * cRgbMul, b1 * cRgbMul)
+        gfx.DrawRectBool(true, false, hidsudWidth - (hidsudWidth * (1 - gameplay.suddenCutoff)), 0, hidsudWidth * (1 - gameplay.suddenCutoff), textheight / 3) --sudden fill
+        gfx.DrawRectBool(true, false, hidsudWidth * gameplay.suddenCutoff, -(textheight / 3), 1, (textheight / 3) * 2) --sudden cursor
+
+        if gameplay.suddenCutoff < gameplay.hiddenCutoff then
+            gfx.Restore()
+        end
+
+        gfx.Restore()
+    end
+
+
     gfx.LoadSkinFont("slant.ttf")
     gfx.FontSize(25)
     for i, v in ipairs(startboxList) do
@@ -1643,7 +1761,9 @@ function draw_startbox(deltaTime)
                 gfx.FillColor(255, 255, 255)
             end
 
-            if w.t then
+            if w.t == "[hidsudbar]" then
+                drawHidSudBar(texty)
+            elseif w.t then
                 gfx.Text(w.t, textx, texty)
             end
         end
@@ -1738,7 +1858,7 @@ function render_intro(deltaTime)
 		earlateTimer = 0
     end
 
-	if game.GetButton(game.BUTTON_STA) then
+	if game.GetButton(game.BUTTON_STA) or introLock then
 		earlateTimer = 1
         if introTimer < 1 then
             introTimer = 1
