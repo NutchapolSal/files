@@ -411,6 +411,8 @@ white ripple under a bunch of black starlights
 
 been drinking quite some tea lately
 
+*12 Oct 2019* - smoother audio/normal transition
+
 ## [watchdogs2](#jump-list)
 [![watchdogs2](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/watchdogs2.gif "watchdogs2")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-watchdogs2.ChromaEffects)
 
