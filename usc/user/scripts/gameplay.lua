@@ -1596,13 +1596,21 @@ function draw_startbox(deltaTime)
         table.insert(startboxList, {["l"] = ltable, ["r"] = rtable})
     end
 
-    if sbGButton(1) or sbGButton(2) then
+    if sbGButton(1) or sbGButton(2) or not(sbGButton(6)) then
         startboxInsert("HiSpeed", string.format("%.0f x %.1f = %.0f", gameplay.bpm, gameplay.hispeed, gameplay.bpm * gameplay.hispeed))
     else
         startboxInsert("HiSpeed", string.format("%.0f x %.1f = %.0f", gameplay.bpm, gameplay.hispeed, gameplay.bpm * gameplay.hispeed), 128, 255, 128, 128, 255, 128)
     end
     startboxInsert()
-    startboxInsert("Early/Late Position", "BT-A")
+    if gameplay.demoMode then
+        startboxInsert("Early/Late Position", "N/A in Demo")
+    elseif introTimer <= 0 then
+        startboxInsert("Early/Late Position", "N/A after intro")
+    elseif sbGButton(0) then
+        startboxInsert("Early/Late Position", "BT-A", 128, 255, 128, 128, 255, 128)
+    else
+        startboxInsert("Early/Late Position", "BT-A")
+    end
     startboxInsert("  " .. earlatePos)
     startboxInsert()
     startboxInsert("Hidden/Sudden")
