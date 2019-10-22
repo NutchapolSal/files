@@ -24,6 +24,7 @@ click on effect name to go back to jump list
 [fez](#fez)|og||||||✓||✓|✓|✓|
 [fishfettish](#fishfettish)|o||✓||||||||✓|
 [fullenn](#fullenn)|r||✓||||✓||||✓|
+[mawshblue](#mawshblue)|ra||✓||||✓|||✓|✓|
 [minesweeper](#minesweeper)|rg||||||✓|||✓|✓|
 [mohamed](#mohamed)|r||||||||||✓|
 [mudrive](#mudrive)|og||||||✓|||✓||
@@ -253,6 +254,21 @@ saw fish images in profile-requests, so i had to make it
 challenge accepted
 
 > Those who do not learn [history](#mohamed) are doomed to repeat it.
+
+## [mawshblue](#jump-list)
+[![mawshblue](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/mawshblue.gif "mawshblue")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-mawshblue.ChromaEffects)
+
+![am] ![ri] ![st] ![wa]
+
+**requested by _Mawsh_**
+
+> I know someones requested it before, but is there anyway someone could make me a cool White and blue with wave effects, Keyboard, mouse, mousepad
+Mouse and Mousepad can just flash white and blue, if that makes sense
+
+me:
+> i can do keyboard and mouse
+> but for the mousepad you gotta buy that for me
+
 
 ## [minesweeper](#jump-list)
 [![minesweeper](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/minesweeper.gif "minesweeper")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-minesweeper.ChromaEffects)
