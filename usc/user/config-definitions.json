@@ -59,5 +59,10 @@
 		"label" : "Secret value test",
 		"default" : "usc123",
 		"secret" : true
+	},
+	"LCDactivate": {
+		"label" : "Send stuff to LCD? (use COM201)",
+		"type": "bool",
+		"default": false
 	}
 }

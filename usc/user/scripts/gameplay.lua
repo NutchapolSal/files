@@ -200,6 +200,8 @@ local timer = 0
 -- The primary & final render call.                                           --
 -- Use this to render basically anything that isn't the crit line or the      --
 --  intro/outro transitions.                                                  --
+local LCDactivate = game.GetSkinSetting('LCDactivate')
+local sentlcd = false
 function render(deltaTime)
     -- make sure that our transform is cleared, clean working space
     -- TODO: this shouldn't be necessary!!!
@@ -241,6 +243,9 @@ function render(deltaTime)
     draw_infobar()
 
     draw_startbox(deltaTime)
+    if not (sentlcd or LCDactivate) then
+        sendtolcd(deltaTime)
+    end
 end
 -- -------------------------------------------------------------------------- --
 -- SetUpCritTransform:                                                        --
@@ -1778,6 +1783,25 @@ function draw_startbox(deltaTime)
     end
 
     gfx.Restore()
+end
+-- -------------------------------------------------------------------------- --
+local lcdtimer = 0
+local lcdNoReTimer = 0
+function sendtolcd(deltaTime)
+        lcdNoReTimer = lcdNoReTimer + (deltaTime * 10)
+        lcdtimer = lcdtimer + (deltaTime * 10)
+        local lcdNRTround = math.ceil(lcdNoReTimer)
+        local text = "\n\n\n" .. gameplay.artist .. "\t" .. gameplay.title
+
+        if lcdtimer > 1 then
+            scriptfile = io.open("\\\\.\\COM201", "w+")
+            scriptfile:write(text:sub(lcdNRTround, lcdNRTround))
+            scriptfile:close()
+            lcdtimer = lcdtimer - 1
+            if lcdNRTround == text:len() then
+                sentlcd = true
+            end
+        end
 end
 -- -------------------------------------------------------------------------- --
 -- draw_alerts:                                                               --
