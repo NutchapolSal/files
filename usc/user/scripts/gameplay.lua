@@ -243,7 +243,7 @@ function render(deltaTime)
     draw_infobar()
 
     draw_startbox(deltaTime)
-    if not (sentlcd or LCDactivate) then
+    if (not sentlcd) and LCDactivate then
         sendtolcd(deltaTime)
     end
 end
