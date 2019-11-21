@@ -323,7 +323,11 @@ function render_info()
 		gfx.FontSize(20);
 		gfx.TextAlign(gfx.TEXT_ALIGN_LEFT + gfx.TEXT_ALIGN_TOP)
 		gfx.Text(searchStatus, 3, 3)
-	end
+    end
+    
+
+
+
 end
 
 draw_diff_icon = function(diff, x, y, w, h, selected)
@@ -602,6 +606,23 @@ function render_lobby(deltaTime)
     
     draw_checkbox("Rotate Host", split/2 + song_x_off + 150 + 20, 375+jacket_size + 70, toggle_rotate, do_rotate,
                     (owner == user_id or host == user_id) and not start_game_soon)
+
+    if selected_song ~= nil then
+        gfx.FillColor(255,255,255)
+        gfx.FontSize(20);
+        gfx.TextAlign(gfx.TEXT_ALIGN_CENTER + gfx.TEXT_ALIGN_TOP)
+        if selected_song.min_bpm ~= selected_song.max_bpm then
+            gfx.Text(string.format("BPM: %.0f-%.0f, Start BPM: %.0f, Hispeed: %.0f x %.1f = %.0f",
+                selected_song.min_bpm, selected_song.max_bpm, selected_song.start_bpm,
+                selected_song.speed_bpm, selected_song.hispeed, selected_song.speed_bpm * selected_song.hispeed),
+                split/2 + song_x_off, 375+jacket_size + 70 + 30)
+        else
+            gfx.Text(string.format("BPM: %.0f, Hispeed: %.0f x %.1f = %.0f",
+                selected_song.min_bpm,
+                selected_song.speed_bpm, selected_song.hispeed, selected_song.speed_bpm * selected_song.hispeed),
+                split/2 + song_x_off, 375+jacket_size + 70 + 30)
+        end
+    end
 end
 
 function render_room_list(deltaTime)

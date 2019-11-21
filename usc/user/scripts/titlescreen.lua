@@ -223,3 +223,11 @@ mouse_pressed = function(button)
     end
     return 0
 end
+
+function button_pressed(button)
+    if button == game.BUTTON_STA then 
+        buttons[cursorIndex][2]()
+    elseif button == game.BUTTON_BCK then
+        Menu.Exit()
+    end
+end
