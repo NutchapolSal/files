@@ -17,6 +17,7 @@ click on effect name to go back to jump list
 [birthdaycake](#birthdaycake)|ra||✓|||✓|✓||✓|✓||
 [bluevsred](#bluevsred)|ra||✓|||✓|✓||✓||✓|
 [blurple](#blurple)|o||✓|||✓|✓||✓|✓||
+[chromas](#chromas)|oa||✓||✓|✓|✓||✓|✓|✓|
 [coplightscode2](#coplightscode2)|rp2||||||||||✓|
 [default](#default)|o|✓|✓|||✓|✓||✓||✓|
 [discofloor](#discofloor)|o||||||✓||✓|||
@@ -174,6 +175,19 @@ guess this is what comes out after a whole month of not doing profiles (i do oth
 ![am] ![re] ![ri] ![sl] ![st]
 
 happy 4th birthday discord
+
+## [chromas](#jump-list)
+[![chromas](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/chromas.gif "chromas")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-chromas.ChromaEffects)
+
+![am] ![fi] ![re] ![ri] ![sl] ![st] ![wa]
+
+merry christmas & happy new decade! woot
+
+featuring: a christmas tree, candy cane numpad, yule log mouse sides & audio dependent snow
+
+don't be fooled by this one's gif, the audio effects are quite good
+
+btw it's a portmanteau of chroma & christmas for anyone wondering why it's named like that
 
 ## [coplightscode2](#jump-list)
 [![coplightscode2](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/coplightscode2.gif "coplightscode2")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-coplightscode2.ChromaEffects)
