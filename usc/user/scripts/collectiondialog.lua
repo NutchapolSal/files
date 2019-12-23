@@ -42,6 +42,8 @@ function open()
 end
 
 function render(deltaTime)
+    deboxi = 1
+    globalTimer = deltaTime + globalTimer 
     if dialog.closing then
         yscale = math.min(yscale - deltaTime * 4, 1.0)
     else
@@ -77,6 +79,9 @@ function render(deltaTime)
             local y = yshift + 60 * ((i-1) - selectedIndex)
             if y > -190 and y < 220 then 
                 gfx.FillColor(option[3][1], option[3][2], option[3][3])
+                if selectedIndex == i - 1 then
+                    y = (math.sin(globalTimer * 3) * 6) + y
+                end
                 gfx.Text(option[1], 40 - width/2, y)
             end
         end

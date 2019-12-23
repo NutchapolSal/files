@@ -193,7 +193,6 @@ end
 -- not default
 local seedset = false
 --
-local timer = 0
 
 -- -------------------------------------------------------------------------- --
 -- render:                                                                    --
@@ -210,7 +209,7 @@ function render(deltaTime)
 
     -- global timer
     -- for all my timey needs
-    timer = deltaTime + timer
+    globalTimer = deltaTime + globalTimer 
 
     if not(seedset) then
         math.randomseed(os.time())
@@ -422,8 +421,8 @@ function render_crit_overlay(deltaTime)
             end
 
             -- If the timer is active, flash based on a sin wave
-            local timer = consoleAnimTimers[i]
-            if timer ~= 0 then
+            local globalTimer  = consoleAnimTimers[i]
+            if globalTimer  ~= 0 then
                 local image = consoleAnimImages[i]
                 local alpha = (math.sin(timer) * 0.5 + 0.5) * 0.5 + 0.25
                 gfx.FillColor(255, 255, 255, alpha * 255);

@@ -5,6 +5,8 @@ deboxr = 255
 deboxg = 255
 deboxb = 255
 
+globalTimer  = 0
+
 dc = function(r, g, b)
     deboxr = math.floor(r or 255)
     deboxg = math.floor(g or 255)
