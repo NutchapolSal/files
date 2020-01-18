@@ -12,9 +12,9 @@ local RECT_FILL_STROKE = RECT_FILL .. RECT_STROKE
 
 gfx._ImageAlpha = 1
 if gfx._FillColor == nil then
-	gfx._FillColor = gfx.FillColor
-	gfx._StrokeColor = gfx.StrokeColor
-	gfx._SetImageTint = gfx.SetImageTint
+    gfx._FillColor = gfx.FillColor
+    gfx._StrokeColor = gfx.StrokeColor
+    gfx._SetImageTint = gfx.SetImageTint
 end
 
 -- we aren't even gonna overwrite it here, it's just dead to us
@@ -123,6 +123,8 @@ end
 -- -------------------------------------------------------------------------- --
 -- Global data used by many things:                                           --
 local resx, resy -- The resolution of the window
+local resx_old = 0
+local resy_old = 0
 local portrait -- whether the window is in portrait orientation
 local desw, desh -- The resolution of the deisign
 local scale -- the scale to get from design to actual units
@@ -159,8 +161,8 @@ local consoleAnimImages = {
 -- -------------------------------------------------------------------------- --
 -- Timers, used for animations:                                               --
 if introTimer == nil then
-	introTimer = 2
-	outroTimer = 0
+    introTimer = 2
+    outroTimer = 0
 end
 local alertTimers = {-2,-2}
 
@@ -180,14 +182,85 @@ local late = false
 local diffNames = {"NOV", "ADV", "EXH", "INF"}
 local clearTexts = {"TRACK FAILED", "TRACK COMPLETE", "TRACK COMPLETE", "FULL COMBO", "PERFECT" }
 -- -------------------------------------------------------------------------- --
+-- Cached calculations                                                        --
+local song_info = {}
+local gauge_info = {}
+local crit_base_info = {}
+local combo_info = {}
+-- -------------------------------------------------------------------------- --
 -- ResetLayoutInformation:                                                    --
 -- Resets the layout values used by the skin.                                 --
 function ResetLayoutInformation()
-    resx, resy = game.GetResolution()
     portrait = resy > resx
     desw = portrait and 720 or 1280
     desh = desw * (resy / resx)
     scale = resx / desw
+
+    do --update song_info
+        local songInfoWidth = 400
+        local jacketWidth = 100
+        song_info.songInfoWidth = songInfoWidth
+        song_info.jacketWidth = jacketWidth
+
+        gfx.LoadSkinFont("NotoSans-Regular.ttf")
+        gfx.FontSize(30)
+
+        song_info.textX = jacketWidth + 10
+        local titleWidth = songInfoWidth - jacketWidth - 20
+        local x1, y1, x2, y2 = gfx.TextBounds(0, 0, gameplay.title)
+        song_info.title_textscale = math.min(titleWidth / x2, 1)
+        x1,y1,x2,y2 = gfx.TextBounds(0,0,gameplay.artist)
+        song_info.artist_textscale = math.min(titleWidth / x2, 1)
+    end
+
+    do --update gauge_info
+        gauge_info.height = 1024 * scale * 0.35
+        gauge_info.width = 512 * scale * 0.35
+        gauge_info.posy = resy / 2 - gauge_info.height / 2
+        gauge_info.posx = resx - gauge_info.width
+        if portrait then
+            gauge_info.width = gauge_info.width * 0.8
+            gauge_info.height = gauge_info.height * 0.8
+            gauge_info.posy = gauge_info.posy - 30
+            gauge_info.posx = resx - gauge_info.width
+        end
+
+        gauge_info.label_posx = gauge_info.posx / scale + (100 * 0.35) 
+        gauge_info.label_height = 880 * 0.35
+        if portrait then
+            gauge_info.label_height = gauge_info.label_height * 0.8;
+        end
+        gauge_info.label_posy = gauge_info.posy / scale + (70 * 0.35) + gauge_info.label_height
+    end
+
+    do --update crit_base_info
+        -- The absolute width of the crit line itself
+        -- we check to see if we're playing in portrait mode and
+        --  change the width accordingly
+        crit_base_info.critWidth = resx * (portrait and 1 or 0.8)
+        crit_base_info.half_critWidth = crit_base_info.critWidth / 2
+
+        -- get the scaled dimensions of the crit line pieces
+        local clw, clh = gfx.ImageSize(critAnimImg)
+        crit_base_info.critAnimHeight = 15 * scale
+        crit_base_info.critAnimWidth = crit_base_info.critAnimHeight * (clw / clh)
+
+        local ccw, cch = gfx.ImageSize(critCap)
+        crit_base_info.critCapHeight = crit_base_info.critAnimHeight * (cch / clh)
+        crit_base_info.critCapWidth = crit_base_info.critCapHeight * (ccw / cch)
+
+        crit_base_info.half_critAnimHeight = crit_base_info.critAnimHeight / 2
+        crit_base_info.half_critAnimWidth = crit_base_info.critAnimWidth / 2
+        crit_base_info.half_critCapHeight = crit_base_info.critCapHeight / 2
+        crit_base_info.half_critCapWidth = crit_base_info.critCapWidth / 2
+    end
+
+    do --update combo_info
+        combo_info.posx = desw / 2
+        combo_info.posy = desh * critLinePos[1] - 100
+        if portrait then combo_info.posy = desh * critLinePos[2] - 150 end
+    end
+
 end
 
 -- not default
@@ -229,9 +302,9 @@ function render(deltaTime)
     draw_score(deltaTime)
     gfx.Translate(0, -yshift + 150 * math.max(introTimer - 1, 0))
     draw_gauge(deltaTime)
-	if earlatePos ~= "off" then
-		draw_earlate(deltaTime)
-	end
+    if earlatePos ~= "off" then
+        draw_earlate(deltaTime)
+    end
     draw_combo(deltaTime)
     draw_alerts(deltaTime)
 
@@ -281,7 +354,12 @@ function render_crit_base(deltaTime)
     --  that gets called per frame) we update the layout information.
     -- This means that the player can resize their window and
     --  not break everything
-    ResetLayoutInformation()
+    resx, resy = game.GetResolution()
+    if resx ~= resx_old or resy ~= resy_old then
+        ResetLayoutInformation()
+        resx_old = resx
+        resy_old = resy
+    end
 
     critAnimTimer = critAnimTimer + deltaTime
     SetUpCritTransform()
@@ -296,44 +374,49 @@ function render_crit_base(deltaTime)
     gfx.FillColor(0, 0, 0, 200)
     gfx.DrawRect(RECT_FILL, -resx, 0, resx * 2, resy)
 
-    -- The absolute width of the crit line itself
-    -- we check to see if we're playing in portrait mode and
-    --  change the width accordingly
-    local critWidth = resx * (portrait and 1 or 0.8)
-
-    -- get the scaled dimensions of the crit line pieces
-    local clw, clh = gfx.ImageSize(critAnimImg)
-    local critAnimHeight = 15 * scale
-    local critAnimWidth = critAnimHeight * (clw / clh)
-
-    local ccw, cch = gfx.ImageSize(critCap)
-    local critCapHeight = critAnimHeight * (cch / clh)
-    local critCapWidth = critCapHeight * (ccw / cch)
-
     -- draw the back half of the caps at each end
     do
         gfx.FillColor(255, 255, 255)
         -- left side
-        gfx.DrawRect(critCapBack, -critWidth / 2 - critCapWidth / 2, -critCapHeight / 2, critCapWidth, critCapHeight)
+        gfx.DrawRect(critCapBack,
+            -crit_base_info.half_critWidth -crit_base_info.half_critCapWidth,
+            -crit_base_info.half_critCapHeight,
+            crit_base_info.critCapWidth,
+            crit_base_info.critCapHeight)
         gfx.Scale(-1, 1) -- scale to flip horizontally
         -- right side
-        gfx.DrawRect(critCapBack, -critWidth / 2 - critCapWidth / 2, -critCapHeight / 2, critCapWidth, critCapHeight)
+        gfx.DrawRect(critCapBack, 
+            -crit_base_info.half_critWidth - crit_base_info.half_critCapWidth,
+            -crit_base_info.half_critCapHeight,
+            crit_base_info.critCapWidth,
+            crit_base_info.critCapHeight)
         gfx.Scale(-1, 1) -- unflip horizontally
     end
 
     -- render the core of the crit line
     do
         -- The crit line is made up of two rects with a pattern that scrolls in opposite directions on each rect
-        local numPieces = 1 + math.ceil(critWidth / (critAnimWidth * 2))
-        local startOffset = critAnimWidth * ((critAnimTimer * 1.5) % 1)
+        local startOffset = crit_base_info.critAnimWidth * ((critAnimTimer * 1.5) % 1)
 
         -- left side
         -- Use a scissor to limit the drawable area to only what should be visible
-        gfx.UpdateImagePattern(critAnim,
-            -startOffset, -critAnimHeight/2, critAnimWidth, critAnimHeight, 0, 1)
-        gfx.Scissor(-critWidth / 2, -critAnimHeight / 2, critWidth / 2, critAnimHeight)
+        gfx.UpdateImagePattern(critAnim, 
+            -startOffset,
+            -crit_base_info.half_critAnimHeight,
+            crit_base_info.critAnimWidth,
+            crit_base_info.critAnimHeight,
+            0, 1)
+        
+        gfx.Scissor(-crit_base_info.half_critWidth,
+            -crit_base_info.half_critAnimHeight,
+            crit_base_info.half_critWidth,
+            crit_base_info.critAnimHeight)
+
         gfx.BeginPath()
-        gfx.Rect(-critWidth / 2, -critAnimHeight / 2, critWidth / 2, critAnimHeight)
+        gfx.Rect(-crit_base_info.half_critWidth,
+            -crit_base_info.half_critAnimHeight,
+            crit_base_info.half_critWidth,
+            crit_base_info.critAnimHeight)
         gfx.FillPaint(critAnim)
         gfx.Fill()
         gfx.ResetScissor()
@@ -341,10 +424,21 @@ function render_crit_base(deltaTime)
         -- right side
         -- exactly the same, but in reverse
         gfx.UpdateImagePattern(critAnim,
-            startOffset, -critAnimHeight/2, critAnimWidth, critAnimHeight, 0, 1)
-        gfx.Scissor(0, -critAnimHeight / 2, critWidth / 2, critAnimHeight)
+            startOffset,
+            -crit_base_info.half_critAnimHeight,
+            crit_base_info.critAnimWidth,
+            crit_base_info.critAnimHeight,
+            0, 1)
+        
+        gfx.Scissor(0,
+            -crit_base_info.half_critAnimHeight,
+            crit_base_info.half_critWidth,
+            crit_base_info.critAnimHeight)
         gfx.BeginPath()
-        gfx.Rect(0, -critAnimHeight / 2, critWidth / 2, critAnimHeight)
+        gfx.Rect(0,
+            -crit_base_info.half_critAnimHeight,
+            crit_base_info.half_critWidth,
+            crit_base_info.critAnimHeight)
         gfx.FillPaint(critAnim)
         gfx.Fill()
         gfx.ResetScissor()
@@ -354,10 +448,18 @@ function render_crit_base(deltaTime)
     do
         gfx.FillColor(255, 255, 255)
         -- left side
-        gfx.DrawRect(critCap, -critWidth / 2 - critCapWidth / 2, -critCapHeight / 2, critCapWidth, critCapHeight)
+        gfx.DrawRect(critCap,
+            -crit_base_info.half_critWidth - crit_base_info.half_critCapWidth,
+            -crit_base_info.half_critCapHeight,
+            crit_base_info.critCapWidth,
+            crit_base_info.critCapHeight)
         gfx.Scale(-1, 1) -- scale to flip horizontally
         -- right side
-        gfx.DrawRect(critCap, -critWidth / 2 - critCapWidth / 2, -critCapHeight / 2, critCapWidth, critCapHeight)
+        gfx.DrawRect(critCap,
+            -crit_base_info.half_critWidth - crit_base_info.half_critCapWidth,
+            -crit_base_info.half_critCapHeight,
+            crit_base_info.critCapWidth,
+            crit_base_info.critCapHeight)
         gfx.Scale(-1, 1) -- unflip horizontally
     end
 
@@ -516,8 +618,6 @@ end
 -- Draws current song information at the top left of the screen.              --
 -- This function expects no graphics transform except the design scale.       --
 function draw_song_info(deltaTime)
-    local songInfoWidth = 400
-    local jacketWidth = 100
     -- Check to see if there's a jacket to draw, and attempt to load one if not
     if jacket == nil or jacket == jacketFallback then
         jacket = gfx.LoadImageJob(gameplay.jacketPath, jacketFallback)
@@ -537,15 +637,15 @@ function draw_song_info(deltaTime)
     --start of my shit--
     -- Draw the background, a "feature" of the game
     gfx.BeginPath()
-    gfx.Rect(0, 0, songInfoWidth, 100)
+    gfx.Rect(0, 0, song_info.songInfoWidth, 100)
     gfx.FillColor(20, 20, 20, 200)
     gfx.Fill()
     -- Draw the jacket
     gfx.FillColor(255, 255, 255)
-    gfx.ImageRect(0, 0, jacketWidth, jacketWidth, jacket, 1, 0)
+    gfx.ImageRect(0, 0, song_info.jacketWidth, song_info.jacketWidth, jacket, 1, 0)
 
     gfx.FillColor(0, 0, 0, 192)
-    gfx.DrawRect(RECT_FILL, jacketWidth, 0, songInfoWidth - jacketWidth, 100)
+    gfx.DrawRect(RECT_FILL, song_info.jacketWidth, 0, song_info.songInfoWidth - song_info.jacketWidth, 100)
     --end of my shit--
     -- Draw a background for the following level stat
     gfx.FillColor(0, 0, 0, 200)
@@ -559,11 +659,9 @@ function draw_song_info(deltaTime)
 
     gfx.FillColor(255, 255, 255)
 
-    local textX = jacketWidth + 10
-    local titleWidth = songInfoWidth - jacketWidth - 20
-    local x1, y1, x2, y2 = gfx.TextBounds(0, 0, gameplay.title)
-    local textscale = math.min(titleWidth / x2, 1)
-
+    local textscale = song_info.title_textscale
+    local textX = song_info.textX
+    
     gfx.Save()
     do  -- Draw the song title, scaled to fit as best as possible
         gfx.Translate(textX, 30)
@@ -572,8 +670,7 @@ function draw_song_info(deltaTime)
     end
     gfx.Restore()
 
-    x1,y1,x2,y2 = gfx.TextBounds(0,0,gameplay.artist)
-    textscale = math.min(titleWidth / x2, 1)
+    textscale = song_info.artist_textscale
 
     gfx.Save()
     do  -- Draw the song artist, scaled to fit as best as possible
@@ -589,21 +686,21 @@ function draw_song_info(deltaTime)
 
     -- Fill the progress bar
     gfx.FillColor(0, 150, 255)
-    gfx.DrawRect(RECT_FILL, jacketWidth, jacketWidth - 10, (songInfoWidth - jacketWidth) * gameplay.progress, 10)
+    gfx.DrawRect(RECT_FILL, song_info.jacketWidth, song_info.jacketWidth - 10, (song_info.songInfoWidth - song_info.jacketWidth) * gameplay.progress, 10)
 
     -- When the player is holding Start, the hispeed can be changed
     -- Shows the current hispeed values
     if game.GetButton(game.BUTTON_STA) then
         gfx.FillColor(20, 20, 20, 200);
-        gfx.DrawRect(RECT_FILL, 100, 100, songInfoWidth - 100, 20)
+        gfx.DrawRect(RECT_FILL, 100, 100, song_info.songInfoWidth - 100, 20)
         gfx.FillColor(255, 255, 255)
         if game.GetButton(game.BUTTON_BTB) then
-            gfx.Text(string.format("Hid/Sud Cutoff: %.1f%% / %.1f%%",
+            gfx.Text(string.format("Hid/Sud Cutoff: %.1f%% / %.1f%%", 
                     gameplay.hiddenCutoff * 100, gameplay.suddenCutoff * 100),
                     textX, 115)
-
+        
         elseif game.GetButton(game.BUTTON_BTC) then
-            gfx.Text(string.format("Hid/Sud Fade: %.1f%% / %.1f%%",
+            gfx.Text(string.format("Hid/Sud Fade: %.1f%% / %.1f%%", 
                     gameplay.hiddenFade * 100, gameplay.suddenFade * 100),
                     textX, 115)
         else
@@ -672,36 +769,24 @@ local gg = {}
 local extGaugetype = -1
 -- draw_gauge:                                                                --
 function draw_gauge(deltaTime)
-    local height = 1024 * scale * 0.35
-    local width = 512 * scale * 0.35
-    local posy = resy / 2 - height / 2
-    local posx = resx - width * (1 - math.max(introTimer - 1, 0))
-    if portrait then
-        width = width * 0.8
-        height = height * 0.8
-        posy = posy - 30
-        posx = resx - width * (1 - math.max(introTimer - 1, 0))
-    end
-    gfx.DrawGauge(gameplay.gauge, posx, posy, width, height, deltaTime)
 
-	--draw gauge % label
-	posx = posx / scale
-	posx = posx + (100 * 0.35)
-	height = 880 * 0.35
-	posy = posy / scale
-	if portrait then
-		height = height * 0.8;
-	end
+    gfx.DrawGauge(gameplay.gauge, 
+        gauge_info.posx, 
+        gauge_info.posy, 
+        gauge_info.width, 
+        gauge_info.height, 
+        deltaTime)
 
-	posy = posy + (70 * 0.35) + height - height * gameplay.gauge
-	gfx.BeginPath()
-	gfx.Rect(posx-35, posy-10, 40, 20)
-	gfx.FillColor(0,0,0,200)
-	gfx.Fill()
-	gfx.FillColor(255,255,255)
-	gfx.TextAlign(gfx.TEXT_ALIGN_RIGHT + gfx.TEXT_ALIGN_MIDDLE)
-	gfx.FontSize(20)
-	gfx.Text(string.format("%d%%", math.floor(gameplay.gauge * 100)), posx, posy )
+    --draw gauge % label
+    local posy = gauge_info.label_posy - gauge_info.label_height * gameplay.gauge
+    gfx.BeginPath()
+    gfx.Rect(gauge_info.label_posx-35, posy-10, 40, 20)
+    gfx.FillColor(0,0,0,200)
+    gfx.Fill()
+    gfx.FillColor(255,255,255)
+    gfx.TextAlign(gfx.TEXT_ALIGN_RIGHT + gfx.TEXT_ALIGN_MIDDLE)
+    gfx.FontSize(20)
+    gfx.Text(string.format("%d%%", math.floor(gameplay.gauge * 100)), gauge_info.label_posx, posy )
 
     --gaugegraph
 
@@ -724,28 +809,28 @@ function draw_gauge(deltaTime)
         gfx.LineTo(posx - (0.0625 * (i - 1)), v)
     end
     gfx.StrokeWidth(1.0)
-
-    height = 1024 * scale * 0.35
-    posy = resy / 2 - height / 2
-    if portrait then
-        posy = posy - 30
-    end
-    height = 880 * 0.35
-    posy = posy / scale
-    if portrait then
-        height = height * 0.8;
-    end
-    local svntycut = posy + (70 * 0.35) + height - height * 0.7
-    local thirtycut = posy + (70 * 0.35) + height - height * 0.3
-
-    if extGaugetype == -1  then
-        if gameplay.gauge > 0.5 then
-            extGaugetype = 1
-        else
-            extGaugetype = 0
+    do
+        local height = gauge_info.height
+        local posy = gauge_info.posy
+        if portrait then
+            posy = posy - 30
+        end
+        height = 880 * 0.35
+        posy = posy / scale
+        if portrait then
+            height = height * 0.8;
+        end
+        local svntycut = posy + (70 * 0.35) + height - height * 0.7
+        local thirtycut = posy + (70 * 0.35) + height - height * 0.3
+    
+        if extGaugetype == -1  then
+            if gameplay.gauge > 0.5 then
+                extGaugetype = 1
+            else
+                extGaugetype = 0
+            end
         end
     end
-
     if extGaugetype == 1 then -- ex gauge
         gfx.StrokeColor(127,40,0)
         gfx.Stroke()
@@ -766,9 +851,6 @@ end
 -- draw_combo:                                                                --
 function draw_combo(deltaTime)
     if combo == 0 then return end
-    local posx = desw / 2
-    local posy = desh * critLinePos[1] - 100
-    if portrait then posy = desh * critLinePos[2] - 150 end
     gfx.BeginPath()
     gfx.TextAlign(gfx.TEXT_ALIGN_CENTER + gfx.TEXT_ALIGN_MIDDLE)
     if gameplay.comboState == 2 then
@@ -781,7 +863,7 @@ function draw_combo(deltaTime)
     gfx.LoadSkinFont("NovaMono.ttf")
     gfx.FontSize(70 * math.max(comboScale, 1))
     comboScale = comboScale - deltaTime * 3
-    gfx.Text(tostring(combo), posx, posy)
+    gfx.Text(tostring(combo), combo_info.posx, combo_info.posy)
 end
 -- -------------------------------------------------------------------------- --
 -- draw_earlate:                                                              --
@@ -795,11 +877,11 @@ function draw_earlate(deltaTime)
     gfx.TextAlign(gfx.TEXT_ALIGN_CENTER, gfx.TEXT_ALIGN_MIDDLE)
     local ypos = desh * critLinePos[1] - 150
     if portrait then ypos = desh * critLinePos[2] - 200 end
-	if earlatePos == "middle" then
-		ypos = ypos - 200
-	elseif earlatePos == "top" then
-		ypos = ypos - 400
-	end
+    if earlatePos == "middle" then
+        ypos = ypos - 200
+    elseif earlatePos == "top" then
+        ypos = ypos - 400
+    end
 
     if late then
         gfx.FillColor(0,255,255, alpha)
@@ -1864,16 +1946,16 @@ function draw_alerts(deltaTime)
 end
 
 function change_earlatepos()
-	if earlatePos == "top" then
-		earlatePos = "off"
-	elseif earlatePos == "off" then
-		earlatePos = "bottom"
-	elseif earlatePos == "bottom" then
-		earlatePos = "middle"
-	elseif earlatePos == "middle" then
-		earlatePos = "top"
-	end
-	game.SetSkinSetting("earlate_position", earlatePos)
+    if earlatePos == "top" then
+        earlatePos = "off"
+    elseif earlatePos == "off" then
+        earlatePos = "bottom"
+    elseif earlatePos == "bottom" then
+        earlatePos = "middle"
+    elseif earlatePos == "middle" then
+        earlatePos = "top"
+    end
+    game.SetSkinSetting("earlate_position", earlatePos)
 end
 
 -- -------------------------------------------------------------------------- --
