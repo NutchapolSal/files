@@ -8,39 +8,39 @@ click on effect name to go back to jump list
 
 #### jump list
 
-. | groupings | ![aa] | ![am] | ![br] | ![fi] | ![re] | ![ri] | ![sc] | ![sl] | ![st] | ![wa] | ![wh]
----|---|---|---|---|---|---|---|---|---|---|---|---
-[acorigins](#acorigins)|rg||||||||✓||✓|
-[alleffects](#alleffects)|r|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓
-[barmeter](#barmeter)|c||✓|||||||||
-[barmeter2](#barmeter2)|c||✓||✓||||✓|||
-[birthdaycake](#birthdaycake)|ra||✓|||✓|✓||✓|✓||
-[bluevsred](#bluevsred)|ra||✓|||✓|✓||✓||✓|
-[blurple](#blurple)|o||✓|||✓|✓||✓|✓||
-[chromas](#chromas)|oa||✓||✓|✓|✓||✓|✓|✓|
-[coplightscode2](#coplightscode2)|rp2||||||||||✓|
-[default](#default)|o|✓|✓|||✓|✓||✓||✓|
-[discofloor](#discofloor)|o||||||✓||✓|||
-[england](#england)|r|||||||||✓||
-[fez](#fez)|og||||||✓||✓|✓|✓|
-[fishfettish](#fishfettish)|o||✓||||||||✓|
-[fullenn](#fullenn)|r||✓||||✓||||✓|
-[mawshblue](#mawshblue)|ra||✓||||✓|||✓|✓|
-[minesweeper](#minesweeper)|rg||||||✓|||✓|✓|
-[mohamed](#mohamed)|r||||||||||✓|
-[mudrive](#mudrive)|og||||||✓|||✓||
-[overcharged](#overcharged)|r2t||||||✓||✓|✓|✓|
-[radar](#radar)|o|||||✓|✓||✓|||✓
-[rainbowspiral](#rainbowspiral)|r||||||✓|||||✓
-[raindrop](#raindrop)|rt||✓||||✓|||✓||
-[rainingneon](#rainingneon)|r2||||||||||✓|
-[reactiveblackout](#reactiveblackout)|rc|||||✓|✓||||✓|
-[rearviewmirror](#rearviewmirror)|rp2|||||✓|||||✓|
-[seriesoftubes](#seriesoftubes)|o|||||||||✓|✓|
-[sparkles](#sparkles)|o|||||✓|✓||✓|||
-[tea](#tea)|oa||✓|||✓|✓|||✓|✓|
-[watchdogs2](#watchdogs2)|og||✓||||✓||✓|✓|✓|
-[wigwag](#wigwag)|rp|||||||||✓|✓|
+. | groupings | created with | ![aa] | ![am] | ![br] | ![fi] | ![re] | ![ri] | ![sc] | ![sl] | ![st] | ![wa] | ![wh]
+---|---|---|---|---|---|---|---|---|---|---|---|---|---
+[acorigins](#acorigins)|rg|bwc,mte||||||||✓||✓|
+[alleffects](#alleffects)|r|bwc,mte|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓
+[barmeter](#barmeter)|c|bwc||✓|||||||||
+[barmeter2](#barmeter2)|c|bwc||✓||✓||||✓|||
+[birthdaycake](#birthdaycake)|ra|bwc,mte||✓|||✓|✓||✓|✓||
+[bluevsred](#bluevsred)|ra|bwc,mte||✓|||✓|✓||✓||✓|
+[blurple](#blurple)|o|bwc,mte||✓|||✓|✓||✓|✓||
+[chromas](#chromas)|oa|bwc,mte||✓||✓|✓|✓||✓|✓|✓|
+[coplightscode2](#coplightscode2)|rp2|bwc||||||||||✓|
+[default](#default)|o|bwc,mte|✓|✓|||✓|✓||✓||✓|
+[discofloor](#discofloor)|o|bwc,mte||||||✓||✓|||
+[england](#england)|r|bwc,mte|||||||||✓||
+[fez](#fez)|og|bwc,mte||||||✓||✓|✓|✓|
+[fishfettish](#fishfettish)|o|bwc,mte||✓||||||||✓|
+[fullenn](#fullenn)|r|bwc,mte||✓||||✓||||✓|
+[mawshblue](#mawshblue)|ra|bwc,mte||✓||||✓|||✓|✓|
+[minesweeper](#minesweeper)|rg|bwc||||||✓|||✓|✓|
+[mohamed](#mohamed)|r|bwc||||||||||✓|
+[mudrive](#mudrive)|og|bwc,mte||||||✓|||✓||
+[overcharged](#overcharged)|r2t|bwc||||||✓||✓|✓|✓|
+[radar](#radar)|o|bwc,mte|||||✓|✓||✓|||✓
+[rainbowspiral](#rainbowspiral)|r|bwc,mte||||||✓|||||✓
+[raindrop](#raindrop)|rt|bwc,mte||✓||||✓|||✓||
+[rainingneon](#rainingneon)|r2|bwc||||||||||✓|
+[reactiveblackout](#reactiveblackout)|rc|bwc,mte|||||✓|✓||||✓|
+[rearviewmirror](#rearviewmirror)|rp2|bwc|||||✓|||||✓|
+[seriesoftubes](#seriesoftubes)|o|bwc|||||||||✓|✓|
+[sparkles](#sparkles)|o|bwc,mte|||||✓|✓||✓|||
+[tea](#tea)|oa|bwc,mte||✓|||✓|✓|||✓|✓|
+[watchdogs2](#watchdogs2)|og|bwc,mte||✓||||✓||✓|✓|✓|
+[wigwag](#wigwag)|rp|bwc|||||||||✓|✓|
 
 gifs are limited to 5 seconds because i'm too lazy to change the duration
 
@@ -56,6 +56,14 @@ g|games
 a|recommended audio profiles
 2|recreation from s2
 t|with some modifications by me
+
+created with | meaning
+---|---
+bwc|blackwidow chroma (the one with macro buttons)
+mte|mamba tournament edition
+ff2|firefly v2
+bsc|base station chroma
+hdk|hardware development kit/pc case lighting kit
 
 ## [acorigins](#jump-list)
 [![acorigins](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/acorigins.gif "acorigins")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-acorigins.ChromaEffects)
@@ -96,6 +104,8 @@ N:
 imo i think this profile is pretty good
 
 *12 May 2019* - i forgot starlight & reactive so here ya go
+
+*24 Jan 2020* - nothing changed just want to say that it looks like shit
 
 also
 
