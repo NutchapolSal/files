@@ -766,7 +766,6 @@ end
 -- -------------------------------------------------------------------------- --
 local gaugeTime = 0
 local gg = {}
-local extGaugetype = -1
 -- draw_gauge:                                                                --
 function draw_gauge(deltaTime)
 
@@ -791,12 +790,12 @@ function draw_gauge(deltaTime)
     --gaugegraph
 
     --add one every <time> and when its not outro or intro
-    if gaugeTime > 0.0625 and outroTimer == 0 and introTimer == 0 then
+    -- if gaugeTime > 0.0625 and outroTimer == 0 and introTimer == 0 then
         table.insert(gg, 1, posy)
-        gaugeTime = 0
-    else
-        gaugeTime = gaugeTime + deltaTime
-    end
+        -- gaugeTime = 0
+    -- else
+        -- gaugeTime = gaugeTime + deltaTime
+    -- end
 
     if #gg > 10000 then
         table.remove(gg, #gg)
@@ -804,48 +803,32 @@ function draw_gauge(deltaTime)
 
     --the line
     gfx.BeginPath()
-    gfx.MoveTo(posx, posy)
+    gfx.MoveTo(gauge_info.label_posx, posy)
     for i, v in pairs(gg) do
-        gfx.LineTo(posx - (0.0625 * (i - 1)), v)
+        gfx.LineTo(gauge_info.label_posx - (0.0625 * (i - 1)), v)
     end
     gfx.StrokeWidth(1.0)
     do
-        local height = gauge_info.height
-        local posy = gauge_info.posy
-        if portrait then
-            posy = posy - 30
-        end
-        height = 880 * 0.35
-        posy = posy / scale
-        if portrait then
-            height = height * 0.8;
-        end
-        local svntycut = posy + (70 * 0.35) + height - height * 0.7
-        local thirtycut = posy + (70 * 0.35) + height - height * 0.3
+        local svntycut = gauge_info.label_posy - gauge_info.label_height * 0.7
+        local thirtycut = gauge_info.label_posy - gauge_info.label_height * 0.3
     
-        if extGaugetype == -1  then
-            if gameplay.gauge > 0.5 then
-                extGaugetype = 1
-            else
-                extGaugetype = 0
-            end
+        gfx.ResetScissor()
+        if gameplay.gaugeType == 1 then -- ex gauge
+            gfx.StrokeColor(127,40,0) --dark orange
+            gfx.Stroke()
+            gfx.StrokeColor(255,80,0) --orange
+            gfx.Scissor(0, 0, 1280, thirtycut)
+            gfx.Stroke()
+        else -- normal gauge
+            gfx.StrokeColor(0,180,255) --cyan
+            gfx.Stroke()
+            gfx.StrokeColor(255,0,255) --pink
+            gfx.Scissor(0, 0, 1280, svntycut)
+            gfx.Stroke()
         end
+        gfx.ResetScissor()
+        gfx.StrokeWidth(2.0)
     end
-    if extGaugetype == 1 then -- ex gauge
-        gfx.StrokeColor(127,40,0)
-        gfx.Stroke()
-        gfx.StrokeColor(255,80,0)
-        gfx.Scissor(0, 0, 1280, thirtycut)
-        gfx.Stroke()
-    else -- normal gauge
-        gfx.StrokeColor(0,180,255)
-        gfx.Stroke()
-        gfx.StrokeColor(255,0,255)
-        gfx.Scissor(0, 0, 1280, svntycut)
-        gfx.Stroke()
-    end
-    gfx.ResetScissor()
-    gfx.StrokeWidth(2.0)
 end
 -- -------------------------------------------------------------------------- --
 -- draw_combo:                                                                --
@@ -1194,7 +1177,6 @@ local classes = {
 }
 
 local oclearState = -1
-local gaugetype = -1
 --------------------------------------------------------------------------------
 function draw_liveforce()
     --Nutchapol's LiveForce v1
@@ -1210,14 +1192,6 @@ function draw_liveforce()
 
     gfx.Save()
 
-    if gaugetype == -1  then
-        if gameplay.gauge > 0.5 then
-            gaugetype = 1
-        else
-            gaugetype = 0
-        end
-    end
-
     for i, v in pairs(grades) do
         if score >= v.min then
             grade = v.num
@@ -1232,7 +1206,7 @@ function draw_liveforce()
         badge = 2 --full-combo
     elseif oclearState == 1 then
         badge = 5 --played
-    elseif gaugetype == 1 then
+    elseif gameplay.gaugeType == 1 then
         badge = 3 --hard-clear
     else
         badge = 4 --clear
@@ -1356,21 +1330,17 @@ function fsRemain()
 end
 -----
 local btpresses = {}
+local lastspawnpos = {
+    {["x"] = 0, ["y"] = 0, ["timer"] = 0.25},
+    {["x"] = 0, ["y"] = 0, ["timer"] = 0.25},
+    {["x"] = 0, ["y"] = 0, ["timer"] = 0.25},
+    {["x"] = 0, ["y"] = 0, ["timer"] = 0.25},
+    {["x"] = 0, ["y"] = 0, ["timer"] = 0.25},
+    {["x"] = 0, ["y"] = 0, ["timer"] = 0.25}
+}
 local fsA, fsB, fsC, fsD, fsL, fsR = false, false, false, false, false, false
 function fsRipples(deltaTime)
-    if game.GetButtonPressed(0) and not(fsA) then table.insert(btpresses, 1, {["btn"] = 0, ["age"] = 0, ["x"] = 0, ["y"] = 0, ["marked"] = false}) end
-    if game.GetButtonPressed(1) and not(fsB) then table.insert(btpresses, 1, {["btn"] = 1, ["age"] = 0, ["x"] = 0, ["y"] = 0, ["marked"] = false}) end
-    if game.GetButtonPressed(2) and not(fsC) then table.insert(btpresses, 1, {["btn"] = 2, ["age"] = 0, ["x"] = 0, ["y"] = 0, ["marked"] = false}) end
-    if game.GetButtonPressed(3) and not(fsD) then table.insert(btpresses, 1, {["btn"] = 3, ["age"] = 0, ["x"] = 0, ["y"] = 0, ["marked"] = false}) end
-    if game.GetButtonPressed(4) and not(fsL) then table.insert(btpresses, 1, {["btn"] = 4, ["age"] = 0, ["x"] = 0, ["y"] = 0, ["marked"] = false}) end
-    if game.GetButtonPressed(5) and not(fsR) then table.insert(btpresses, 1, {["btn"] = 5, ["age"] = 0, ["x"] = 0, ["y"] = 0, ["marked"] = false}) end
-
-    fsA = game.GetButtonPressed(0)
-    fsB = game.GetButtonPressed(1)
-    fsC = game.GetButtonPressed(2)
-    fsD = game.GetButtonPressed(3)
-    fsL = game.GetButtonPressed(4)
-    fsR = game.GetButtonPressed(5)
+    fsCreateRipples(deltaTime)
 
     local deletenum = 0
 
@@ -1398,12 +1368,21 @@ function fsRipples(deltaTime)
         end
 
         if v.age == 0 then
-            v.x = math.random()
-            v.y = math.random()
+            if v.chain then
+                v.x = lastspawnpos[v.btn + 1]["x"]
+                v.y = (lastspawnpos[v.btn + 1]["y"] + 0.1) % 1
+            else
+                v.x = math.random()
+                v.y = math.random()
+            end
+            lastspawnpos[v.btn + 1]["x"] = v.x
+            lastspawnpos[v.btn + 1]["y"] = v.y
         end
 
-        gfx.StrokeWidth(math.max(1 - v.age) * 3)
-        gfx.DrawCircleBool(false, true, v.x * -128, v.y * -72, v.age * 20)
+
+
+        gfx.StrokeWidth(((1 - v.age) ^ 1.5) * 6)
+        gfx.DrawCircleBool(false, true, v.x * -128, v.y * -72, (v.age ^ 0.37) * 15)
 
         v.age = v.age + (agespeed * deltaTime)
         if v.age > 1 and not(v.marked) then
@@ -1418,6 +1397,100 @@ function fsRipples(deltaTime)
     end
     gfx.ResetScissor()
     gfx.Restore()
+end
+-----
+function fsCreateRipples(deltaTime)
+if game.GetButtonPressed(0) then
+    if fsA then
+        if lastspawnpos[0 + 1]["timer"] < 0 then
+            table.insert(btpresses, 1, {["btn"] = 0, ["age"] = 0, ["x"] = 0, ["y"] = 0, ["marked"] = false, ["chain"] = true})
+            lastspawnpos[0 + 1]["timer"] = lastspawnpos[0 + 1]["timer"] + 0.05
+        else
+            lastspawnpos[0 + 1]["timer"] = lastspawnpos[0 + 1]["timer"] - deltaTime
+        end
+    else
+        table.insert(btpresses, 1, {["btn"] = 0, ["age"] = 0, ["x"] = 0, ["y"] = 0, ["marked"] = false, ["chain"] = false})
+        lastspawnpos[0 + 1]["timer"] = 0.15
+    end
+end
+
+    if game.GetButtonPressed(1) then
+    if fsB then
+        if lastspawnpos[1 + 1]["timer"] < 0 then
+            table.insert(btpresses, 1, {["btn"] = 1, ["age"] = 0, ["x"] = 0, ["y"] = 0, ["marked"] = false, ["chain"] = true})
+            lastspawnpos[1 + 1]["timer"] = lastspawnpos[1 + 1]["timer"] + 0.05
+        else
+            lastspawnpos[1 + 1]["timer"] = lastspawnpos[1 + 1]["timer"] - deltaTime
+        end
+    else
+        table.insert(btpresses, 1, {["btn"] = 1, ["age"] = 0, ["x"] = 0, ["y"] = 0, ["marked"] = false, ["chain"] = false})
+        lastspawnpos[1 + 1]["timer"] = 0.15
+    end
+end
+
+    if game.GetButtonPressed(2) then
+    if fsC then
+        if lastspawnpos[2 + 1]["timer"] < 0 then
+            table.insert(btpresses, 1, {["btn"] = 2, ["age"] = 0, ["x"] = 0, ["y"] = 0, ["marked"] = false, ["chain"] = true})
+            lastspawnpos[2 + 1]["timer"] = lastspawnpos[2 + 1]["timer"] + 0.05
+        else
+            lastspawnpos[2 + 1]["timer"] = lastspawnpos[2 + 1]["timer"] - deltaTime
+        end
+    else
+        table.insert(btpresses, 1, {["btn"] = 2, ["age"] = 0, ["x"] = 0, ["y"] = 0, ["marked"] = false, ["chain"] = false})
+        lastspawnpos[2 + 1]["timer"] = 0.15
+    end
+end
+
+    if game.GetButtonPressed(3) then
+    if fsD then
+        if lastspawnpos[3 + 1]["timer"] < 0 then
+            table.insert(btpresses, 1, {["btn"] = 3, ["age"] = 0, ["x"] = 0, ["y"] = 0, ["marked"] = false, ["chain"] = true})
+            lastspawnpos[3 + 1]["timer"] = lastspawnpos[3 + 1]["timer"] + 0.05
+        else
+            lastspawnpos[3 + 1]["timer"] = lastspawnpos[3 + 1]["timer"] - deltaTime
+        end
+    else
+        table.insert(btpresses, 1, {["btn"] = 3, ["age"] = 0, ["x"] = 0, ["y"] = 0, ["marked"] = false, ["chain"] = false})
+        lastspawnpos[3 + 1]["timer"] = 0.15
+    end
+end
+
+    if game.GetButtonPressed(4) then
+    if fsL then
+        if lastspawnpos[4 + 1]["timer"] < 0 then
+            table.insert(btpresses, 1, {["btn"] = 4, ["age"] = 0, ["x"] = 0, ["y"] = 0, ["marked"] = false, ["chain"] = true})
+            lastspawnpos[4 + 1]["timer"] = lastspawnpos[4 + 1]["timer"] + 0.05
+        else
+            lastspawnpos[4 + 1]["timer"] = lastspawnpos[4 + 1]["timer"] - deltaTime
+        end
+    else
+        table.insert(btpresses, 1, {["btn"] = 4, ["age"] = 0, ["x"] = 0, ["y"] = 0, ["marked"] = false, ["chain"] = false})
+        lastspawnpos[4 + 1]["timer"] = 0.15
+    end
+end
+
+    if game.GetButtonPressed(5) then
+    if fsR then
+        if lastspawnpos[5 + 1]["timer"] < 0 then
+            table.insert(btpresses, 1, {["btn"] = 5, ["age"] = 0, ["x"] = 0, ["y"] = 0, ["marked"] = false, ["chain"] = true})
+            lastspawnpos[5 + 1]["timer"] = lastspawnpos[5 + 1]["timer"] + 0.05
+        else
+            lastspawnpos[5 + 1]["timer"] = lastspawnpos[5 + 1]["timer"] - deltaTime
+        end
+    else
+        table.insert(btpresses, 1, {["btn"] = 5, ["age"] = 0, ["x"] = 0, ["y"] = 0, ["marked"] = false, ["chain"] = false})
+        lastspawnpos[5 + 1]["timer"] = 0.15
+    end
+end
+
+
+    fsA = game.GetButtonPressed(0)
+    fsB = game.GetButtonPressed(1)
+    fsC = game.GetButtonPressed(2)
+    fsD = game.GetButtonPressed(3)
+    fsL = game.GetButtonPressed(4)
+    fsR = game.GetButtonPressed(5)
 end
 -----
 local pressHist = {}
@@ -1625,7 +1698,7 @@ function draw_infobar()
     do
         local x1, y1, x2 = gfx.TextBounds(0, 0, infotext)
         local numPieces = 1 + math.ceil(desw / x2)
-        local startOffset = x2 * ((timer * 0.3) % 1)
+        local startOffset = x2 * ((globalTimer * 0.3) % 1)
         for i = 0, numPieces, 1 do
             gfx.Text(infotext, ((i - 1) * x2) + startOffset, 0)
         end

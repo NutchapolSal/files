@@ -216,30 +216,33 @@ draw_song = function(song, x, y, w, h, selected, timer)
                 local r,g,b = diffColors[v.difficulty+1][1],diffColors[v.difficulty+1][2],diffColors[v.difficulty+1][3]
                 gfx.StrokeColor(r,g,b)
             end
+            local xpos = x + w - h - (math.abs(i - #song.difficulties - 1) * ((db.box) + db.pad))
+            local ypos = y + h - db.box - db.pad
+
             gfx.BeginPath()
-            gfx.Rect(x+w-h-(math.abs(v.difficulty-4)*((db.box)+db.pad)),y+h-(db.box)-(db.pad),db.box,db.box)
-            gfx.FillColor(0,0,0,128)
+            gfx.Rect(xpos, ypos, db.box, db.box)
+            gfx.FillColor(0, 0, 0, 128)
             gfx.Fill()
             gfx.Stroke()
 
             gfx.FontSize(db.box/45*25)
             do
-                local r,g,b = badgecolors[v.topBadge+1][1],badgecolors[v.topBadge+1][2],badgecolors[v.topBadge+1][3]
-                gfx.FillColor(r,g,b)
+                local r, g, b = badgecolors[v.topBadge+1][1], badgecolors[v.topBadge + 1][2], badgecolors[v.topBadge + 1][3]
+                gfx.FillColor(r, g, b)
             end
             gfx.TextAlign(TEXT_ALIGN_CENTER + TEXT_ALIGN_MIDDLE)
-            gfx.Text(v.level,x + w - h - (math.abs(v.difficulty-4) * ((db.box) + db.pad)) + db.hbox,y + h - db.box - db.pad + db.hbox/1.9)
+            gfx.Text(v.level, xpos + db.hbox, ypos + db.hbox/1.9)
 
-            local xoffset = x + w - h - (math.abs(v.difficulty-4) * ((db.box) + db.pad)) + db.hbox
+            local xoffset = xpos + db.hbox
             if v.scores[1] ~= nil then
                 local highScore = v.scores[1]
-                for i,v in ipairs(grades) do
+                for i, v in ipairs(grades) do
                     if v.max > highScore.score then
                         gfx.BeginPath()
-                        local iw,ih = gfx.ImageSize(v.image)
+                        local iw, ih = gfx.ImageSize(v.image)
                         iw, ih = iw/ih, ih/ih
                         local imageHeight = h/8.5
-                        gfx.ImageRect(xoffset - (iw * imageHeight)/2,y + h - db.box - db.pad + db.hbox/2.5 + db.hbox - imageHeight/2,iw * imageHeight, imageHeight, v.image, 1, 0)
+                        gfx.ImageRect(xoffset - (iw * imageHeight)/2, ypos + db.hbox/2.5 + db.hbox - imageHeight/2,iw * imageHeight, imageHeight, v.image, 1, 0)
                         break
                     end
                 end
@@ -248,10 +251,10 @@ draw_song = function(song, x, y, w, h, selected, timer)
             if selected and selectedDiff == i then
                 gfx.Save()
                 gfx.BeginPath()
-                gfx.Translate(x+w-h-(math.abs(v.difficulty-4)*((db.box)+db.pad))+db.hbox,y+h-(db.box)-(db.pad)+db.hbox)
+                gfx.Translate(xpos + db.hbox, ypos + db.hbox)
                 gfx.Rotate(timer * math.pi)
 
-                gfx.Rect(-db.hbox,-db.hbox,db.box,db.box)
+                gfx.Rect(-db.hbox, -db.hbox, db.box, db.box)
                 gfx.StrokeColor(255,128,0)
                 gfx.Stroke()
 
