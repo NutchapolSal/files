@@ -35,3 +35,9 @@ function render_bars(progress)
         gfx.Restore()
     end
 end
+
+function reset()
+    transitionTimer = 0
+    resx, resy = game.GetResolution()
+    outTimer = 1
+end
