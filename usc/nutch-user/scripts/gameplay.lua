@@ -782,12 +782,12 @@ function draw_gauge(deltaTime)
     --gaugegraph
 
     --add one every <time> and when its not outro or intro
-    -- if gaugeTime > 0.0625 and outroTimer == 0 and introTimer == 0 then
+    if gaugeTime > 0.0625 and outroTimer == 0 and introTimer == 0 then
         table.insert(gg, 1, posy)
-        -- gaugeTime = 0
-    -- else
-        -- gaugeTime = gaugeTime + deltaTime
-    -- end
+        gaugeTime = 0
+    else
+        gaugeTime = gaugeTime + deltaTime
+    end
 
     if #gg > 10000 then
         table.remove(gg, #gg)
