@@ -9,13 +9,21 @@
 * mode-fruits-small
 * mode-mania-small
 
+#### r20200105.00
+* ranking-A
+* ranking-B
+* ranking-C
+* ranking-D
+* ranking-S
+* ranking-X
+
 ## [from osu!lazer](https://github.com/ppy/osu-resources)
 * every sound included here
 
 ## [*Beatmania IIDX 22 Pendual Future*](https://osu.ppy.sh/community/forums/topics/419180) by [Garin](https://osu.ppy.sh/users/2130664)
 * brokenote notes
 * **trans**parent **iidx judgements** in maniafiles
-* defualt mania-stage-light
+* default mania-stage-light
 
 ## [*YUGEN*](https://osu.ppy.sh/community/forums/topics/365036) by [Garin](https://osu.ppy.sh/users/2130664)
 * followpoint
