@@ -2,10 +2,6 @@
 
 # Razer Chroma Profiles
 
-click on image to download
-
-click on effect name to go back to jump list
-
 gifs are limited to 5 seconds because i'm too lazy to change the duration
 
 #### jump list
