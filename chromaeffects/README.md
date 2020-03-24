@@ -188,8 +188,12 @@ proof of concept, bar audio meter
 
 barmeter but put effects behind audio meter layer for extra coolness
 
-# [birthdaycake](#jump-list)
-[![birthdaycake](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/birthdaycake.gif "birthdaycake")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-birthdaycake.ChromaEffects)
+# birthdaycake
+[jump list](#jump-list) | [compactibilty list](#compactibility-list)
+
+![birthdaycake](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/birthdaycake.gif "birthdaycake")
+
+[download](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-birthdaycake.ChromaEffects)
 
 ![am] ![re] ![ri] ![sl] ![st]
 
@@ -209,8 +213,12 @@ also if you quickly shut off the music, you could see some confetti gracefully f
 
 *30 June 2019* - better distribution of audio meter ranges
 
-# [bluevsred](#jump-list)
-[![bluevsred](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/bluevsred.gif "bluevsred")](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-bluevsred.ChromaEffects)
+# bluevsred
+[jump list](#jump-list) | [compactibilty list](#compactibility-list)
+
+![bluevsred](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/bluevsred.gif "bluevsred")
+
+[download](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-bluevsred.ChromaEffects)
 
 ![am] ![re] ![ri] ![sl] ![wa]
 
