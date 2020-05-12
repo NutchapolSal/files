@@ -308,10 +308,10 @@ function render(deltaTime)
     draw_combo(deltaTime)
     draw_alerts(deltaTime)
 
-    draw_condisp(deltaTime)
-    draw_scoregraph()
-    draw_liveforce()
-    draw_funshits(deltaTime)
+    -- draw_condisp(deltaTime)
+    -- draw_scoregraph()
+    -- draw_liveforce()
+    -- draw_funshits(deltaTime)
     draw_infobar()
 
     draw_startbox(deltaTime)
@@ -779,48 +779,48 @@ function draw_gauge(deltaTime)
     gfx.FontSize(20)
     gfx.Text(string.format("%d%%", math.floor(gameplay.gauge * 100)), gauge_info.label_posx, posy )
 
-    --gaugegraph
+    -- --gaugegraph
 
-    --add one every <time> and when its not outro or intro
-    if gaugeTime > 0.0625 and outroTimer == 0 and introTimer == 0 then
-        table.insert(gg, 1, posy)
-        gaugeTime = 0
-    else
-        gaugeTime = gaugeTime + deltaTime
-    end
+    -- --add one every <time> and when its not outro or intro
+    -- if gaugeTime > 0.0625 and outroTimer == 0 and introTimer == 0 then
+    --     table.insert(gg, 1, posy)
+    --     gaugeTime = 0
+    -- else
+    --     gaugeTime = gaugeTime + deltaTime
+    -- end
 
-    if #gg > 10000 then
-        table.remove(gg, #gg)
-    end
+    -- if #gg > 10000 then
+    --     table.remove(gg, #gg)
+    -- end
 
-    --the line
-    gfx.BeginPath()
-    gfx.MoveTo(gauge_info.label_posx, posy)
-    for i, v in pairs(gg) do
-        gfx.LineTo(gauge_info.label_posx - (0.0625 * (i - 1)), v)
-    end
-    gfx.StrokeWidth(1.0)
-    do
-        local svntycut = gauge_info.label_posy - gauge_info.label_height * 0.7
-        local thirtycut = gauge_info.label_posy - gauge_info.label_height * 0.3
+    -- --the line
+    -- gfx.BeginPath()
+    -- gfx.MoveTo(gauge_info.label_posx, posy)
+    -- for i, v in pairs(gg) do
+    --     gfx.LineTo(gauge_info.label_posx - (0.0625 * (i - 1)), v)
+    -- end
+    -- gfx.StrokeWidth(1.0)
+    -- do
+    --     local svntycut = gauge_info.label_posy - gauge_info.label_height * 0.7
+    --     local thirtycut = gauge_info.label_posy - gauge_info.label_height * 0.3
     
-        gfx.ResetScissor()
-        if gameplay.gaugeType == 1 then -- ex gauge
-            gfx.StrokeColor(127,40,0) --dark orange
-            gfx.Stroke()
-            gfx.StrokeColor(255,80,0) --orange
-            gfx.Scissor(0, 0, 1280, thirtycut)
-            gfx.Stroke()
-        else -- normal gauge
-            gfx.StrokeColor(0,180,255) --cyan
-            gfx.Stroke()
-            gfx.StrokeColor(255,0,255) --pink
-            gfx.Scissor(0, 0, 1280, svntycut)
-            gfx.Stroke()
-        end
-        gfx.ResetScissor()
-        gfx.StrokeWidth(2.0)
-    end
+    --     gfx.ResetScissor()
+    --     if gameplay.gaugeType == 1 then -- ex gauge
+    --         gfx.StrokeColor(127,40,0) --dark orange
+    --         gfx.Stroke()
+    --         gfx.StrokeColor(255,80,0) --orange
+    --         gfx.Scissor(0, 0, 1280, thirtycut)
+    --         gfx.Stroke()
+    --     else -- normal gauge
+    --         gfx.StrokeColor(0,180,255) --cyan
+    --         gfx.Stroke()
+    --         gfx.StrokeColor(255,0,255) --pink
+    --         gfx.Scissor(0, 0, 1280, svntycut)
+    --         gfx.Stroke()
+    --     end
+    --     gfx.ResetScissor()
+    --     gfx.StrokeWidth(2.0)
+    -- end
 end
 -- -------------------------------------------------------------------------- --
 -- draw_combo:                                                                --
