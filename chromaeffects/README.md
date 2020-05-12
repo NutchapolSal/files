@@ -36,6 +36,7 @@ effects | groupings | ![aa] | ![am] | ![br] | ![fi] | ![re] | ![ri] | ![sc] | ![
 [rearviewmirror](#rearviewmirror)|RP2|||||✓|||||✓|
 [seriesoftubes](#seriesoftubes)|O|||||||||✓|✓|
 [sparkles](#sparkles)|O|||||✓|✓||✓|||
+[starlightviz](#starlightviz)|C||✓||||||✓|✓||
 [tea](#tea)|OA||✓|||✓|✓|||✓|✓|
 [watchdogs2](#watchdogs2)|OG||✓||||✓||✓|✓|✓|
 [wigwag](#wigwag)|RP|||||||||✓|✓|
@@ -86,6 +87,7 @@ bluevsredinvert|BWC|MTE||||
 [rearviewmirror](#rearviewmirror)|BWC|||
 [seriesoftubes](#seriesoftubes)|BWC|||
 [sparkles](#sparkles)|BWC|MTE||||
+[starlightviz](#starlightviz)|BWC|MTE|FF2|BSC|HDK|
 [tea](#tea)|BWC|MTE||||
 [watchdogs2](#watchdogs2)|BWC|MTE||||
 [wigwag](#wigwag)|BWC|||
@@ -590,6 +592,17 @@ time to r/razer crusade
 [download](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-sparkles.ChromaEffects)
 
 white ripple under a bunch of black starlights
+
+## starlightviz
+[jump list](#jump-list) | [compactibilty list](#compactibility-list)
+
+![starlightviz](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/starlightviz.gif "starlightviz")
+
+![am] ![sl] ![st]
+
+[download](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-starlightviz.ChromaEffects)
+
+proof of concept for starlight audio reactive effect
 
 ## tea
 [jump list](#jump-list) | [compactibilty list](#compactibility-list)
