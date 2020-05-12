@@ -10,6 +10,8 @@
 * mode-mania-small
 
 #### r20200105.00
+* failsound
+* pause-loop
 * ranking-A
 * ranking-B
 * ranking-C
