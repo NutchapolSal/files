@@ -289,14 +289,14 @@ end
 
 draw_cursor = function(x,y,rotation,width)
     gfx.Save()
-        gfx.BeginPath();
-        gfx.Translate(x,y)
-        gfx.Rotate(rotation)
-        gfx.StrokeColor(255,128,0)
-        gfx.StrokeWidth(4)
-        gfx.Rect(-width/2, -width/2, width, width)
-        gfx.Stroke()
-        gfx.Restore()
+    gfx.BeginPath();
+    gfx.Translate(x,y)
+    gfx.Rotate(rotation)
+    gfx.StrokeColor(255,128,0)
+    gfx.StrokeWidth(4)
+    gfx.Rect(-width/2, -width/2, width, width)
+    gfx.Stroke()
+    gfx.Restore()
 end
 
 draw_diffs = function(diffs, x, y, w, h)

@@ -6,6 +6,64 @@
 --  or behaviours of the default to better suit them.
 -- Skinning should be easy and fun!
 
+
+-- Animation functions begin
+function clamp(x, min, max) 
+    if x < min then
+        x = min
+    end
+    if x > max then
+        x = max
+    end
+
+    return x
+end
+
+function smootherstep(edge0, edge1, x) 
+    -- Scale, and clamp x to 0..1 range
+    x = clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0)
+    -- Evaluate polynomial
+    return x * x * x * (x * (x * 6 - 15) + 10)
+end
+  
+function to_range(val, start, stop)
+    return start + (stop - start) * val
+end
+
+Animation = {
+    start = 0,
+    stop = 0,
+    progress = 0,
+    duration = 1,
+    smoothStart = false
+}
+
+function Animation:new(o)
+    o = o or {}
+    setmetatable(o, self)
+    self.__index = self
+    return o
+end
+
+function Animation:restart(start, stop, duration)
+    self.progress = 0
+    self.start = start
+    self.stop = stop
+    self.duration = duration
+end
+
+function Animation:tick(deltaTime)
+    self.progress = math.min(1, self.progress + deltaTime / self.duration)
+    if self.progress == 1 then return self.stop end
+    if self.smoothStart then
+        return to_range(smootherstep(0, 1, self.progress), self.start, self.stop)
+    else
+        return to_range(smootherstep(-1, 1, self.progress) * 2 - 1, self.start, self.stop)
+    end
+end
+--- Animation Functions end
+
+
 local RECT_FILL = "fill"
 local RECT_STROKE = "stroke"
 local RECT_FILL_STROKE = RECT_FILL .. RECT_STROKE
@@ -311,7 +369,7 @@ function render(deltaTime)
     -- draw_condisp(deltaTime)
     -- draw_scoregraph()
     -- draw_liveforce()
-    -- draw_funshits(deltaTime)
+    draw_funshits(deltaTime)
     draw_infobar()
 
     draw_startbox(deltaTime)
@@ -735,6 +793,8 @@ function draw_best_diff(deltaTime, x, y)
     -- This includes the minus sign, so we do that separately
     gfx.Text(string.format("%s%08d", prefix, difference), x, y)
 end
+
+local score_animation = Animation:new()
 -- -------------------------------------------------------------------------- --
 -- draw_score:                                                                --
 function draw_score(deltaTime)
@@ -751,7 +811,7 @@ function draw_score(deltaTime)
     gfx.FillColor(255, 255, 255)
     gfx.TextAlign(gfx.TEXT_ALIGN_RIGHT + gfx.TEXT_ALIGN_TOP)
     gfx.FontSize(60)
-    gfx.Text(string.format("%08d", score), desw, 0)
+    gfx.Text(string.format("%08d", math.floor(score_animation:tick(deltaTime))), desw, 0)
     draw_best_diff(deltaTime, desw, 66)
     gfx.Translate(5, -5) -- undo margin
 end
@@ -1283,11 +1343,29 @@ end
 -- -------------------------------------------------------------------------- --
 function draw_funshits(deltaTime)
     fsRemain()
-    fsRipples(deltaTime)
-    fsPressHist(deltaTime)
-    fsInvaders(deltaTime)
-    fsPong(deltaTime)
+    fsPressHistorian(deltaTime)
+    -- fsRipples(deltaTime)
+    -- fsPressHist(deltaTime)
+    -- fsInvaders(deltaTime)
+    -- fsPong(deltaTime)
+    fsBPMSpinner(deltaTime)
+    fsPressHistCirc(deltaTime)
 end
+-----
+function fsBPMSpinner(deltaTime)
+    gfx.Save()
+    gfx.Translate(desw / 2, desh / 2)
+    gfx.Rotate(gameplay.bpm / 60 * globalTimer * math.pi * 2)
+
+    gfx.BeginPath()
+    gfx.Arc(0, 0, 20, 0, -math.pi * 0.15, 1) --1 for ccw, 2 for cw
+    gfx.StrokeWidth(1)
+    gfx.StrokeColor(255, 255, 255)
+    gfx.Stroke()
+
+    gfx.Restore()
+end
+
 -----
 function fsRemain()
     local c = {["x"] = desw/2, ["y"] = 20, ["r"] = 15, ["p"] = gameplay.progress * math.pi * 2} --c is for constants; x,y = center position; r = radius; p = progress as angle
@@ -1487,17 +1565,74 @@ end
 -----
 local pressHist = {}
 local phTime = 0
-function fsPressHist(deltaTime)
-    gfx.Save()
-    gfx.Translate(1252,130)
-    local smax = 0.0065 --stolen from condisp
+
+function fsPressHistorian(deltaTime)
 
     if phTime > 0.005 and outroTimer == 0 then
-        table.insert(pressHist, 1, {["s"] = game.GetButtonPressed(6), ["a"] = game.GetButtonPressed(0), ["b"] = game.GetButtonPressed(1), ["c"] = game.GetButtonPressed(2), ["d"] = game.GetButtonPressed(3), ["fl"] = game.GetButtonPressed(4), ["fr"] = game.GetButtonPressed(5), ["l"] = lspeed, ["r"] = rspeed})
+        table.insert(pressHist, 1, {["s"] = game.GetButtonPressed(6), ["a"] = game.GetButtonPressed(0), ["b"] = game.GetButtonPressed(1), ["c"] = game.GetButtonPressed(2), ["d"] = game.GetButtonPressed(3), ["fl"] = game.GetButtonPressed(4), ["fr"] = game.GetButtonPressed(5), ["l"] = lspeed, ["r"] = rspeed, ["rads"] = gameplay.bpm / 60 * globalTimer * math.pi * 2, ["fade"] = 0})
         phTime = phTime - 0.005 + deltaTime
     else
         phTime = phTime + deltaTime
     end
+
+    if #pressHist > 500 then table.remove(pressHist, #pressHist) end
+end
+function fsPressHistCirc(deltaTime)
+    gfx.Save()
+    gfx.Translate(desw / 2, desh / 2)
+    local smax = 0.0065 --stolen from condisp
+    local function drawAnArc(i, v, num)
+        gfx.Save()
+        gfx.Rotate(v.rads)
+
+        gfx.BeginPath()
+        if num >= 5 then
+            gfx.StrokeWidth(2)
+            gfx.StrokeColor(255, 128, 0, math.max(0, 255 - i))
+            gfx.Arc(0, 0, 20 + ((num - 4) * 2) + v.fade * 24, 0, -math.pi * 0.05, 1) --1 for ccw, 2 for cw
+        else
+            gfx.Arc(0, 0, 20 + num + v.fade * 24, 0, -math.pi * 0.05, 1) --1 for ccw, 2 for cw
+            gfx.StrokeWidth(1)
+            gfx.StrokeColor(255, 255, 255, math.max(0, 255 - i))
+        end
+        gfx.Stroke()
+
+        gfx.Restore()
+    end
+
+    for i, v in pairs(pressHist) do
+
+        if v.fl then
+            drawAnArc(i, v, 5)
+        end
+        if v.fr then
+            drawAnArc(i, v, 6)
+        end
+        if v.a then
+            drawAnArc(i, v, 1)
+        end
+        if v.b then
+            drawAnArc(i, v, 2)
+        end
+        if v.c then
+            drawAnArc(i, v, 3)
+        end
+        if v.d then
+            drawAnArc(i, v, 4)
+        end
+
+        v.fade = v.fade + deltaTime
+    end
+
+    gfx.Restore()
+end
+-----
+local pressHist = {}
+local phTime = 0
+function fsPressHist(deltaTime)
+    gfx.Save()
+    gfx.Translate(1252,130)
+    local smax = 0.0065 --stolen from condisp
 
     for i, v in pairs(pressHist) do
 
@@ -1528,8 +1663,6 @@ function fsPressHist(deltaTime)
         gfx.DrawRectBool(v.c, false, 12.5, (i - 1) * 1.001, 3, 1.001)
         gfx.DrawRectBool(v.d, false, 16.5, (i - 1) * 1.001, 3, 1.001)
     end
-
-    if #pressHist > 500 then table.remove(pressHist, #pressHist) end
 
     gfx.Restore()
 end
@@ -2077,7 +2210,10 @@ end
 -- -------------------------------------------------------------------------- --
 -- update_score:                                                              --
 function update_score(newScore)
-    score = newScore
+    if newScore ~= score then
+        score_animation:restart(score_animation:tick(0), newScore, 0.33)
+        score = newScore
+    end
 end
 -- -------------------------------------------------------------------------- --
 -- update_combo:                                                              --
