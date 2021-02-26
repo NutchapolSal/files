@@ -241,7 +241,7 @@ nope.
 
 guess this is what comes out after a whole month of not doing profiles (i do other stuff too! just look at [my commit history](https://github.com/NutchapolSal/files/commits/master))
 
-*20 Aug 2019* - **requested by _ThatSiimonツ_** change blue to red & viceversa. [n-bluevsred-invert](#bluevsred-invert)
+*20 Aug 2019* - [n-bluevsred-invert](#bluevsred-invert)
 
 *27 Feb 2021* - renamed from n-bluevsredinvert to n-bluevsred-invert, and moved to below
 
