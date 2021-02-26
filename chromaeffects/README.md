@@ -14,7 +14,7 @@ effects | groupings | ![aa] | ![am] | ![br] | ![fi] | ![re] | ![ri] | ![sc] | ![
 [barmeter2](#barmeter2)|C||✓||✓||||✓|||
 [birthdaycake](#birthdaycake)|RA||✓|||✓|✓||✓|✓||
 [bluevsred](#bluevsred)|RA||✓|||✓|✓||✓||✓|
-bluevsred-invert|RA||✓|||✓|✓||✓||✓|
+[bluevsred-invert](#bluevsred-invert)|RA||✓|||✓|✓||✓||✓|
 [blurple](#blurple)|O||✓|||✓|✓||✓|✓||
 [chromas](#chromas)|OA||✓||✓|✓|✓||✓|✓|✓|
 [coplightscode2](#coplightscode2)|RP2||||||||||✓|
@@ -66,7 +66,7 @@ compactibility | keyboard | mouse | mousepad | basestation | HDK
 [barmeter2](#barmeter2)|BWC|||
 [birthdaycake](#birthdaycake)|BWC|MTE|FF2|BSC|HDK|
 [bluevsred](#bluevsred)|BWC|MTE|FF2|BSC|HDK|
-bluevsred-invert|BWC|MTE||||
+[bluevsred-invert](#bluevsred-invert)|BWC|MTE||||
 [blurple](#blurple)|BWC|MTE||||
 [chromas](#chromas)|BWC|MTE||||
 [coplightscode2](#coplightscode2)|BWC|||
@@ -241,9 +241,22 @@ nope.
 
 guess this is what comes out after a whole month of not doing profiles (i do other stuff too! just look at [my commit history](https://github.com/NutchapolSal/files/commits/master))
 
-*20 Aug 2019* - **requested by _ThatSiimonツ_** change blue to red & viceversa. [n-bluevsred-invert](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-bluevsred-invert.ChromaEffects)
+*20 Aug 2019* - **requested by _ThatSiimonツ_** change blue to red & viceversa. [n-bluevsred-invert](#bluevsred-invert)
 
-*27 Feb 2021* - renamed n-bluevsredinvert to [n-bluevsred-invert](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-bluevsred-invert.ChromaEffects), to be more inline with [n-rainbowspiral-bw](#rainbowspiral-bw)
+*27 Feb 2021* - renamed from n-bluevsredinvert to n-bluevsred-invert, and moved to below
+
+# bluevsred-invert
+[jump list](#jump-list) | [compactibilty list](#compactibility-list)
+
+![bluevsred-invert](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/bluevsred-invert.gif "bluevsred-invert")
+
+[download](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-bluevsred-invert.ChromaEffects)
+
+![am] ![re] ![ri] ![sl] ![wa]
+
+**requested by _ThatSiimonツ_**
+
+> change blue to red & viceversa.
 
 ## blurple
 [jump list](#jump-list) | [compactibilty list](#compactibility-list)
