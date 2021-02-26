@@ -30,6 +30,7 @@ effects | groupings | ![aa] | ![am] | ![br] | ![fi] | ![re] | ![ri] | ![sc] | ![
 [overcharged](#overcharged)|R2T||||||✓||✓|✓|✓|
 [radar](#radar)|O|||||✓|✓||✓|||✓
 [rainbowspiral](#rainbowspiral)|R||||||✓|||||✓
+[rainbowspiral](#rainbowspiral)|R||||||✓|||||✓
 [raindrop](#raindrop)|RT||✓||||✓|||✓||
 [rainingneon](#rainingneon)|R2||||||||||✓|
 [reactiveblackout](#reactiveblackout)|RC|||||✓|✓||||✓|
@@ -64,7 +65,7 @@ compactibility | keyboard | mouse | mousepad | basestation | HDK
 [barmeter2](#barmeter2)|BWC|||
 [birthdaycake](#birthdaycake)|BWC|MTE|FF2|BSC|HDK|
 [bluevsred](#bluevsred)|BWC|MTE|FF2|BSC|HDK|
-bluevsredinvert|BWC|MTE||||
+bluevsred-invert|BWC|MTE||||
 [blurple](#blurple)|BWC|MTE||||
 [chromas](#chromas)|BWC|MTE||||
 [coplightscode2](#coplightscode2)|BWC|||
@@ -80,7 +81,8 @@ bluevsredinvert|BWC|MTE||||
 [mudrive](#mudrive)|BWC|MTE||||
 [overcharged](#overcharged)|BWC|||
 [radar](#radar)|BWC|MTE||||
-[rainbowspiral](#rainbowspiral)|BWC|MTE||||
+[rainbowspiral](#rainbowspiral)|BWC|MTE|FF2|BSC|HDK|
+[rainbowspiral-bw](#rainbowspiral-bw)|BWC|MTE|FF2|BSC|HDK|
 [raindrop](#raindrop)|BWC|MTE||||
 [rainingneon](#rainingneon)|BWC|||
 [reactiveblackout](#reactiveblackout)|BWC|MTE||||
@@ -213,7 +215,7 @@ inspirations:
 
 also if you quickly shut off the music, you could see some confetti gracefully falling
 
-*30 June 2019* - better distribution of audio meter ranges
+*30 Jun 2019* - better distribution of audio meter ranges
 
 # bluevsred
 [jump list](#jump-list) | [compactibilty list](#compactibility-list)
@@ -238,7 +240,9 @@ nope.
 
 guess this is what comes out after a whole month of not doing profiles (i do other stuff too! just look at [my commit history](https://github.com/NutchapolSal/files/commits/master))
 
-*20 August 2019* - **requested by _ThatSiimonツ_** change blue to red & viceversa. [n-bluevsredinvert](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-bluevsredinvert.ChromaEffects)
+*20 Aug 2019* - **requested by _ThatSiimonツ_** change blue to red & viceversa. [n-bluevsred-invert](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-bluevsred-invert.ChromaEffects)
+
+*27 Feb 2021* - renamed n-bluevsredinvert to [n-bluevsred-invert](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-bluevsred-invert.ChromaEffects), to be more inline with [n-rainbowspiral-bw](#rainbowspiral-bw)
 
 ## blurple
 [jump list](#jump-list) | [compactibilty list](#compactibility-list)
@@ -357,7 +361,7 @@ white/gold | world map
 
 saw fish images in profile-requests, so i had to make it
 
-*06 April 2019* - fixed no sound making the above half of the sea pitch black by using a one colored speed 0 wave because i don’t want to add static to the entry lol
+*06 Apr 2019* - fixed no sound making the above half of the sea pitch black by using a one colored speed 0 wave because i don’t want to add static to the entry lol
 
 ## fullenn
 [jump list](#jump-list) | [compactibilty list](#compactibility-list)
@@ -498,6 +502,24 @@ inspiration:
 >Request rainbow spiral ripple effect
 
 not quite, but makes a cool effect nontheless
+
+*27 Feb 2021* - extended profile to cover more devices, and also that thing below
+
+## rainbowspiral-bw
+[jump list](#jump-list) | [compactibilty list](#compactibility-list)
+
+![rainbowspiral-bw](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/rainbowspiral-bw.gif "rainbowspiral-bw")
+
+![ri] ![wh]
+
+[download](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-rainbowspiral-bw.ChromaEffects)
+
+**requested by _JayIssaQt_** -
+
+>a white and black spiral would be kinda cool
+>i mean y'know maybe \*cough cough nutchapol my fav \*cough cough could make one \*cough sorry had to clear my throat.
+
+it's just a b&w recolor of rainbowspiral
 
 ## raindrop
 [jump list](#jump-list) | [compactibilty list](#compactibility-list)
