@@ -1,4 +1,4 @@
-<img align="right" alt="powered by chroma" src="https://d4kkpd69xt9l7.cloudfront.net/sys-master/images/h07/h94/8950190243870/chroma101-chroma-icon.png">
+<img align="right" alt="powered by chroma" src="https://github.com/NutchapolSal/files/raw/master/chromaeffects/mirror/chroma101-chroma-icon.png">
 
 # Razer Chroma Profiles
 
@@ -14,6 +14,7 @@ effects | groupings | ![aa] | ![am] | ![br] | ![fi] | ![re] | ![ri] | ![sc] | ![
 [barmeter2](#barmeter2)|C||✓||✓||||✓|||
 [birthdaycake](#birthdaycake)|RA||✓|||✓|✓||✓|✓||
 [bluevsred](#bluevsred)|RA||✓|||✓|✓||✓||✓|
+bluevsred-invert|RA||✓|||✓|✓||✓||✓|
 [blurple](#blurple)|O||✓|||✓|✓||✓|✓||
 [chromas](#chromas)|OA||✓||✓|✓|✓||✓|✓|✓|
 [coplightscode2](#coplightscode2)|RP2||||||||||✓|
@@ -30,7 +31,7 @@ effects | groupings | ![aa] | ![am] | ![br] | ![fi] | ![re] | ![ri] | ![sc] | ![
 [overcharged](#overcharged)|R2T||||||✓||✓|✓|✓|
 [radar](#radar)|O|||||✓|✓||✓|||✓
 [rainbowspiral](#rainbowspiral)|R||||||✓|||||✓
-[rainbowspiral](#rainbowspiral)|R||||||✓|||||✓
+[rainbowspiral-bw](#rainbowspiral-bw)|R||||||✓|||||✓
 [raindrop](#raindrop)|RT||✓||||✓|||✓||
 [rainingneon](#rainingneon)|R2||||||||||✓|
 [reactiveblackout](#reactiveblackout)|RC|||||✓|✓||||✓|
