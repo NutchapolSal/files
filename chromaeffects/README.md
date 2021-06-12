@@ -39,6 +39,7 @@ effects | groupings | ![aa] | ![am] | ![br] | ![fi] | ![re] | ![ri] | ![sc] | ![
 [seriesoftubes](#seriesoftubes)|O|||||||||✓|✓|
 [sparkles](#sparkles)|O|||||✓|✓||✓|||
 [starlightviz](#starlightviz)|C||✓||||||✓|✓||
+[staticandreactive](#staticandreactive)|R2|||||✓||||✓||
 [tea](#tea)|OA||✓|||✓|✓|||✓|✓|
 [watchdogs2](#watchdogs2)|OG||✓||||✓||✓|✓|✓|
 [wigwag](#wigwag)|RP|||||||||✓|✓|
@@ -91,6 +92,7 @@ compactibility | keyboard | mouse | mousepad | basestation | HDK
 [seriesoftubes](#seriesoftubes)|BWC|||
 [sparkles](#sparkles)|BWC|MTE||||
 [starlightviz](#starlightviz)|BWC|MTE|FF2|BSC|HDK|
+[staticandreactive](#staticandreactive)|BWC|||
 [tea](#tea)|BWC|MTE||||
 [watchdogs2](#watchdogs2)|BWC|MTE||||
 [wigwag](#wigwag)|BWC|||
@@ -639,6 +641,33 @@ white ripple under a bunch of black starlights
 [download](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-starlightviz.ChromaEffects)
 
 proof of concept for starlight audio reactive effect
+
+## staticandreactive
+[jump list](#jump-list) | [compactibilty list](#compactibility-list)
+
+![staticandreactive](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/staticandreactive.gif "staticandreactive")
+
+![re] ![st]
+
+[download](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-staticandreactive.ChromaEffects)
+
+**requested by _Takenabe_, original by _maksibon126_**
+
+> I hate to be the kind of guy who joins a server to immediately ask for help, but man, I'm so frustrated... On my previous computer, I had a Synapse 2 lighting profile that I was super fond of. It was simple, just static and reactive effects, but the keys were lit in groups according to their use in MMOs. Like, WASD and the arrow keys were one color, shift/ctrl/etc were another color, and non-important keys mostly used for typing were all another color. But I lost the file for it with the new computer, not to mention having to use Synapse 3 now, and I've been searching for hours in hopes of even finding a video of it so I can try to recreate it myself.
+
+> Does anyone have any idea where I could find this thing?
+
+> My memory is too fuzzy to do it just off what I remember, and I swear it's like this thing never existed...
+
+> I actually do have one file that I think could possibly be it, but it's a .razerchroma file and Synapse 2 won't even open if I install it fresh and reboot. x-x
+
+> On the offchance it IS what I'm looking for, would someone with a working Synapse 2 please check this out for me and tell me what it is?
+
+> [maksibon126_StaticAndReactive.razerchroma file]
+
+you wrote an essay just for this, damn
+
+this is based on the chroma workshop copy of the file(it's just staticAndReactive for the BW Chroma, no author), i don't know if there are differences between that and Takenabe's copy. some of the keys might have the wrong color compared to the original.
 
 ## tea
 [jump list](#jump-list) | [compactibilty list](#compactibility-list)
