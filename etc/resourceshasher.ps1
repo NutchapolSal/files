@@ -1,0 +1,1 @@
+﻿Get-FileHash -Algorithm SHA1 resources.zip | Select-Object -ExpandProperty Hash | Set-Clipboard
