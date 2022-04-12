@@ -10,13 +10,14 @@ effects | groupings | ![aa] | ![am] | ![br] | ![fi] | ![re] | ![ri] | ![sc] | ![
 ---|---|---|---|---|---|---|---|---|---|---|---|---
 [acorigins](#acorigins)|RG||||||||✓||✓|
 [alleffects](#alleffects)|R|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓|✓
-[barmeter](#barmeter)|C||✓|||||||||
 [barmeter2](#barmeter2)|C||✓||✓||||✓|||
+[barmeter](#barmeter)|C||✓|||||||||
 [birthdaycake](#birthdaycake)|RA||✓|||✓|✓||✓|✓||
-[bluevsred](#bluevsred)|RA||✓|||✓|✓||✓||✓|
 [bluevsred-invert](#bluevsred-invert)|RA||✓|||✓|✓||✓||✓|
+[bluevsred](#bluevsred)|RA||✓|||✓|✓||✓||✓|
 [blurple](#blurple)|O||✓|||✓|✓||✓|✓||
 [chromas](#chromas)|OA||✓||✓|✓|✓||✓|✓|✓|
+[coffeehouse](#coffeehouse)|O||||||||✓|✓|✓|
 [coplightscode2](#coplightscode2)|RP2||||||||||✓|
 [default](#default)|O|✓|✓|||✓|✓||✓||✓|
 [discofloor](#discofloor)|O||||||✓||✓|||
@@ -24,16 +25,18 @@ effects | groupings | ![aa] | ![am] | ![br] | ![fi] | ![re] | ![ri] | ![sc] | ![
 [fez](#fez)|OG||||||✓||✓|✓|✓|
 [fishfettish](#fishfettish)|O||✓||||||||✓|
 [fullenn](#fullenn)|R||✓||||✓||||✓|
+[greenwhite](#greenwhite)|OM||||||✓||✓||✓|
 [mawshblue](#mawshblue)|RA||✓||||✓|||✓|✓|
 [minesweeper](#minesweeper)|RG||||||✓|||✓|✓|
 [mohamed](#mohamed)|R||||||||||✓|
 [mudrive](#mudrive)|OG||||||✓|||✓||
 [overcharged](#overcharged)|R2T||||||✓||✓|✓|✓|
 [radar](#radar)|O|||||✓|✓||✓|||✓
-[rainbowspiral](#rainbowspiral)|R||||||✓|||||✓
 [rainbowspiral-bw](#rainbowspiral-bw)|R||||||✓|||||✓
+[rainbowspiral](#rainbowspiral)|R||||||✓|||||✓
 [raindrop](#raindrop)|RT||✓||||✓|||✓||
 [rainingneon](#rainingneon)|R2||||||||||✓|
+[rainydays](#rainydays)|O||||||||✓||✓|
 [reactiveblackout](#reactiveblackout)|RC|||||✓|✓||||✓|
 [rearviewmirror](#rearviewmirror)|RP2|||||✓|||||✓|
 [seriesoftubes](#seriesoftubes)|O|||||||||✓|✓|
@@ -56,46 +59,50 @@ G|games
 A|recommended audio profiles
 2|recreation from s2
 T|with some modifications by me
+M|potw/potm
 
 #### compactibility list
 
-compactibility | keyboard | mouse | mousepad | basestation | HDK
----|---|---|---|---|---
-[acorigins](#acorigins)|BWC|MTE||||
-[alleffects](#alleffects)|BWC|MTE||||
-[barmeter](#barmeter)|BWC|||
-[barmeter2](#barmeter2)|BWC|||
-[birthdaycake](#birthdaycake)|BWC|MTE|FF2|BSC|HDK|
-[bluevsred](#bluevsred)|BWC|MTE|FF2|BSC|HDK|
-[bluevsred-invert](#bluevsred-invert)|BWC|MTE||||
-[blurple](#blurple)|BWC|MTE||||
-[chromas](#chromas)|BWC|MTE||||
-[coplightscode2](#coplightscode2)|BWC|||
-[default](#default)|BWC|MTE||||
-[discofloor](#discofloor)|BWC|MTE||||
-[england](#england)|BWC|MTE||||
-[fez](#fez)|BWC|MTE||||
-[fishfettish](#fishfettish)|BWC|MTE|FF2|BSC|HDK|
-[fullenn](#fullenn)|BWC|MTE||||
-[mawshblue](#mawshblue)|BWC|MTE||||
-[minesweeper](#minesweeper)|BWC|||
-[mohamed](#mohamed)|BWC|||
-[mudrive](#mudrive)|BWC|MTE||||
-[overcharged](#overcharged)|BWC|||
-[radar](#radar)|BWC|MTE||||
-[rainbowspiral](#rainbowspiral)|BWC|MTE|FF2|BSC|HDK|
-[rainbowspiral-bw](#rainbowspiral-bw)|BWC|MTE|FF2|BSC|HDK|
-[raindrop](#raindrop)|BWC|MTE||||
-[rainingneon](#rainingneon)|BWC|||
-[reactiveblackout](#reactiveblackout)|BWC|MTE||||
-[rearviewmirror](#rearviewmirror)|BWC|||
-[seriesoftubes](#seriesoftubes)|BWC|||
-[sparkles](#sparkles)|BWC|MTE||||
-[starlightviz](#starlightviz)|BWC|MTE|FF2|BSC|HDK|
-[staticandreactive](#staticandreactive)|BWC|||
-[tea](#tea)|BWC|MTE||||
-[watchdogs2](#watchdogs2)|BWC|MTE||||
-[wigwag](#wigwag)|BWC|||
+compactibility | keyboard | mouse | mousepad | basestation | HDK | ARGB |
+---|---|---|---|---|---|---
+[acorigins](#acorigins)|BWC|MTE|||||
+[alleffects](#alleffects)|BWC|MTE|||||
+[barmeter2](#barmeter2)|BWC||||||
+[barmeter](#barmeter)|BWC||||||
+[birthdaycake](#birthdaycake)|BWC|MTE|FF2|BSC|HDK||
+[bluevsred-invert](#bluevsred-invert)|BWC|MTE|||||
+[bluevsred](#bluevsred)|BWC|MTE|FF2|BSC|HDK||
+[blurple](#blurple)|BWC|MTE|||||
+[chromas](#chromas)|BWC|MTE|||||
+[coffeehouse](#coffeehouse)|BWC||FF2|BSC|HDK|ARGB|
+[coplightscode2](#coplightscode2)|BWC||||||
+[default](#default)|BWC|MTE|||||
+[discofloor](#discofloor)|BWC|MTE|||||
+[england](#england)|BWC|MTE|||||
+[fez](#fez)|BWC|MTE|||||
+[fishfettish](#fishfettish)|BWC|MTE|FF2|BSC|HDK||
+[fullenn](#fullenn)|BWC|MTE|||||
+[greenwhite](#rainydays)|BWC||FF2|BSC|HDK|ARGB|
+[mawshblue](#mawshblue)|BWC|MTE|||||
+[minesweeper](#minesweeper)|BWC||||||
+[mohamed](#mohamed)|BWC||||||
+[mudrive](#mudrive)|BWC|MTE|||||
+[overcharged](#overcharged)|BWC||||||
+[radar](#radar)|BWC|MTE|||||
+[rainbowspiral-bw](#rainbowspiral-bw)|BWC|MTE|FF2|BSC|HDK||
+[rainbowspiral](#rainbowspiral)|BWC|MTE|FF2|BSC|HDK||
+[raindrop](#raindrop)|BWC|MTE|||||
+[rainingneon](#rainingneon)|BWC||||||
+[rainydays](#rainydays)|BWC||FF2|BSC|HDK|ARGB|
+[reactiveblackout](#reactiveblackout)|BWC|MTE|||||
+[rearviewmirror](#rearviewmirror)|BWC||||||
+[seriesoftubes](#seriesoftubes)|BWC||||||
+[sparkles](#sparkles)|BWC|MTE|||||
+[starlightviz](#starlightviz)|BWC|MTE|FF2|BSC|HDK||
+[staticandreactive](#staticandreactive)|BWC||||||
+[tea](#tea)|BWC|MTE|||||
+[watchdogs2](#watchdogs2)|BWC|MTE|||||
+[wigwag](#wigwag)|BWC||||||
 
 compactibility | meaning
 ---|---
@@ -104,6 +111,7 @@ MTE|mamba tournament edition
 FF2|firefly v2
 BSC|base station chroma
 HDK|hardware development kit/pc case lighting kit
+ARGB|wireless argb controller
 
 buy me something i dont have if you want me to make a profile for it xd
 
@@ -288,6 +296,19 @@ don't be fooled by this one's gif, the audio effects are quite good
 
 btw it's a portmanteau of chroma & christmas for anyone wondering why it's named like that
 
+## coffeehouse
+[jump list](#jump-list) | [compactibilty list](#compactibility-list)
+
+![coffeehouse](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/coffeehouse.gif "coffeehouse")
+
+![sl] ![st] ![wa]
+
+[download](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-coffeehouse.ChromaEffects)
+
+razer sent wireless argb controllers for profile creators to make profiles for it, sure
+
+nice and comfy, really like the flickering lights on this one
+
 ## coplightscode2
 [jump list](#jump-list) | [compactibilty list](#compactibility-list)
 
@@ -395,6 +416,25 @@ saw fish images in profile-requests, so i had to make it
 challenge accepted
 
 > Those who do not learn [history](#mohamed) are doomed to repeat it.
+
+## greenwhite
+[jump list](#jump-list) | [compactibilty list](#compactibility-list)
+
+![greenwhite](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/greenwhite.gif "greenwhite")
+
+![ri] ![sl] ![wa]
+
+[download](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-greenwhite.ChromaEffects)
+
+it's green
+
+it's white
+
+it's greenwhite
+
+ok? ok.
+
+*25 Nov 2021 00:18* - i made this in 8 minutes lmao
 
 ## mawshblue
 [jump list](#jump-list) | [compactibilty list](#compactibility-list)
@@ -562,6 +602,19 @@ it's just a b&w recolor of rainbowspiral
 > hello guys, there used to be a black widow chroma lighting effect profile, called Raining neon. You can see it in this video in spot number 3 [https://www.youtube.com/watch?v=PTv9nN71cSY](https://youtu.be/PTv9nN71cSY?t=121). Can some one make it into a huntsman elite profile?\
 
 *12 Sep 2019* - Thanks to _Aarryah_, the original vid from syed didn't include the ripple so from [this better reference](https://www.youtube.com/watch?v=mgJgS5Fu4Xw), i updated it.
+
+## rainydays
+[jump list](#jump-list) | [compactibilty list](#compactibility-list)
+
+![rainydays](https://github.com/NutchapolSal/files/raw/master/chromaeffects/prev/rainydays.gif "rainydays")
+
+![sl] ![wa]
+
+[download](https://github.com/NutchapolSal/files/raw/master/chromaeffects/n-rainydays.ChromaEffects)
+
+razer sent wireless argb controllers for profile creators to make profiles for it, sure
+
+rainy days and me not going anywhere are the best
 
 ## reactiveblackout
 [jump list](#jump-list) | [compactibilty list](#compactibility-list)
