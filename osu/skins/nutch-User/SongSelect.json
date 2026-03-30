@@ -1,0 +1,32 @@
+{
+  "Version": 1,
+  "DrawableInfo": {
+    "global": [
+      {
+        "Type": "osu.Game.Skinning.Components.BeatmapAttributeText, osu.Game, Version=2026.305.0.0, Culture=neutral, PublicKeyToken=null",
+        "Position": {
+          "x": -23.433807,
+          "y": 6.028122
+        },
+        "Rotation": 0.0,
+        "Scale": {
+          "x": 0.37089854,
+          "y": 0.37089854
+        },
+        "Width": null,
+        "Height": null,
+        "Anchor": 17,
+        "Origin": 33,
+        "UsesFixedAnchor": true,
+        "Settings": {
+          "attribute": 13,
+          "template": "{Value}PP",
+          "font": 1,
+          "text_weight": 400,
+          "text_colour": "#FFFFFF"
+        },
+        "Children": []
+      }
+    ]
+  }
+}
