@@ -24,8 +24,8 @@
       {
         "Type": "osu.Game.Skinning.LegacyAccuracyCounter, osu.Game, Version=2026.305.0.0, Culture=neutral, PublicKeyToken=null",
         "Position": {
-          "x": 0.0,
-          "y": 29.280075
+          "x": -62.23999,
+          "y": 50.221146
         },
         "Rotation": 0.0,
         "Scale": {
@@ -34,8 +34,8 @@
         },
         "Width": null,
         "Height": null,
-        "Anchor": 33,
-        "Origin": 33,
+        "Anchor": 17,
+        "Origin": 17,
         "UsesFixedAnchor": false,
         "Settings": {
           "accuracy_display": 2
@@ -78,6 +78,27 @@
         "Origin": 9,
         "UsesFixedAnchor": false,
         "Settings": {},
+        "Children": []
+      },
+      {
+        "Type": "osu.Game.Skinning.LegacyAccuracyCounter, osu.Game, Version=2026.305.0.0, Culture=neutral, PublicKeyToken=null",
+        "Position": {
+          "x": -62.518433,
+          "y": 37.359634
+        },
+        "Rotation": 0.0,
+        "Scale": {
+          "x": 0.38220742,
+          "y": 0.38220742
+        },
+        "Width": null,
+        "Height": null,
+        "Anchor": 17,
+        "Origin": 17,
+        "UsesFixedAnchor": false,
+        "Settings": {
+          "accuracy_display": 1
+        },
         "Children": []
       }
     ],
